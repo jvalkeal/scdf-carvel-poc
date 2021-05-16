@@ -1,4 +1,4 @@
-# SCDF Carver POC
+# SCDF Carvel POC
 
 Testing concepts of deploying `scdf` via `ytt` templating with `kapp`.
 
