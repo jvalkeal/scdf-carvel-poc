@@ -17,3 +17,6 @@ binder_type:
 
 #! database type, either mysql or postgres (required)
 database_type:
+
+#! deploy mode, either minikube or cloud
+deploy_mode: minikube

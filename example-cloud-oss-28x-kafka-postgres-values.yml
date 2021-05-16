@@ -2,5 +2,6 @@
 ---
 dataflow_image_tag: 2.8.0-SNAPSHOT
 skipper_image_tag: 2.7.0-SNAPSHOT
-binder_type: kafka
-database_type: postgres
+binder_type: rabbit
+database_type: mysql
+deploy_mode: cloud

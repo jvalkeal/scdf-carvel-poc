@@ -1,3 +1,6 @@
+#@ load("@ytt:data", "data")
+#@ load("/common/common.star", "service_spec_type")
+
 kind: Service
 apiVersion: v1
 metadata:
@@ -6,10 +9,10 @@ metadata:
     app: scdf-server
     spring-deployment-id: scdf
 spec:
-  #! If you are running k8s on a local dev box or using minikube, you can use type NodePort instead
-  type: NodePort
+  type: #@ service_spec_type()
   ports:
-    - port: 80
-      name: scdf-server
+  - port: 80
+    targetPort: 9393
+    name: scdf-server
   selector:
     app: scdf-server

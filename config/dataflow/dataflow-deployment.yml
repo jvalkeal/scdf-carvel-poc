@@ -32,12 +32,12 @@ spec:
         livenessProbe:
           httpGet:
             path: /management/health
-            port: 80
+            port: 9393
           initialDelaySeconds: 45
         readinessProbe:
           httpGet:
             path: /management/info
-            port: 80
+            port: 9393
           initialDelaySeconds: 45
         resources:
           limits:
@@ -51,8 +51,6 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: "metadata.namespace"
-        - name: SERVER_PORT
-          value: '80'
         - name: SPRING_CLOUD_CONFIG_ENABLED
           value: 'false'
         - name: SPRING_CLOUD_DATAFLOW_FEATURES_ANALYTICS_ENABLED
