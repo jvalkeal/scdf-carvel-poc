@@ -1,0 +1,20 @@
+#@ load("/common/common.lib.yml", "kafka_enabled")
+#@ if kafka_enabled():
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-broker
+  labels:
+    app: kafka
+    component: kafka-broker
+spec:
+  clusterIP: None
+  ports:
+  - port: 9092
+    name: kafka-port
+    targetPort: 9092
+    protocol: TCP
+  selector:
+    app: kafka
+    component: kafka-broker
+#@ end

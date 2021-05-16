@@ -1,0 +1,19 @@
+#@data/values
+---
+#! dataflow server image repository id
+dataflow_image_repository: springcloud/spring-cloud-dataflow-server
+
+#! dataflow server image tag (required)
+dataflow_image_tag:
+
+#! skipper server image repository id
+skipper_image_repository: springcloud/spring-cloud-skipper-server
+
+#! skipper server image tag (required)
+skipper_image_tag:
+
+#! binder type, either rabbit or kafka (required)
+binder_type:
+
+#! database type, either mysql or postgres (required)
+database_type:
