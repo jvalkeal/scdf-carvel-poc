@@ -9,6 +9,8 @@ end
 requirements = {
    "dataflow_image_repository": non_empty_string,
    "dataflow_image_tag": non_empty_string,
+   "ctr_image_repository": non_empty_string,
+   "ctr_image_tag": non_empty_string,
    "skipper_image_repository": non_empty_string,
    "skipper_image_tag": non_empty_string,
    "binder_type": non_empty_string,
@@ -38,6 +40,7 @@ end
 def get_missing_parameters(values):
     required_parameters = '''\
 dataflow_image_tag
+ctr_image_tag
 skipper_image_tag
 binder_type
 database_type'''.split("\n")

@@ -6,6 +6,12 @@ dataflow_image_repository: springcloud/spring-cloud-dataflow-server
 #! dataflow server image tag (required)
 dataflow_image_tag:
 
+#! ctr image repository id
+ctr_image_repository: springcloud/spring-cloud-dataflow-composed-task-runner
+
+#! ctr image tag (required)
+ctr_image_tag:
+
 #! skipper server image repository id
 skipper_image_repository: springcloud/spring-cloud-skipper-server
 
