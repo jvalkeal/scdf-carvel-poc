@@ -1,20 +1,22 @@
-import YAML from 'yaml';
-import { loadYaml, V1Deployment, V1Container } from '@kubernetes/client-node';
 import { execYtt } from '../src/ytt';
+import { deploymentContainer, findDeployment } from '../src/k8s-helper';
 
 describe('tests', () => {
   it('versions generated', async () => {
     const result = await execYtt(['-f', 'config', '-f', 'example-minikube-oss-28x-kafka-postgres-values.yml'], true);
     expect(result.success).toBeTruthy();
-    const documents = YAML.parseAllDocuments(result.stdout);
-    let container: V1Container | undefined;
-    documents.forEach(d => {
-      const node = loadYaml<V1Deployment>(d.toString());
-      if (node?.kind === 'Deployment' && node?.metadata?.name === 'skipper') {
-        container = node?.spec?.template?.spec?.containers.find(container => container.name === 'skipper');
-      }
-    });
-    expect(container).toBeTruthy();
-    expect(container?.image).toEqual('springcloud/spring-cloud-skipper-server:2.7.0-SNAPSHOT');
+    const yaml = result.stdout;
+
+    const skipperDeployment = findDeployment(yaml, 'skipper');
+    expect(skipperDeployment).toBeTruthy();
+
+    const skipperContainer = deploymentContainer(skipperDeployment, 'skipper');
+    expect(skipperContainer).toBeTruthy();
+    expect(skipperContainer?.image).toEqual('springcloud/spring-cloud-skipper-server:2.7.0-SNAPSHOT');
+
+    const dataflowDeployment = findDeployment(yaml, 'scdf-server');
+    const dataflowContainer = deploymentContainer(dataflowDeployment, 'scdf-server');
+    expect(dataflowContainer).toBeTruthy();
+    expect(dataflowContainer?.image).toEqual('springcloud/spring-cloud-dataflow-server:2.8.0-SNAPSHOT');
   });
 });
