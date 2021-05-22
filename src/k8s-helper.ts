@@ -18,3 +18,7 @@ export function findDeployment(yaml: string, name: string): V1Deployment | undef
 export function deploymentContainer(deployment: V1Deployment | undefined, name: string): V1Container | undefined {
   return deployment?.spec?.template?.spec?.containers.find(container => container.name === name);
 }
+
+export function containerEnvValue(container: V1Container | undefined, name: string): string | undefined {
+  return container?.env?.find(env => env.name === name)?.value;
+}
