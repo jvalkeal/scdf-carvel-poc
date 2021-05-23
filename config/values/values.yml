@@ -18,7 +18,7 @@ skipper_image_repository: springcloud/spring-cloud-skipper-server
 #! skipper server image tag (required)
 skipper_image_tag:
 
-#! binder type, either rabbit or kafka (required)
+#! binder type, either rabbit or kafka (needed if external binder is not defined)
 binder_type:
 
 #! database type, either mysql or postgres (required)
