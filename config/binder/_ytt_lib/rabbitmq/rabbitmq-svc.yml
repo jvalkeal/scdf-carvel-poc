@@ -1,6 +1,4 @@
 #@ load("@ytt:data", "data")
-#@ load("/common/common.lib.yml", "rabbitmq_enabled")
-#@ if rabbitmq_enabled():
 apiVersion: v1
 kind: Service
 metadata:
@@ -12,4 +10,3 @@ spec:
   - port: 5672
   selector:
     app: rabbitmq
-#@ end

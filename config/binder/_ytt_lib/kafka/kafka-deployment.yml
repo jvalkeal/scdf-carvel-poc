@@ -1,6 +1,4 @@
 #@ load("@ytt:data", "data")
-#@ load("/common/common.lib.yml", "kafka_enabled")
-#@ if kafka_enabled():
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -36,4 +34,3 @@ spec:
             value: DEBUG
           - name: KAFKA_LOG4J_LOGGERS
             value: org.apache.zookeeper=ERROR,org.apache.kafka=ERROR,kafka=ERROR,kafka.cluster=ERROR,kafka.controller=ERROR,kafka.coordinator=ERROR,kafka.log=ERROR,kafka.server=ERROR,kafka.zookeeper=ERROR,state.change.logger=ERROR
-#@ end
