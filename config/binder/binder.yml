@@ -2,12 +2,14 @@
 #@ load("@ytt:overlay", "overlay")
 #@ load("@ytt:template", "template")
 #@ load("binder.lib.yml", "binder_overlay")
-#@ load("/binder/binder.star", "rabbitmq_enabled", "kafka_enabled")
+#@ load("/binder/binder.star", "binder_install_enabled", "rabbitmq_enabled", "kafka_enabled")
 
+#@ if binder_install_enabled():
 #@ if rabbitmq_enabled():
 --- #@ template.replace(overlay.apply(library.get("rabbitmq").with_data_values({"name": "rabbitmq"}).eval(), binder_overlay()))
 #@ end
 
 #@ if kafka_enabled():
 --- #@ template.replace(overlay.apply(library.get("kafka").with_data_values({"name": "kafka"}).eval(), binder_overlay()))
+#@ end
 #@ end

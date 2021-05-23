@@ -9,13 +9,20 @@ export interface ExecResult {
 
 export interface YttOptions {
   files?: string[];
+  dataValues?: string[];
 }
 
 export const execYtt = async (options: YttOptions): Promise<ExecResult> => {
   let args: string[] = [];
   if (options?.files) {
     options.files.forEach(f => {
-      args.push('-f');
+      args.push('--file');
+      args.push(f);
+    });
+  }
+  if (options?.dataValues) {
+    options.dataValues.forEach(f => {
+      args.push('--data-value');
       args.push(f);
     });
   }

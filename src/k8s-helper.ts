@@ -1,5 +1,5 @@
 import YAML from 'yaml';
-import { loadYaml, V1Deployment, V1Container } from '@kubernetes/client-node';
+import { loadYaml, V1Deployment, V1Container, V1ConfigMap } from '@kubernetes/client-node';
 
 export function parseDocuments(yaml: string): string[] {
   return YAML.parseAllDocuments(yaml).map(d => d.toString());
@@ -10,6 +10,16 @@ export function findDeployment(yaml: string, name: string): V1Deployment | undef
     .map(d => loadYaml<V1Deployment>(d))
     .find(node => {
       if (node?.kind === 'Deployment' && node?.metadata?.name === name) {
+        return node;
+      }
+    });
+}
+
+export function findConfigMap(yaml: string, name: string): V1ConfigMap | undefined {
+  return parseDocuments(yaml)
+    .map(d => loadYaml<V1ConfigMap>(d))
+    .find(node => {
+      if (node?.kind === 'ConfigMap' && node?.metadata?.name === name) {
         return node;
       }
     });

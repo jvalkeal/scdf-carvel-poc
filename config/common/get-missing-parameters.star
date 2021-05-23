@@ -42,7 +42,6 @@ def get_missing_parameters(values):
 dataflow_image_tag
 ctr_image_tag
 skipper_image_tag
-binder_type
 database_type'''.split("\n")
     return [param for param in required_parameters if is_missing(values, param)]
 end
