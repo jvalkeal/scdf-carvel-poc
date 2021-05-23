@@ -7,7 +7,22 @@ export interface ExecResult {
   stderr: string;
 }
 
-export const execYtt = async (
+export interface YttOptions {
+  files?: string[];
+}
+
+export const execYtt = async (options: YttOptions): Promise<ExecResult> => {
+  let args: string[] = [];
+  if (options?.files) {
+    options.files.forEach(f => {
+      args.push('-f');
+      args.push(f);
+    });
+  }
+  return execYttRaw(args, true);
+};
+
+export const execYttRaw = async (
   args: string[] = [],
   silent?: boolean,
   env?: { [key: string]: string }

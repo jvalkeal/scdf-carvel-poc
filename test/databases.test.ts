@@ -4,7 +4,7 @@ import { DB_MYSQL_NAME, DB_POSTGRES_NAME, DB_SKIPPER_NAME, DB_DATAFLOW_NAME } fr
 
 describe('binders', () => {
   it('should setup mysql', async () => {
-    const result = await execYtt(['-f', 'config', '-f', 'example-minikube-oss-28x-rabbit-mysql-values.yml'], true);
+    const result = await execYtt({ files: ['config', 'example-minikube-oss-28x-rabbit-mysql-values.yml'] });
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
 
@@ -20,7 +20,7 @@ describe('binders', () => {
   });
 
   it('should setup postgres', async () => {
-    const result = await execYtt(['-f', 'config', '-f', 'example-minikube-oss-28x-kafka-postgres-values.yml'], true);
+    const result = await execYtt({ files: ['config', 'example-minikube-oss-28x-kafka-postgres-values.yml'] });
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
 

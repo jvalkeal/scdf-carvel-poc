@@ -4,7 +4,7 @@ import { BINDER_RABBIT_NAME, BINDER_KAFKA_NAME } from '../src/constans';
 
 describe('binders', () => {
   it('should have rabbit settings', async () => {
-    const result = await execYtt(['-f', 'config', '-f', 'example-minikube-oss-28x-rabbit-mysql-values.yml'], true);
+    const result = await execYtt({ files: ['config', 'example-minikube-oss-28x-rabbit-mysql-values.yml'] });
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
 
@@ -16,7 +16,7 @@ describe('binders', () => {
   });
 
   it('should have kafka settings', async () => {
-    const result = await execYtt(['-f', 'config', '-f', 'example-minikube-oss-28x-kafka-postgres-values.yml'], true);
+    const result = await execYtt({ files: ['config', 'example-minikube-oss-28x-kafka-postgres-values.yml'] });
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
 
