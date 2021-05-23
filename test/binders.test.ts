@@ -1,6 +1,6 @@
 import { execYtt } from '../src/ytt';
 import { findDeployment, findConfigMap } from '../src/k8s-helper';
-import { BINDER_RABBIT_NAME, BINDER_KAFKA_NAME } from '../src/constans';
+import { BINDER_RABBIT_NAME, BINDER_KAFKA_NAME } from '../src/constants';
 
 describe('binders', () => {
   it('should have rabbit settings', async () => {

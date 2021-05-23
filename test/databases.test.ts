@@ -1,6 +1,6 @@
 import { execYtt } from '../src/ytt';
 import { findDeployment, deploymentContainer } from '../src/k8s-helper';
-import { DB_MYSQL_NAME, DB_POSTGRES_NAME, DB_SKIPPER_NAME, DB_DATAFLOW_NAME } from '../src/constans';
+import { DB_MYSQL_NAME, DB_POSTGRES_NAME, DB_SKIPPER_NAME, DB_DATAFLOW_NAME } from '../src/constants';
 
 describe('binders', () => {
   it('should setup mysql', async () => {
