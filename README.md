@@ -1,6 +1,8 @@
 # SCDF Carvel POC
 
-Testing concepts of deploying `scdf` via `ytt` templating with `kapp`.
+This is a POC repo to create full [carvel dance](https://carvel.dev) with scdf.
+- Template k8s deploy files with `ytt`
+- Create packages and package repos for `kapp-controller`.
 
 ## Examples
 
