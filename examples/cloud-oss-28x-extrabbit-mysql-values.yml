@@ -5,7 +5,8 @@ skipper_image_tag: 2.7.0-SNAPSHOT
 ctr_image_tag: 2.8.0-SNAPSHOT
 database_type: mysql
 deploy_mode: cloud
-binder:
-  rabbit:
-    host: localhost
-    port: 1234
+scdf:
+  binder:
+    rabbit:
+      host: localhost
+      port: 1234

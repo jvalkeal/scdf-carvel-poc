@@ -28,10 +28,11 @@ database_type:
 deploy_mode: minikube
 
 #! external binder settings, will disable binder deployment
-binder:
-  kafka:
-    host:
-    port:
-  rabbit:
-    host:
-    port:
+scdf:
+  binder:
+    kafka:
+      host:
+      port:
+    rabbit:
+      host:
+      port:

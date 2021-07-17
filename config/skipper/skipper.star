@@ -13,9 +13,9 @@ def env_config():
     env = "SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka-broker:9092,SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=${KAFKA_ZK_SERVICE_HOST}:${KAFKA_ZK_SERVICE_PORT}"
   else:
     if external_rabbitmq_enabled():
-      env = "SPRING_RABBITMQ_HOST=" + data.values.binder.rabbit.host
+      env = "SPRING_RABBITMQ_HOST=" + data.values.scdf.binder.rabbit.host
     elif external_kafka_enabled():
-      env = "SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=" + data.values.binder.kafka.host
+      env = "SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=" + data.values.scdf.binder.kafka.host
     end
   end
   return env

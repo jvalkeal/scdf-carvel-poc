@@ -10,13 +10,13 @@ def kafka_enabled():
 end
 
 def external_rabbitmq_enabled():
-  return data.values.binder.rabbit.host != None and data.values.binder.rabbit.port != None
+  return data.values.scdf.binder.rabbit.host != None and data.values.scdf.binder.rabbit.port != None
 end
 
 def external_kafka_enabled():
-  return data.values.binder.kafka.host != None and data.values.binder.kafka.port != None
+  return data.values.scdf.binder.kafka.host != None and data.values.scdf.binder.kafka.port != None
 end
 
 def binder_install_enabled():
-  return data.values.binder.kafka.host == None and data.values.binder.kafka.port == None and data.values.binder.rabbit.host == None and data.values.binder.rabbit.port == None
+  return data.values.scdf.binder.kafka.host == None and data.values.scdf.binder.kafka.port == None and data.values.scdf.binder.rabbit.host == None and data.values.scdf.binder.rabbit.port == None
 end
