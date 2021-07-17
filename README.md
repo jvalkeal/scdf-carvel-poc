@@ -8,8 +8,8 @@ This is a POC repo to create full [carvel dance](https://carvel.dev) with scdf.
 
 Having a minicube:
 ```bash
-$ kapp -y deploy -a dataflow -f <(ytt -f config -f examples/cloud-oss-28x-kafka-postgres-values.yml)
-$ kapp -y deploy -a dataflow -f <(ytt -f config -f examples/cloud-oss-28x-rabbit-mysql-values.yml)
+$ kapp -y deploy -a dataflow -f <(ytt -f config -f examples/cloud-oss-281-kafka-postgres-values.yml)
+$ kapp -y deploy -a dataflow -f <(ytt -f config -f examples/cloud-oss-281-rabbit-mysql-values.yml)
 $ kapp -y delete -a dataflow
 ```
 
@@ -17,8 +17,8 @@ NOTE: With minikube a nodeports ip's are used
 
 Having a cloud environment:
 ```bash
-$ kapp -y deploy -a dataflow -f <(ytt -f config -f examples/minikube-oss-28x-kafka-postgres-values.yml)
-$ kapp -y deploy -a dataflow -f <(ytt -f config -f examples/minikube-oss-28x-rabbit-mysql-values.yml)
+$ kapp -y deploy -a dataflow -f <(ytt -f config -f examples/minikube-oss-281-kafka-postgres-values.yml)
+$ kapp -y deploy -a dataflow -f <(ytt -f config -f examples/minikube-oss-281-rabbit-mysql-values.yml)
 $ kapp -y delete -a dataflow
 ```
 
