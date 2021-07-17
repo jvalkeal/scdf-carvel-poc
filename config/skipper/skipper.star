@@ -22,5 +22,5 @@ def env_config():
 end
 
 def skipper_image():
-  return data.values.skipper_image_repository + ":" + data.values.skipper_image_tag
+  return data.values.scdf.skipper.image.repository + ":" + data.values.scdf.skipper.image.tag
 end

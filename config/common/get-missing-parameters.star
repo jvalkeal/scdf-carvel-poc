@@ -7,14 +7,14 @@ def non_empty_array(value):
 end
 
 requirements = {
-   "dataflow_image_repository": non_empty_string,
-   "dataflow_image_tag": non_empty_string,
-   "ctr_image_repository": non_empty_string,
-   "ctr_image_tag": non_empty_string,
-   "skipper_image_repository": non_empty_string,
-   "skipper_image_tag": non_empty_string,
+   "scdf.server.image.repository": non_empty_string,
+   "scdf.server.image.tag": non_empty_string,
+   "scdf.ctr.image.repository": non_empty_string,
+   "scdf.ctr.image.tag": non_empty_string,
+   "scdf.skipper.image.repository": non_empty_string,
+   "scdf.skipper.image.tag": non_empty_string,
    "binder_type": non_empty_string,
-   "database_type": non_empty_string,
+   "scdf.database.type": non_empty_string,
 }
 
 def is_present(values, param):
@@ -39,9 +39,9 @@ end
 
 def get_missing_parameters(values):
     required_parameters = '''\
-dataflow_image_tag
-ctr_image_tag
-skipper_image_tag
-database_type'''.split("\n")
+scdf.server.image.tag
+scdf.ctr.image.tag
+scdf.skipper.image.tag
+scdf.database.type'''.split("\n")
     return [param for param in required_parameters if is_missing(values, param)]
 end

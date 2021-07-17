@@ -1,7 +1,16 @@
 #@data/values
 ---
-dataflow_image_tag: 2.9.0-SNAPSHOT
-skipper_image_tag: 2.8.0-SNAPSHOT
-ctr_image_tag: 2.9.0-SNAPSHOT
-binder_type: rabbit
-database_type: mysql
+scdf:
+  deploy:
+    binder: rabbit
+  database:
+    type: mysql
+  server:
+    image:
+      tag: 2.9.0-SNAPSHOT
+  ctr:
+    image:
+      tag: 2.9.0-SNAPSHOT
+  skipper:
+    image:
+      tag: 2.8.0-SNAPSHOT

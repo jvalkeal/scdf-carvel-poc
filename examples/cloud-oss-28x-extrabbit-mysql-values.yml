@@ -1,11 +1,19 @@
 #@data/values
 ---
-dataflow_image_tag: 2.8.0-SNAPSHOT
-skipper_image_tag: 2.7.0-SNAPSHOT
-ctr_image_tag: 2.8.0-SNAPSHOT
-database_type: mysql
-deploy_mode: cloud
 scdf:
+  deploy:
+    mode: cloud
+  database:
+    type: mysql
+  server:
+    image:
+      tag: 2.8.0-SNAPSHOT
+  ctr:
+    image:
+      tag: 2.8.0-SNAPSHOT
+  skipper:
+    image:
+      tag: 2.7.0-SNAPSHOT
   binder:
     rabbit:
       host: localhost

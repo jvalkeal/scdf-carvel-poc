@@ -1,34 +1,34 @@
 #@data/values
 ---
-#! dataflow server image repository id
-dataflow_image_repository: springcloud/spring-cloud-dataflow-server
-
-#! dataflow server image tag (required)
-dataflow_image_tag:
-
-#! ctr image repository id
-ctr_image_repository: springcloud/spring-cloud-dataflow-composed-task-runner
-
-#! ctr image tag (required)
-ctr_image_tag:
-
-#! skipper server image repository id
-skipper_image_repository: springcloud/spring-cloud-skipper-server
-
-#! skipper server image tag (required)
-skipper_image_tag:
-
-#! binder type, either rabbit or kafka (needed if external binder is not defined)
-binder_type:
-
-#! database type, either mysql or postgres (required)
-database_type:
-
-#! deploy mode, either minikube or cloud
-deploy_mode: minikube
-
-#! external binder settings, will disable binder deployment
+#! all scdf options
 scdf:
+  deploy:
+    #! deploy mode, either minikube or cloud
+    mode: minikube
+    #! binder type, either rabbit or kafka (needed if external binder is not defined)
+    binder:
+  database:
+    #! database type, either mysql or postgres (required)
+    type:
+  server:
+    image:
+      #! dataflow server image repository id
+      repository: springcloud/spring-cloud-dataflow-server
+      #! dataflow server image tag (required)
+      tag:
+  ctr:
+    image:
+      #! ctr image repository id
+      repository: springcloud/spring-cloud-dataflow-composed-task-runner
+      #! ctr image tag (required)
+      tag:
+  skipper:
+    image:
+      #! skipper server image repository id
+      repository: springcloud/spring-cloud-skipper-server
+      #! skipper server image tag (required)
+      tag:
+  #! external binder settings, will disable binder deployment
   binder:
     kafka:
       host:
