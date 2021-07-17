@@ -1,0 +1,16 @@
+---
+apiVersion: imgpkg.carvel.dev/v1alpha1
+images:
+- annotations:
+    kbld.carvel.dev/id: mysql:5.7.25
+  image: index.docker.io/library/mysql@sha256:dba5fed182e64064b688ccd22b2f9cad4ee88608c82f8cff21e17bab8da72b81
+- annotations:
+    kbld.carvel.dev/id: rabbitmq:3.6.10
+  image: index.docker.io/library/rabbitmq@sha256:7f8fe778a897bbfd66c76e464a3ba08d01769d00a856a1c638a5ddbcdf6468e0
+- annotations:
+    kbld.carvel.dev/id: springcloud/spring-cloud-dataflow-server:2.8.1
+  image: index.docker.io/springcloud/spring-cloud-dataflow-server@sha256:c534037a42fd162aa4b9308be8cf660ffc3b872b8983d91de1397dd5b30c4b53
+- annotations:
+    kbld.carvel.dev/id: springcloud/spring-cloud-skipper-server:2.7.1
+  image: index.docker.io/springcloud/spring-cloud-skipper-server@sha256:24c3f6bd6aa52c034339aea57ce1c542a48594ad422e9e5b3f76907f77d3dea1
+kind: ImagesLock

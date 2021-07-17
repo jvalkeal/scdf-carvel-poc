@@ -1,0 +1,26 @@
+#!/bin/bash
+
+rm -fr tanzu/generated && \
+mkdir -p tanzu/generated/prod/packages && \
+mkdir -p tanzu/generated/prod/.imgpkg && \
+
+ytt -f config -f examples/minikube-oss-281-rabbit-mysql-values.yml > tanzu/packages/scdf/2.8.1/bundle/config/upstream/scdf/scdf.yml && \
+
+(cd tanzu/packages/scdf/2.8.1/bundle/ && vendir sync) && \
+
+kbld --file tanzu/packages/scdf/2.8.1/bundle --imgpkg-lock-output tanzu/packages/scdf/2.8.1/bundle/.imgpkg/images.yml && \
+
+imgpkg push --bundle index.docker.io/jvalkeal/scdf:2.8.1 --file tanzu/packages/scdf/2.8.1/bundle && \
+
+ytt -f tanzu/repos/overlays/package.yml -f tanzu/repos/main.yml > tanzu/generated/prod/packages/packages.yml && \
+
+kbld --file tanzu/generated/prod/packages --imgpkg-lock-output tanzu/generated/prod/.imgpkg/images.yml && \
+
+cp tanzu/packages/scdf/metadata.yml tanzu/generated/prod/packages && \
+
+imgpkg push -b index.docker.io/jvalkeal/scdf-repo:main -f tanzu/generated/prod && \
+
+ytt -f tanzu/repos/overlays/package-repository.yml -f tanzu/repos/main.yml > tanzu/generated/scdf-repo-main.yml && \
+
+echo
+

@@ -4,7 +4,7 @@ import { BINDER_RABBIT_NAME, BINDER_KAFKA_NAME } from '../src/constants';
 
 describe('binders', () => {
   it('should have rabbit settings', async () => {
-    const result = await execYtt({ files: ['config', 'examples/minikube-oss-28x-rabbit-mysql-values.yml'] });
+    const result = await execYtt({ files: ['config', 'examples/minikube-oss-281-rabbit-mysql-values.yml'] });
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
 
@@ -20,7 +20,7 @@ describe('binders', () => {
   });
 
   it('should have kafka settings', async () => {
-    const result = await execYtt({ files: ['config', 'examples/minikube-oss-28x-kafka-postgres-values.yml'] });
+    const result = await execYtt({ files: ['config', 'examples/minikube-oss-281-kafka-postgres-values.yml'] });
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
 
