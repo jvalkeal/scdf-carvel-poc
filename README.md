@@ -27,6 +27,10 @@ $ kapp -y delete -a dataflow
 NOTE: With cloud a loadbalancer ip's are used
 
 ### Deploy via kapp-controller
+Better system integration exists via `kapp-controller` which knows things
+about _Packages_ and _Package Repos_. In this example there is two version
+`2.8.0` and `2.8.1` which are available from a registry. This example
+is with a minikube.
 
 Deploy controller:
 ```
@@ -35,17 +39,34 @@ $ kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/re
 
 Deploy repository:
 ```
-kapp deploy -a scdf-repo-main -f examples/scdf-repo-main.yml -y
+$ kapp deploy -a scdf-repo-main -f examples/scdf-repo-main.yml -y
+
+$ kubectl get packagerepositories
+NAME                     AGE   DESCRIPTION
+scdf-main.tanzu.vmware   13m   Reconcile succeeded
+
+$ kubectl get packages
+NAME                          PACKAGEMETADATA NAME    VERSION   AGE
+scdf.tanzu.vmware.com.2.8.0   scdf.tanzu.vmware.com   2.8.0     13m24s
+scdf.tanzu.vmware.com.2.8.1   scdf.tanzu.vmware.com   2.8.1     13m23s
 ```
 
 Deploy dataflow:
 ```
-kapp deploy -a scdf-demo -f examples/kapp-install-scdf-280-postgres.yml -y
+$ kapp deploy -a scdf-demo -f examples/kapp-install-scdf-280-postgres.yml -y
+
+$ kubectl get packageinstalls
+NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION           AGE
+scdf-demo   scdf.tanzu.vmware.com   2.8.0             Reconcile succeeded   13m
 ```
 
 Upgrade dataflow:
 ```
-kapp deploy -a scdf-demo -f examples/kapp-install-scdf-281-postgres.yml -y
+$ kapp deploy -a scdf-demo -f examples/kapp-install-scdf-281-postgres.yml -y
+
+$ kubectl get packageinstalls
+NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION           AGE
+scdf-demo   scdf.tanzu.vmware.com   2.8.1             Reconcile succeeded   13m
 ```
 
 Cleanup:
