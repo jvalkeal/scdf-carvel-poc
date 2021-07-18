@@ -1,4 +1,4 @@
-#@ load("/db/db.lib.yml", "dataflow_datasource_config")
+#@ load("db/db.lib.yml", "dataflow_datasource_config")
 
 #@ def dataflow_platform_config():
 limits:

@@ -1,5 +1,5 @@
 #@ load("@ytt:data", "data")
-#@ load("/common/common.star", "service_spec_type")
+#@ load("common/common.star", "service_spec_type")
 
 kind: Service
 apiVersion: v1

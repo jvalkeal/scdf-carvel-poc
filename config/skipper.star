@@ -1,9 +1,9 @@
 load("@ytt:data", "data")
-load("/binder/binder.star", "binder_install_enabled")
-load("/binder/binder.star", "rabbitmq_enabled")
-load("/binder/binder.star", "kafka_enabled")
-load("/binder/binder.star", "external_rabbitmq_enabled")
-load("/binder/binder.star", "external_kafka_enabled")
+load("binder/binder.star", "binder_install_enabled")
+load("binder/binder.star", "rabbitmq_enabled")
+load("binder/binder.star", "kafka_enabled")
+load("binder/binder.star", "external_rabbitmq_enabled")
+load("binder/binder.star", "external_kafka_enabled")
 
 def env_config():
   env = ""

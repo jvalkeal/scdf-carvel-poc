@@ -1,5 +1,5 @@
 #@ load("skipper.star", "env_config")
-#@ load("/db/db.lib.yml", "skipper_datasource_config")
+#@ load("db/db.lib.yml", "skipper_datasource_config")
 
 #@ def skipper_platform_config():
 environmentVariables: #@ env_config()
