@@ -1,0 +1,26 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  name: scdf.tanzu.vmware.com.2.8.0
+  namespace: scdf
+spec:
+  refName: scdf.tanzu.vmware.com
+  version: 2.8.0
+  releaseNotes: "scdf 2.8.0"
+  licenses:
+    - "Apache 2.0"
+  template:
+    spec:
+      fetch:
+        - imgpkgBundle:
+            image: index.docker.io/jvalkeal/scdf:2.8.0
+      template:
+        - ytt:
+            paths:
+              - config/
+        - kbld:
+            paths:
+              - "-"
+              - .imgpkg/images.yml
+      deploy:
+        - kapp: {}

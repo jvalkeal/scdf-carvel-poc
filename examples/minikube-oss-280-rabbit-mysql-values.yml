@@ -1,0 +1,16 @@
+#@data/values
+---
+scdf:
+  deploy:
+    binder: rabbit
+  database:
+    type: mysql
+  server:
+    image:
+      tag: 2.8.0
+  ctr:
+    image:
+      tag: 2.8.0
+  skipper:
+    image:
+      tag: 2.7.0
