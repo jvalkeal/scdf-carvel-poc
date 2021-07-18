@@ -2,15 +2,18 @@
 apiVersion: imgpkg.carvel.dev/v1alpha1
 images:
 - annotations:
+    kbld.carvel.dev/id: confluentinc/cp-kafka:5.5.2
+  image: index.docker.io/confluentinc/cp-kafka@sha256:e0a76f8027787dc045a3cd8087bea74d64d2c4d89ac09f2dcaf4a1ab41cbff03
+- annotations:
+    kbld.carvel.dev/id: confluentinc/cp-zookeeper:5.5.2
+  image: index.docker.io/confluentinc/cp-zookeeper@sha256:b524143e3588da9419a3a635caefbe1079919b84d6aaf73a75f47228b12f62c2
+- annotations:
     kbld.carvel.dev/id: mysql:5.7.25
   image: index.docker.io/library/mysql@sha256:dba5fed182e64064b688ccd22b2f9cad4ee88608c82f8cff21e17bab8da72b81
 - annotations:
+    kbld.carvel.dev/id: postgres:10
+  image: index.docker.io/library/postgres@sha256:b11325ae578ac26137018051803aad93acf67576b9349e97ec63a0b8c1a7f257
+- annotations:
     kbld.carvel.dev/id: rabbitmq:3.6.10
   image: index.docker.io/library/rabbitmq@sha256:7f8fe778a897bbfd66c76e464a3ba08d01769d00a856a1c638a5ddbcdf6468e0
-- annotations:
-    kbld.carvel.dev/id: springcloud/spring-cloud-dataflow-server:2.8.0
-  image: index.docker.io/springcloud/spring-cloud-dataflow-server@sha256:d9ff5e0cc97a4881fbc5e10013f225e3a9865a233d077d7f3eb5d91b5e1ee54f
-- annotations:
-    kbld.carvel.dev/id: springcloud/spring-cloud-skipper-server:2.7.0
-  image: index.docker.io/springcloud/spring-cloud-skipper-server@sha256:e8bb788b8620cbf4aeb589709a23c3a2d70233e4193090600f225639054b9ebf
 kind: ImagesLock

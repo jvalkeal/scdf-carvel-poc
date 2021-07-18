@@ -20,4 +20,3 @@ metadata:
 stringData:
   values.yml: |
     ---
-    hello_msg: "hi"

@@ -9,6 +9,39 @@ spec:
   releaseNotes: "scdf 2.8.1"
   licenses:
     - "Apache 2.0"
+  valuesSchema:
+    openAPIv3:
+      title: scdf.tanzu.vmware.com values schema
+      properties:
+        scdf:
+          type: object
+          description: SCDF configuration
+          properties:
+            database:
+              type: object
+              description: Database configuration
+              properties:
+                type:
+                  type: string
+                  description: Database type
+                  default: mysql
+                  examples:
+                    - mysql
+                    - postgres
+            deploy:
+              type: object
+              description: Deploy configuration
+              properties:
+                type: object
+                description: Binder configuration
+                properties:
+                  binder:
+                    type: string
+                    description: Binder type
+                    default: rabbit
+                    examples:
+                    - rabbit
+                    - kafka
   template:
     spec:
       fetch:

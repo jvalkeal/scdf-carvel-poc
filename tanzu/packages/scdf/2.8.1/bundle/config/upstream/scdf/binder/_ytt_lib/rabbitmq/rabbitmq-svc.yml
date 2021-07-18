@@ -1,0 +1,12 @@
+#@ load("@ytt:data", "data")
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq
+  labels:
+    app: rabbitmq
+spec:
+  ports:
+  - port: 5672
+  selector:
+    app: rabbitmq
