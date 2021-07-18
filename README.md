@@ -6,6 +6,8 @@ This is a POC repo to create full [carvel dance](https://carvel.dev) with scdf.
 
 ## Examples
 
+### Direct Deploy with Generated Config
+
 Having a minicube:
 ```bash
 $ kapp -y deploy -a dataflow -f <(ytt -f config -f examples/cloud-oss-281-kafka-postgres-values.yml)
@@ -23,6 +25,23 @@ $ kapp -y delete -a dataflow
 ```
 
 NOTE: With cloud a loadbalancer ip's are used
+
+### Deploy via kapp-controller
+
+Deploy controller:
+```
+$ kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
+```
+
+Deploy repository:
+```
+kapp deploy -a scdf-repo-main -f examples/scdf-repo-main.yml -y
+```
+
+Deploy dataflow:
+```
+kapp deploy -a scdf-demo -f examples/kapp-install-scdf-281-postgres.yml -y
+```
 
 ## Testing
 
