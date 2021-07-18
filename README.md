@@ -40,7 +40,18 @@ kapp deploy -a scdf-repo-main -f examples/scdf-repo-main.yml -y
 
 Deploy dataflow:
 ```
+kapp deploy -a scdf-demo -f examples/kapp-install-scdf-280-postgres.yml -y
+```
+
+Upgrade dataflow:
+```
 kapp deploy -a scdf-demo -f examples/kapp-install-scdf-281-postgres.yml -y
+```
+
+Cleanup:
+```
+kapp delete -a scdf-demo -y
+kapp delete -a scdf-repo-main -y
 ```
 
 ## Testing
