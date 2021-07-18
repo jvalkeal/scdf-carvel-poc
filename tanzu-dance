@@ -4,9 +4,6 @@ rm -fr tanzu/generated && \
 mkdir -p tanzu/generated/prod/packages && \
 mkdir -p tanzu/generated/prod/.imgpkg && \
 
-#ytt -f config -f examples/minikube-oss-281-rabbit-mysql-values.yml > tanzu/packages/scdf/2.8.1/bundle/config/upstream/scdf/scdf.yml && \
-#ytt -f config -f examples/minikube-oss-280-rabbit-mysql-values.yml > tanzu/packages/scdf/2.8.0/bundle/config/upstream/scdf/scdf.yml && \
-
 (cd tanzu/packages/scdf/2.8.1/bundle/ && vendir sync) && \
 (cd tanzu/packages/scdf/2.8.0/bundle/ && vendir sync) && \
 
