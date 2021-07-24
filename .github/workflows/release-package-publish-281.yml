@@ -1,4 +1,4 @@
-name: Relase Package Publish 281
+name: Release Package Publish 281
 
 on:
   workflow_dispatch:
