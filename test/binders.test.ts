@@ -3,7 +3,7 @@ import { findDeployment, findConfigMap } from '../src/k8s-helper';
 import { BINDER_RABBIT_NAME, BINDER_KAFKA_NAME } from '../src/constants';
 
 describe('binders', () => {
-  it('should have rabbit settings', async () => {
+  it('should have rabbit deployment', async () => {
     const result = await execYtt({
       files: ['config'],
       dataValues: [
@@ -29,7 +29,7 @@ describe('binders', () => {
     expect(applicationYaml).toContain('RABBIT');
   });
 
-  it('should have kafka settings', async () => {
+  it('should have kafka deployment', async () => {
     const result = await execYtt({
       files: ['config'],
       dataValues: [
@@ -57,7 +57,7 @@ describe('binders', () => {
   it('should skip binder deploy if external rabbit settings given', async () => {
     const result = await execYtt({
       files: ['config'],
-      dataValues: [
+      dataValueYamls: [
         'scdf.deploy.mode=cloud',
         'scdf.database.type=mysql',
         'scdf.server.image.tag=2.8.1',
@@ -85,7 +85,7 @@ describe('binders', () => {
   it('should skip binder deploy if external kafka settings given', async () => {
     const result = await execYtt({
       files: ['config'],
-      dataValues: [
+      dataValueYamls: [
         'scdf.deploy.mode=cloud',
         'scdf.database.type=postgres',
         'scdf.server.image.tag=2.8.1',

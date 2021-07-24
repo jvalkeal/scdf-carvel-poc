@@ -10,6 +10,7 @@ export interface ExecResult {
 export interface YttOptions {
   files?: string[];
   dataValues?: string[];
+  dataValueYamls?: string[];
 }
 
 export const execYtt = async (options: YttOptions): Promise<ExecResult> => {
@@ -23,6 +24,12 @@ export const execYtt = async (options: YttOptions): Promise<ExecResult> => {
   if (options?.dataValues) {
     options.dataValues.forEach(f => {
       args.push('--data-value');
+      args.push(f);
+    });
+  }
+  if (options?.dataValueYamls) {
+    options.dataValueYamls.forEach(f => {
+      args.push('--data-value-yaml');
       args.push(f);
     });
   }
