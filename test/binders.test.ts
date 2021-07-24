@@ -4,7 +4,17 @@ import { BINDER_RABBIT_NAME, BINDER_KAFKA_NAME } from '../src/constants';
 
 describe('binders', () => {
   it('should have rabbit settings', async () => {
-    const result = await execYtt({ files: ['config', 'examples/minikube-oss-281-rabbit-mysql-values.yml'] });
+    const result = await execYtt({
+      files: ['config'],
+      dataValues: [
+        'scdf.server.image.tag=2.8.1',
+        'scdf.skipper.image.tag=2.7.1',
+        'scdf.ctr.image.tag=2.8.1',
+        'scdf.database.type=mysql',
+        'scdf.deploy.binder=rabbit'
+      ]
+    });
+
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
 
@@ -20,7 +30,16 @@ describe('binders', () => {
   });
 
   it('should have kafka settings', async () => {
-    const result = await execYtt({ files: ['config', 'examples/minikube-oss-281-kafka-postgres-values.yml'] });
+    const result = await execYtt({
+      files: ['config'],
+      dataValues: [
+        'scdf.server.image.tag=2.8.1',
+        'scdf.skipper.image.tag=2.7.1',
+        'scdf.ctr.image.tag=2.8.1',
+        'scdf.database.type=postgres',
+        'scdf.deploy.binder=kafka'
+      ]
+    });
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
 
@@ -37,8 +56,18 @@ describe('binders', () => {
 
   it('should skip binder deploy if external rabbit settings given', async () => {
     const result = await execYtt({
-      files: ['config', 'examples/cloud-oss-28x-extrabbit-mysql-values.yml']
+      files: ['config'],
+      dataValues: [
+        'scdf.deploy.mode=cloud',
+        'scdf.database.type=mysql',
+        'scdf.server.image.tag=2.8.1',
+        'scdf.skipper.image.tag=2.7.1',
+        'scdf.ctr.image.tag=2.8.1',
+        'scdf.binder.rabbit.host=localhost',
+        'scdf.binder.rabbit.port=1234'
+      ]
     });
+
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
 
@@ -55,7 +84,16 @@ describe('binders', () => {
 
   it('should skip binder deploy if external kafka settings given', async () => {
     const result = await execYtt({
-      files: ['config', 'examples/cloud-oss-28x-extkafka-postgres-values.yml']
+      files: ['config'],
+      dataValues: [
+        'scdf.deploy.mode=cloud',
+        'scdf.database.type=postgres',
+        'scdf.server.image.tag=2.8.1',
+        'scdf.skipper.image.tag=2.7.1',
+        'scdf.ctr.image.tag=2.8.1',
+        'scdf.binder.kafka.host=localhost',
+        'scdf.binder.kafka.port=1234'
+      ]
     });
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;

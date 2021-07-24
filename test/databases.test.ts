@@ -4,7 +4,15 @@ import { DB_MYSQL_NAME, DB_POSTGRES_NAME, DB_SKIPPER_NAME, DB_DATAFLOW_NAME } fr
 
 describe('binders', () => {
   it('should setup mysql', async () => {
-    const result = await execYtt({ files: ['config', 'examples/minikube-oss-281-rabbit-mysql-values.yml'] });
+    const result = await execYtt({
+      files: ['config'],
+      dataValues: [
+        'scdf.server.image.tag=2.8.1',
+        'scdf.skipper.image.tag=2.7.1',
+        'scdf.ctr.image.tag=2.8.1',
+        'scdf.database.type=mysql'
+      ]
+    });
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
 
@@ -20,7 +28,15 @@ describe('binders', () => {
   });
 
   it('should setup postgres', async () => {
-    const result = await execYtt({ files: ['config', 'examples/minikube-oss-281-kafka-postgres-values.yml'] });
+    const result = await execYtt({
+      files: ['config'],
+      dataValues: [
+        'scdf.server.image.tag=2.8.1',
+        'scdf.skipper.image.tag=2.7.1',
+        'scdf.ctr.image.tag=2.8.1',
+        'scdf.database.type=postgres'
+      ]
+    });
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
 

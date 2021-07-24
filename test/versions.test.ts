@@ -3,7 +3,15 @@ import { deploymentContainer, findDeployment, containerEnvValue } from '../src/k
 
 describe('versions', () => {
   it('should replace versions', async () => {
-    const result = await execYtt({ files: ['config', 'examples/minikube-oss-281-kafka-postgres-values.yml'] });
+    const result = await execYtt({
+      files: ['config'],
+      dataValues: [
+        'scdf.server.image.tag=2.8.1',
+        'scdf.skipper.image.tag=2.7.1',
+        'scdf.ctr.image.tag=2.8.1',
+        'scdf.database.type=postgres'
+      ]
+    });
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
 
