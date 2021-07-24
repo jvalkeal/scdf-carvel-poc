@@ -1,8 +1,8 @@
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageRepository
 metadata:
-  name: scdf-main.tanzu.vmware
+  name: scdf-release.tanzu.vmware
 spec:
   fetch:
     imgpkgBundle:
-      image: index.docker.io/jvalkeal/scdf-repo:main
+      image: index.docker.io/jvalkeal/scdf-repo:release
