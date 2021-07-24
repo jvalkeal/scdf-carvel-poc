@@ -1,6 +1,8 @@
 #@ load("@ytt:data", "data")
 
 #@ def name(): return data.values.name
+#@ def username(): return data.values.username
+#@ def password(): return data.values.password
 
 #@ def skipper_datasource():
 url: jdbc:mysql://${DB-SKIPPER_SERVICE_HOST}:${DB-SKIPPER_SERVICE_PORT}/db-skipper

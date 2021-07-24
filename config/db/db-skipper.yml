@@ -4,12 +4,18 @@
 #@ load("@ytt:overlay", "overlay")
 #@ load("@ytt:template", "template")
 #@ load("db.lib.yml", "db_overlay")
-#@ load("db.star", "mysql_enabled", "postgres_enabled")
+#@ load("db.star", "mysql_enabled", "postgres_enabled", "db_username", "db_password")
+
+#@ def db_values():
+name: db-skipper
+username: #@ db_username()
+password: #@ db_password()
+#@ end
 
 #@ if mysql_enabled():
---- #@ template.replace(overlay.apply(library.get("mysql").with_data_values({"name": "db-skipper"}).eval(), db_overlay()))
+--- #@ template.replace(overlay.apply(library.get("mysql").with_data_values(db_values()).eval(), db_overlay()))
 #@ end
 
 #@ if postgres_enabled():
---- #@ template.replace(overlay.apply(library.get("postgres").with_data_values({"name": "db-skipper"}).eval(), db_overlay()))
+--- #@ template.replace(overlay.apply(library.get("postgres").with_data_values(db_values()).eval(), db_overlay()))
 #@ end

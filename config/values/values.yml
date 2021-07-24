@@ -10,6 +10,10 @@ scdf:
   database:
     #! database type, either mysql or postgres (required)
     type: ""
+    #! database username
+    username: "dataflow"
+    #! database password
+    password: "secret"
   server:
     image:
       #! dataflow server image repository id
