@@ -1,4 +1,4 @@
-name: Snapshot Publish
+name: Snapshot Package Publish 29x
 
 on:
   workflow_dispatch:
@@ -23,8 +23,6 @@ jobs:
         SKIPPER_VERSION: 2.8.0-SNAPSHOT
       run: |
         rm -fr tanzu/generated
-        mkdir -p tanzu/generated/snapshot/packages
-        mkdir -p tanzu/generated/snapshot/.imgpkg
         mkdir -p tanzu/generated/package
         cp -R tanzu/templates/package/scdf/* tanzu/generated/package
         find tanzu/generated/package -type f | xargs sed -i "s/@project.version@/$DATAFLOW_VERSION/g"
@@ -32,7 +30,3 @@ jobs:
         (cd tanzu/generated/package/bundle && vendir sync)
         kbld --file tanzu/generated/package/bundle --imgpkg-lock-output tanzu/generated/package/bundle/.imgpkg/images.yml
         imgpkg push --bundle index.docker.io/jvalkeal/scdf:$DATAFLOW_VERSION --file tanzu/generated/package/bundle
-        ytt -f tanzu/templates/repo/scdf/package.yml -f tanzu/templates/repo/scdf/snapshot.yml > tanzu/generated/snapshot/packages/packages.yml
-        kbld --file tanzu/generated/snapshot/packages --imgpkg-lock-output tanzu/generated/snapshot/.imgpkg/images.yml
-        cp tanzu/templates/package/scdf/metadata.yml tanzu/generated/snapshot/packages
-        imgpkg push -b index.docker.io/jvalkeal/scdf-repo:snapshot -f tanzu/generated/snapshot
