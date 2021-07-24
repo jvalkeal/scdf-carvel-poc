@@ -9,8 +9,8 @@ mkdir -p tanzu/generated/snapshot/.imgpkg && \
 mkdir -p tanzu/generated/package && \
 
 cp -R tanzu/templates/package/scdf/* tanzu/generated/package && \
-find tanzu/generated/package -type f -exec sed -i "s/@project.version@/$DATAFLOW_VERSION/g" {} \; && \
-find tanzu/generated/package -type f -exec sed -i "s/@spring-cloud-skipper.version@/$SKIPPER_VERSION/g" {} \; && \
+find tanzu/generated/package -type f | xargs sed -i "s/@project.version@/$DATAFLOW_VERSION/g" && \
+find tanzu/generated/package -type f | xargs sed -i "s/@spring-cloud-skipper.version@/$SKIPPER_VERSION/g" && \
 (cd tanzu/generated/package/bundle && vendir sync) && \
 kbld --file tanzu/generated/package/bundle --imgpkg-lock-output tanzu/generated/package/bundle/.imgpkg/images.yml && \
 imgpkg push --bundle index.docker.io/jvalkeal/scdf:$DATAFLOW_VERSION --file tanzu/generated/package/bundle && \
