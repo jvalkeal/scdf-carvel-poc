@@ -1,0 +1,16 @@
+#@data/values-schema
+---
+scdf:
+  deploy:
+    binder: rabbit
+  database:
+    type: mysql
+  server:
+    image:
+      tag: @project.version@
+  ctr:
+    image:
+      tag: @project.version@
+  skipper:
+    image:
+      tag: @spring-cloud-skipper.version@

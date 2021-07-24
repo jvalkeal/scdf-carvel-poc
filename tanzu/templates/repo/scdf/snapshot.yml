@@ -1,0 +1,15 @@
+#@data/values
+---
+package_repository:
+  name: scdf-snapshot.tanzu.vmware
+  imgpkgBundle: index.docker.io/jvalkeal/scdf-repo:snapshot
+  packageSpec:
+    syncPeriod: 5m
+    deploy:
+      kappWaitTimeout: 5m
+  packages:
+    - name: scdf
+      domain: tanzu.vmware.com
+      version: 2.9.0-SNAPSHOT
+      image: index.docker.io/jvalkeal/scdf:2.9.0-SNAPSHOT
+      description: Prod packages for dataflow

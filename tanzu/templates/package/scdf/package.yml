@@ -1,0 +1,59 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  name: scdf.tanzu.vmware.com.@project.version@
+  namespace: scdf
+spec:
+  refName: scdf.tanzu.vmware.com
+  version: @project.version@
+  releaseNotes: "scdf @project.version@"
+  licenses:
+    - "Apache 2.0"
+  valuesSchema:
+    openAPIv3:
+      title: scdf.tanzu.vmware.com values schema
+      properties:
+        scdf:
+          type: object
+          description: SCDF configuration
+          properties:
+            database:
+              type: object
+              description: Database configuration
+              properties:
+                type:
+                  type: string
+                  description: Database type
+                  default: mysql
+                  examples:
+                    - mysql
+                    - postgres
+            deploy:
+              type: object
+              description: Deploy configuration
+              properties:
+                type: object
+                description: Binder configuration
+                properties:
+                  binder:
+                    type: string
+                    description: Binder type
+                    default: rabbit
+                    examples:
+                    - rabbit
+                    - kafka
+  template:
+    spec:
+      fetch:
+        - imgpkgBundle:
+            image: index.docker.io/jvalkeal/scdf:@project.version@
+      template:
+        - ytt:
+            paths:
+              - config/
+        - kbld:
+            paths:
+              - "-"
+              - .imgpkg/images.yml
+      deploy:
+        - kapp: {}
