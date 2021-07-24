@@ -6,33 +6,28 @@ scdf:
     #! deploy mode, either minikube or cloud
     mode: minikube
     #! binder type, either rabbit or kafka (needed if external binder is not defined)
-    #@schema/type any=True
-    binder:
+    binder: ""
   database:
     #! database type, either mysql or postgres (required)
-    #@schema/type any=True
-    type:
+    type: ""
   server:
     image:
       #! dataflow server image repository id
       repository: springcloud/spring-cloud-dataflow-server
       #! dataflow server image tag (required)
-      #@schema/type any=True
-      tag:
+      tag: ""
   ctr:
     image:
       #! ctr image repository id
       repository: springcloud/spring-cloud-dataflow-composed-task-runner
       #! ctr image tag (required)
-      #@schema/type any=True
-      tag:
+      tag: ""
   skipper:
     image:
       #! skipper server image repository id
       repository: springcloud/spring-cloud-skipper-server
       #! skipper server image tag (required)
-      #@schema/type any=True
-      tag:
+      tag: ""
   #! external binder settings, will disable binder deployment
   binder:
     kafka:

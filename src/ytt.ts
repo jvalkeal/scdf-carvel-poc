@@ -26,7 +26,7 @@ export const execYtt = async (options: YttOptions): Promise<ExecResult> => {
       args.push(f);
     });
   }
-  return execYttRaw(args, false);
+  return execYttRaw(args, true);
 };
 
 export const execYttRaw = async (
