@@ -60,7 +60,6 @@ describe('databases', () => {
     expect(postgresSkipperSecretData['postgres-root-username']).toBe('dataflow');
     expect(postgresSkipperSecretData['postgres-root-password']).toBe('secret');
 
-
     const postgresDataflowDeployment = findDeployment(yaml, DB_DATAFLOW_NAME);
     expect(postgresDataflowDeployment).toBeTruthy();
     const postgresDataflowContainer = deploymentContainer(postgresDataflowDeployment, DB_POSTGRES_NAME);
@@ -132,7 +131,6 @@ describe('databases', () => {
     const postgresSkipperSecretData = postgresSkipperSecret?.data || {};
     expect(postgresSkipperSecretData['postgres-root-username']).toBe('user');
     expect(postgresSkipperSecretData['postgres-root-password']).toBe('pass');
-
 
     const postgresDataflowDeployment = findDeployment(yaml, DB_DATAFLOW_NAME);
     expect(postgresDataflowDeployment).toBeTruthy();
