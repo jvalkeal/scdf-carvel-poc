@@ -1,0 +1,28 @@
+name: Release Repo Publish
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Publish Release
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 12
+    - uses: vmware-tanzu/carvel-setup-action@v1
+    - uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Tanzu Dance
+      run: |
+        rm -fr tanzu/generated
+        mkdir -p tanzu/generated/release/packages
+        mkdir -p tanzu/generated/release/.imgpkg
+        ytt -f tanzu/templates/repo/scdf/package.yml -f tanzu/templates/repo/scdf/release.yml > tanzu/generated/release/packages/packages.yml
+        kbld --file tanzu/generated/release/packages --imgpkg-lock-output tanzu/generated/release/.imgpkg/images.yml
+        cp tanzu/templates/package/scdf/metadata.yml tanzu/generated/release/packages
+        imgpkg push -b index.docker.io/jvalkeal/scdf-repo:release -f tanzu/generated/release

@@ -1,0 +1,15 @@
+#@data/values
+---
+package_repository:
+  name: scdf-release.tanzu.vmware
+  imgpkgBundle: index.docker.io/jvalkeal/scdf-repo:release
+  packageSpec:
+    syncPeriod: 5m
+    deploy:
+      kappWaitTimeout: 5m
+  packages:
+    - name: scdf
+      domain: tanzu.vmware.com
+      version: 2.8.1
+      image: index.docker.io/jvalkeal/scdf:2.8.1
+      description: Release package for SCDF

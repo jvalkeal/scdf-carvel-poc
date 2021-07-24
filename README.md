@@ -6,6 +6,8 @@ This is a POC repo to create full [carvel dance](https://carvel.dev) with scdf.
 
 ## Examples
 
+NOTE: You need to have tools `kapp`, `kbld`, `ytt` and `imgpkg` installed from https://carvel.dev
+
 ### Direct Deploy with Generated Config
 
 Having a minicube:
@@ -28,32 +30,34 @@ NOTE: With cloud a loadbalancer ip's are used
 
 ### Deploy via kapp-controller
 Better system integration exists via `kapp-controller` which knows things
-about _Packages_ and _Package Repos_. In this example there is two version
-`2.8.0` and `2.8.1` which are available from a registry. This example
-is with a minikube.
+about _Packages_ and _Package Repos_.
 
+Install `kapp-controller`:
 Deploy controller:
 ```
 $ kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
 ```
 
+After `kapp-controller` has been deployed you can deploy repositories for different stages
+of a dataflow development and release channels like `snapshot`, `milestone` or `release`.
+
 Deploy repository:
 ```
-$ kapp deploy -a scdf-repo-main -f examples/scdf-repo-main.yml -y
+$ kapp deploy -a scdf-repo-snapshot -f examples/scdf-repo-snapshot.yml -y
 
-$ kubectl get packagerepositories
-NAME                     AGE   DESCRIPTION
-scdf-main.tanzu.vmware   13m   Reconcile succeeded
+$ $ kubectl get packagerepositories
+NAME                         AGE   DESCRIPTION
+scdf-snapshot.tanzu.vmware   31s   Reconcile succeeded
 
-$ kubectl get packages
-NAME                          PACKAGEMETADATA NAME    VERSION   AGE
-scdf.tanzu.vmware.com.2.8.0   scdf.tanzu.vmware.com   2.8.0     13m24s
-scdf.tanzu.vmware.com.2.8.1   scdf.tanzu.vmware.com   2.8.1     13m23s
+$ $ kubectl get packages
+NAME                                   PACKAGEMETADATA NAME    VERSION          AGE
+scdf.tanzu.vmware.com.2.8.2-SNAPSHOT   scdf.tanzu.vmware.com   2.8.2-SNAPSHOT   34s
+scdf.tanzu.vmware.com.2.9.0-SNAPSHOT   scdf.tanzu.vmware.com   2.9.0-SNAPSHOT   34s
 ```
 
 Deploy dataflow:
 ```
-$ kapp deploy -a scdf-demo -f examples/kapp-install-scdf-280-postgres.yml -y
+$ kapp deploy -a scdf-demo -f examples/kapp-install-scdf-29x-postgres.yml -y
 
 $ kubectl get packageinstalls
 NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION           AGE
