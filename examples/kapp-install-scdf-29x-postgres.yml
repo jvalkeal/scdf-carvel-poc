@@ -9,6 +9,8 @@ spec:
     refName: scdf.tanzu.vmware.com
     versionSelection:
       constraints: 2.9.0
+      prereleases:
+        identifiers: [SNAPSHOT]
   values:
   - secretRef:
       name: scdf-demo-values

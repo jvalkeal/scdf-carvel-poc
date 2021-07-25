@@ -22,7 +22,6 @@ stringData:
     ---
     scdf:
       deploy:
-        mode: minikube
         binder: rabbit
       database:
         type: postgres

@@ -24,5 +24,5 @@ jobs:
         mkdir -p tanzu/generated/release/.imgpkg
         ytt -f tanzu/templates/repo/scdf/package.yml -f tanzu/templates/repo/scdf/release.yml > tanzu/generated/release/packages/packages.yml
         kbld --file tanzu/generated/release/packages --imgpkg-lock-output tanzu/generated/release/.imgpkg/images.yml
-        cp tanzu/templates/package/scdf/metadata.yml tanzu/generated/release/packages
+        ytt -f tanzu/templates/repo/scdf/metadata.yml --data-value name=scdf-repo-release.tanzu.vmware.com --output-files tanzu/generated/release/packages
         imgpkg push -b index.docker.io/jvalkeal/scdf-repo:release -f tanzu/generated/release
