@@ -1,3 +1,0 @@
-#@ load("@ytt:data", "data")
-
-#@ binder_types = {"rabbit": "rabbit", "kafka": "kafka"}

@@ -1,5 +1,0 @@
-#@ load("binder.star", "kafka_enabled", "rabbitmq_enabled")
-
----
-#@ def binder_overlay():
-#@ end
