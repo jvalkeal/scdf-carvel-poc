@@ -8,26 +8,6 @@ This is a POC repo to create full [carvel dance](https://carvel.dev) with scdf.
 
 NOTE: You need to have tools `kapp`, `kbld`, `ytt` and `imgpkg` installed from https://carvel.dev
 
-### Direct Deploy with Generated Config
-
-Having a minicube:
-```bash
-$ kapp -y deploy -a dataflow -f <(ytt -f config -f examples/cloud-oss-281-kafka-postgres-values.yml)
-$ kapp -y deploy -a dataflow -f <(ytt -f config -f examples/cloud-oss-281-rabbit-mysql-values.yml)
-$ kapp -y delete -a dataflow
-```
-
-NOTE: With minikube a nodeports ip's are used
-
-Having a cloud environment:
-```bash
-$ kapp -y deploy -a dataflow -f <(ytt -f config -f examples/minikube-oss-281-kafka-postgres-values.yml)
-$ kapp -y deploy -a dataflow -f <(ytt -f config -f examples/minikube-oss-281-rabbit-mysql-values.yml)
-$ kapp -y delete -a dataflow
-```
-
-NOTE: With cloud a loadbalancer ip's are used
-
 ### Deploy via kapp-controller
 Better system integration exists via `kapp-controller` which knows things
 about _Packages_ and _Package Repos_.
