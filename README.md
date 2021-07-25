@@ -35,6 +35,7 @@ about _Packages_ and _Package Repos_.
 Install `kapp-controller`:
 Deploy controller:
 ```
+$ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml
 $ kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
 ```
 
@@ -44,33 +45,18 @@ of a dataflow development and release channels like `snapshot`, `milestone` or `
 Deploy repository:
 ```
 $ kapp deploy -a scdf-repo-snapshot -f examples/scdf-repo-snapshot.yml -y
+$ kapp deploy -a scdf-repo-release -f examples/scdf-repo-release.yml -y
 
-$ $ kubectl get packagerepositories
+$ kubectl get packagerepositories
 NAME                         AGE   DESCRIPTION
-scdf-snapshot.tanzu.vmware   31s   Reconcile succeeded
+scdf-release.tanzu.vmware    23s   Reconcile succeeded
+scdf-snapshot.tanzu.vmware   60s   Reconcile succeeded
 
-$ $ kubectl get packages
+$ kubectl get packages
 NAME                                   PACKAGEMETADATA NAME    VERSION          AGE
-scdf.tanzu.vmware.com.2.8.2-SNAPSHOT   scdf.tanzu.vmware.com   2.8.2-SNAPSHOT   34s
-scdf.tanzu.vmware.com.2.9.0-SNAPSHOT   scdf.tanzu.vmware.com   2.9.0-SNAPSHOT   34s
-```
-
-Deploy dataflow:
-```
-$ kapp deploy -a scdf-demo -f examples/kapp-install-scdf-29x-postgres.yml -y
-
-$ kubectl get packageinstalls
-NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION           AGE
-scdf-demo   scdf.tanzu.vmware.com   2.8.0             Reconcile succeeded   13m
-```
-
-Upgrade dataflow:
-```
-$ kapp deploy -a scdf-demo -f examples/kapp-install-scdf-281-postgres.yml -y
-
-$ kubectl get packageinstalls
-NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION           AGE
-scdf-demo   scdf.tanzu.vmware.com   2.8.1             Reconcile succeeded   13m
+scdf.tanzu.vmware.com.2.8.1            scdf.tanzu.vmware.com   2.8.1            12s
+scdf.tanzu.vmware.com.2.8.2-SNAPSHOT   scdf.tanzu.vmware.com   2.8.2-SNAPSHOT   47s
+scdf.tanzu.vmware.com.2.9.0-SNAPSHOT   scdf.tanzu.vmware.com   2.9.0-SNAPSHOT   46s
 ```
 
 Cleanup:
