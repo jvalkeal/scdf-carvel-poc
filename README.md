@@ -24,9 +24,6 @@ of a dataflow development and release channels like `snapshot`, `milestone` or `
 
 Deploy repository:
 ```
-$ kapp deploy -a scdf-repo-snapshot -f examples/scdf-repo-snapshot-dockerhub.yml -y
-$ kapp deploy -a scdf-repo-release -f examples/scdf-repo-release-dockerhub.yml -y
-
 $ kapp deploy -a scdf-repo-snapshot -f examples/scdf-repo-snapshot-vmware.yml -y
 $ kapp deploy -a scdf-repo-release -f examples/scdf-repo-release-vmware.yml -y
 
