@@ -35,8 +35,8 @@ about _Packages_ and _Package Repos_.
 Install `kapp-controller`:
 Deploy controller:
 ```
-$ kapp deploy -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml
-$ kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
+$ kapp deploy -y -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml
+$ kapp deploy -y -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
 ```
 
 After `kapp-controller` has been deployed you can deploy repositories for different stages
