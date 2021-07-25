@@ -34,21 +34,22 @@ scdf-snapshot.tanzu.vmware   60s   Reconcile succeeded
 
 $ kubectl get packages
 NAME                                   PACKAGEMETADATA NAME    VERSION          AGE
-scdf.tanzu.vmware.com.2.8.1            scdf.tanzu.vmware.com   2.8.1            12s
-scdf.tanzu.vmware.com.2.8.2-SNAPSHOT   scdf.tanzu.vmware.com   2.8.2-SNAPSHOT   47s
-scdf.tanzu.vmware.com.2.9.0-SNAPSHOT   scdf.tanzu.vmware.com   2.9.0-SNAPSHOT   46s
+scdf.tanzu.vmware.com.2.8.0            scdf.tanzu.vmware.com   2.8.0            8s
+scdf.tanzu.vmware.com.2.8.1            scdf.tanzu.vmware.com   2.8.1            8s
+scdf.tanzu.vmware.com.2.8.2-SNAPSHOT   scdf.tanzu.vmware.com   2.8.2-SNAPSHOT   28s
+scdf.tanzu.vmware.com.2.9.0-SNAPSHOT   scdf.tanzu.vmware.com   2.9.0-SNAPSHOT   28s
 ```
 
-xxx:
-```
-$ kapp deploy -a scdf-demo -f examples/kapp-install-scdf-281-postgres.yml -y
-```
-
-xxx:
+Install `2.8.1` with `postgres` and `rabbit`:
 ```
 $ kubectl get packageinstalls
-```
+NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION   AGE
+scdf-demo   scdf.tanzu.vmware.com   2.8.1             Reconciling   12s
 
+$ kubectl get packageinstalls
+NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION           AGE
+scdf-demo   scdf.tanzu.vmware.com   2.8.1             Reconcile succeeded   2m44s
+```
 
 Cleanup:
 ```
