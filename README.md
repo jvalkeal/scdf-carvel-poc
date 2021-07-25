@@ -44,8 +44,11 @@ of a dataflow development and release channels like `snapshot`, `milestone` or `
 
 Deploy repository:
 ```
-$ kapp deploy -a scdf-repo-snapshot -f examples/scdf-repo-snapshot.yml -y
-$ kapp deploy -a scdf-repo-release -f examples/scdf-repo-release.yml -y
+$ kapp deploy -a scdf-repo-snapshot -f examples/scdf-repo-snapshot-dockerhub.yml -y
+$ kapp deploy -a scdf-repo-release -f examples/scdf-repo-release-dockerhub.yml -y
+
+$ kapp deploy -a scdf-repo-snapshot -f examples/scdf-repo-snapshot-vmware.yml -y
+$ kapp deploy -a scdf-repo-release -f examples/scdf-repo-release-vmware.yml -y
 
 $ kubectl get packagerepositories
 NAME                         AGE   DESCRIPTION
@@ -58,6 +61,17 @@ scdf.tanzu.vmware.com.2.8.1            scdf.tanzu.vmware.com   2.8.1            
 scdf.tanzu.vmware.com.2.8.2-SNAPSHOT   scdf.tanzu.vmware.com   2.8.2-SNAPSHOT   47s
 scdf.tanzu.vmware.com.2.9.0-SNAPSHOT   scdf.tanzu.vmware.com   2.9.0-SNAPSHOT   46s
 ```
+
+xxx:
+```
+$ kapp deploy -a scdf-demo -f examples/kapp-install-scdf-281-postgres.yml -y
+```
+
+xxx:
+```
+$ kubectl get packageinstalls
+```
+
 
 Cleanup:
 ```

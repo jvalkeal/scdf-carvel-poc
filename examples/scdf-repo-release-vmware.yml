@@ -1,0 +1,8 @@
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: scdf-release.tanzu.vmware
+spec:
+  fetch:
+    imgpkgBundle:
+      image: projects.registry.vmware.com/scdf/scdf-repo:release
