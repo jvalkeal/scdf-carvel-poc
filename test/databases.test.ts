@@ -23,8 +23,8 @@ describe('databases', () => {
     const mysqlSkipperSecret = findSecret(yaml, DB_SKIPPER_NAME);
     expect(mysqlSkipperSecret).toBeTruthy();
     const mysqlSkipperSecretData = mysqlSkipperSecret?.data || {};
-    expect(mysqlSkipperSecretData['mysql-root-username']).toBe('dataflow');
-    expect(mysqlSkipperSecretData['mysql-root-password']).toBe('secret');
+    expect(mysqlSkipperSecretData['mysql-root-username']).toBe('ZGF0YWZsb3cK');
+    expect(mysqlSkipperSecretData['mysql-root-password']).toBe('c2VjcmV0Cg==');
 
     const mysqlDataflowDeployment = findDeployment(yaml, DB_DATAFLOW_NAME);
     expect(mysqlDataflowDeployment).toBeTruthy();
@@ -33,8 +33,8 @@ describe('databases', () => {
     const mysqlDataflowSecret = findSecret(yaml, DB_DATAFLOW_NAME);
     expect(mysqlDataflowSecret).toBeTruthy();
     const mysqlDataflowSecretData = mysqlDataflowSecret?.data || {};
-    expect(mysqlDataflowSecretData['mysql-root-username']).toBe('dataflow');
-    expect(mysqlDataflowSecretData['mysql-root-password']).toBe('secret');
+    expect(mysqlDataflowSecretData['mysql-root-username']).toBe('ZGF0YWZsb3cK');
+    expect(mysqlDataflowSecretData['mysql-root-password']).toBe('c2VjcmV0Cg==');
   });
 
   it('should setup postgres', async () => {
@@ -57,8 +57,8 @@ describe('databases', () => {
     const postgresSkipperSecret = findSecret(yaml, DB_SKIPPER_NAME);
     expect(postgresSkipperSecret).toBeTruthy();
     const postgresSkipperSecretData = postgresSkipperSecret?.data || {};
-    expect(postgresSkipperSecretData['postgres-root-username']).toBe('dataflow');
-    expect(postgresSkipperSecretData['postgres-root-password']).toBe('secret');
+    expect(postgresSkipperSecretData['postgres-root-username']).toBe('ZGF0YWZsb3cK');
+    expect(postgresSkipperSecretData['postgres-root-password']).toBe('c2VjcmV0Cg==');
 
     const postgresDataflowDeployment = findDeployment(yaml, DB_DATAFLOW_NAME);
     expect(postgresDataflowDeployment).toBeTruthy();
@@ -67,8 +67,8 @@ describe('databases', () => {
     const postgresDataflowSecret = findSecret(yaml, DB_SKIPPER_NAME);
     expect(postgresDataflowSecret).toBeTruthy();
     const postgresDataflowSecretData = postgresDataflowSecret?.data || {};
-    expect(postgresDataflowSecretData['postgres-root-username']).toBe('dataflow');
-    expect(postgresDataflowSecretData['postgres-root-password']).toBe('secret');
+    expect(postgresDataflowSecretData['postgres-root-username']).toBe('ZGF0YWZsb3cK');
+    expect(postgresDataflowSecretData['postgres-root-password']).toBe('c2VjcmV0Cg==');
   });
 
   it('should setup mysql with custom username and password', async () => {
