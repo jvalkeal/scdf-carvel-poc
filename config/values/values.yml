@@ -20,6 +20,9 @@ scdf:
       repository: springcloud/spring-cloud-dataflow-server
       #! dataflow server image tag (required)
       tag: ""
+    #! additional dataflow server configuration
+    #@schema/type any=True
+    config:
   ctr:
     image:
       #! ctr image repository id
