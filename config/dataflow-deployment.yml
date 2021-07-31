@@ -1,5 +1,5 @@
 #@ load("@ytt:data", "data")
-#@ load("dataflow.star", "dataflow_image", "ctr_image")
+#@ load("dataflow.star", "dataflow_image", "ctr_image", "dataflow_container_env")
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -46,33 +46,7 @@ spec:
           requests:
             cpu: 0.5
             memory: 1024Mi
-        env:
-        - name: KUBERNETES_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: "metadata.namespace"
-        - name: SPRING_CLOUD_CONFIG_ENABLED
-          value: 'false'
-        - name: SPRING_CLOUD_DATAFLOW_FEATURES_ANALYTICS_ENABLED
-          value: 'true'
-        - name: SPRING_CLOUD_DATAFLOW_FEATURES_SCHEDULES_ENABLED
-          value: 'true'
-        - name: SPRING_CLOUD_DATAFLOW_TASK_COMPOSEDTASKRUNNER_URI
-          value: #@ "docker://" + ctr_image()
-        - name: SPRING_CLOUD_KUBERNETES_CONFIG_ENABLE_API
-          value: 'false'
-        - name: SPRING_CLOUD_KUBERNETES_SECRETS_ENABLE_API
-          value: 'false'
-        - name: SPRING_CLOUD_KUBERNETES_SECRETS_PATHS
-          value: /etc/secrets
-        - name: SPRING_CLOUD_DATAFLOW_SERVER_URI
-          value: 'http://${SCDF_SERVER_SERVICE_HOST}:${SCDF_SERVER_SERVICE_PORT}'
-          #! Provide the Skipper service location
-        - name: SPRING_CLOUD_SKIPPER_CLIENT_SERVER_URI
-          value: 'http://${SKIPPER_SERVICE_HOST}:${SKIPPER_SERVICE_PORT}/api'
-          #! Add Maven repo for metadata artifact resolution for all stream apps
-        - name: SPRING_APPLICATION_JSON
-          value: "{ \"maven\": { \"local-repository\": null, \"remote-repositories\": { \"repo1\": { \"url\": \"https://repo.spring.io/libs-snapshot\"} } } }"
+        env: #@ dataflow_container_env()
       serviceAccountName: scdf-sa
       volumes:
       - name: config

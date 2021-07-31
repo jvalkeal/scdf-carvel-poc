@@ -1,5 +1,5 @@
 import YAML from 'yaml';
-import { loadYaml, V1Deployment, V1Container, V1ConfigMap, V1Secret } from '@kubernetes/client-node';
+import { loadYaml, V1Deployment, V1Container, V1ConfigMap, V1Secret, V1EnvVar } from '@kubernetes/client-node';
 
 export function parseDocuments(yaml: string): string[] {
   return YAML.parseAllDocuments(yaml).map(d => d.toString());
@@ -41,4 +41,8 @@ export function deploymentContainer(deployment: V1Deployment | undefined, name: 
 
 export function containerEnvValue(container: V1Container | undefined, name: string): string | undefined {
   return container?.env?.find(env => env.name === name)?.value;
+}
+
+export function containerEnvValues(container: V1Container | undefined): V1EnvVar[] | undefined {
+  return container?.env;
 }

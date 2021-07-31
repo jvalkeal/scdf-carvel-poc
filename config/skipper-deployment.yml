@@ -1,5 +1,5 @@
 #@ load("@ytt:data", "data")
-#@ load("skipper.star", "skipper_image")
+#@ load("skipper.star", "skipper_image", "skipper_container_env")
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -46,15 +46,7 @@ spec:
           requests:
             cpu: 0.5
             memory: 640Mi
-        env:
-        - name: SPRING_CLOUD_CONFIG_ENABLED
-          value: 'false'
-        - name: SPRING_CLOUD_KUBERNETES_CONFIG_ENABLE_API
-          value: 'false'
-        - name: SPRING_CLOUD_KUBERNETES_SECRETS_ENABLE_API
-          value: 'false'
-        - name: SPRING_CLOUD_KUBERNETES_SECRETS_PATHS
-          value: /etc/secrets
+        env: #@ skipper_container_env()
       serviceAccountName: scdf-sa
       volumes:
       - name: config
