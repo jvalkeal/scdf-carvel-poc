@@ -81,6 +81,21 @@ kapp delete -a scdf-demo -y
 kapp delete -a scdf-repo-main -y
 ```
 
+### Deploy via kapp
+Just using `kapp` and bypassing `kapp-controller` is a more straighforward way to deploy
+things into _k8s_ without having a need to setup a controller environment. Essentially
+it's just throwing out _k8s_ files into a cluster with some better control of what
+`kapp` itself provides what comes for a deployment lifecycle. Essentially it is a step
+above `kubectl` itself.
+
+### Deploy via kubectl
+Most low level of a deployment as you are essentially just _templating_ files via
+`ytt` and throwing those into an environment. While deployment probably works as
+is but you're then responsible to handle further actions like manually deleting
+everything if that needs to be done or handle all other scenarious when things
+are changed. Not really a recommended way unless you need to work with very
+low level deployment files.
+
 ## Project
 Development notes about this POC.
 
