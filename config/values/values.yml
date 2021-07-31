@@ -43,3 +43,21 @@ scdf:
     rabbit:
       host: ""
       port: 5672
+  #! optional feature
+  feature:
+    monitoring:
+      prometheus:
+        enabled: false
+        image:
+          repository: springcloud/spring-cloud-dataflow-prometheus-local
+          tag: ""
+      grafana:
+        enabled: false
+        image:
+          repository: springcloud/spring-cloud-dataflow-grafana-prometheus
+          tag: ""
+      prometheusRsocketProxy:
+        enabled: false
+        image:
+          repository: micrometermetrics/prometheus-rsocket-proxy
+          tag: 1.0.0

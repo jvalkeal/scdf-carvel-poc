@@ -6,3 +6,6 @@ export const DB_SKIPPER_NAME = 'db-skipper';
 export const DB_DATAFLOW_NAME = 'db-dataflow';
 export const SCDF_SERVER_NAME = 'scdf-server';
 export const SKIPPER_NAME = 'skipper';
+export const GRAFANA_NAME = 'grafana';
+export const PROMETHEUS_NAME = 'prometheus';
+export const PROMETHEUS_RSOCKET_PROXY_NAME = 'prometheus-rsocket-proxy';

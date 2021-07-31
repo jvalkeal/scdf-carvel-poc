@@ -1,0 +1,9 @@
+#@ load("@ytt:library", "library")
+#@ load("monitoring.star", "grafana_enabled")
+
+#@ def grafana_config():
+#@   if grafana_enabled():
+#@      fun = library.get("grafana").with_data_values({}).export("skipper_datasource")
+#@      return fun()
+#@   end
+#@ end

@@ -1,0 +1,15 @@
+#@ load("prometheus-rsocket-proxy.lib.yml", "name")
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: #@ name()
+  labels:
+    app: #@ name()
+spec:
+  ports:
+    - port: 9096
+    - port: 7001
+    - port: 8086
+  selector:
+    app: #@ name()

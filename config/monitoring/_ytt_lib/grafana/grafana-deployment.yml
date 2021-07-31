@@ -1,0 +1,24 @@
+#@ load("grafana.lib.yml", "name", "grafana_image")
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #@ name()
+  labels:
+    app: #@ name()
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: #@ name()
+  template:
+    metadata:
+      labels:
+        app: #@ name()
+    spec:
+      containers:
+      - image: #@ grafana_image()
+        name: grafana
+        ports:
+        - containerPort: 3000
+          name: #@ name()
