@@ -88,6 +88,15 @@ it's just throwing out _k8s_ files into a cluster with some better control of wh
 `kapp` itself provides what comes for a deployment lifecycle. Essentially it is a step
 above `kubectl` itself.
 
+```
+$ kapp -y deploy -a dataflow -f <(ytt -f config -f examples/kapp-minikube-281-mysql-rabbit.yml)
+```
+
+When you've done delete deployment
+```
+$ kapp -y delete -a dataflow
+```
+
 ### Deploy via kubectl
 Most low level of a deployment as you are essentially just _templating_ files via
 `ytt` and throwing those into an environment. While deployment probably works as
@@ -113,6 +122,13 @@ yaml document.
 | scdf.deploy.mode         | enum(minikube,cloud)    | minikube       | To ease deployment to minikube using nodeport |
 | scdf.deploy.binder       | enum(rabbit,kafka)      | rabbit         | Binder type type to use with apps             |
 | scdf.database.type       | enum(mysql,postgres)    | mysql          | Database type to use                          |
+
+### Development
+Deploying this POC into your minikube or cloud environment depends of view things
+depending what you're actually doing. Packages and package repos needs a bit more
+dance around pushing _bundles_ into _OCI_ repose so you're probably going to
+have easier life just deploying things via `kapp` as `ytt` templates as once
+that works it's easier to translate needed things into exiting bundles.
 
 ### Testing
 As templating gets more complex with with a lot of different user level options
