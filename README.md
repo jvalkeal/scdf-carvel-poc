@@ -84,8 +84,22 @@ kapp delete -a scdf-repo-main -y
 ## Project
 Development notes about this POC.
 
-### Testing
+### Configuration API
+Main point of a _carvel_ is to provide a clear _API_ for consuming and using
+its features. From a user point of view this means that there is a set of
+options user can set which then drives k8s deployment files templating
+and deployment into an environment. This sections documents these options
+user as a consumer can use. Essentially this means that you will set
+options with either plain properties of combine those into fully set of
+yaml document.
 
+| Parameter                | Type                    | Default        | Description                                   |
+|--------------------------|-------------------------|----------------|-----------------------------------------------|
+| scdf.deploy.mode         | enum(minikube,cloud)    | minikube       | To ease deployment to minikube using nodeport |
+| scdf.deploy.binder       | enum(rabbit,kafka)      | rabbit         | Binder type type to use with apps             |
+| scdf.database.type       | enum(mysql,postgres)    | mysql          | Database type to use                          |
+
+### Testing
 As templating gets more complex with with a lot of different user level options
 to customize how actual k8s yaml files are laid out from templating, testing
 is even more critical thing. Currently a choice was made to do testing via
