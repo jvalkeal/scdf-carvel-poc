@@ -55,19 +55,6 @@ spec:
           value: 'false'
         - name: SPRING_CLOUD_KUBERNETES_SECRETS_PATHS
           value: /etc/secrets
-      #! initContainers:
-      #! - name: init-mysql-wait
-      #!   image: busybox
-      #!   command: ['sh', '-c', 'until nc -w3 -z mysql 3306; do echo waiting for mysql; sleep 3; done;']
-      #! - name: init-mysql-database
-      #!   image: mysql:5.6
-      #!   env:
-      #!   - name: MYSQL_PWD
-      #!     valueFrom:
-      #!       secretKeyRef:
-      #!         name: mysql
-      #!         key: mysql-root-password
-      #!   command: ['sh', '-c', 'mysql -h mysql -u root -e "CREATE DATABASE IF NOT EXISTS skipper;"']
       serviceAccountName: scdf-sa
       volumes:
       - name: config
