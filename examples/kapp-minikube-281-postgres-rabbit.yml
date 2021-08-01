@@ -1,0 +1,17 @@
+#@data/values
+---
+scdf:
+  deploy:
+    mode: minikube
+    binder: rabbit
+  database:
+    type: postgres
+  server:
+    image:
+      tag: 2.8.1
+  skipper:
+    image:
+      tag: 2.7.1
+  ctr:
+    image:
+      tag: 2.8.1
