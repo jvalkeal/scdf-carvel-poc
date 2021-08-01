@@ -1,4 +1,4 @@
-#@ load("mysql.lib.yml", "name")
+#@ load("mysql.lib.yml", "name", "username", "password")
 
 apiVersion: apps/v1
 kind: Deployment
@@ -17,13 +17,23 @@ spec:
         app: #@ name()
     spec:
       containers:
-      - image: mysql:5.7.25
+      - image: mysql:5.7
         name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
               key: mysql-root-password
+              name: #@ name()
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              key: mysql-user
+              name: #@ name()
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: mysql-password
               name: #@ name()
         - name: MYSQL_DATABASE
           value: #@ name()

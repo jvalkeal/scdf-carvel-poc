@@ -20,23 +20,21 @@ spec:
       - image: postgres:10
         name: postgres
         env:
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              key: postgres-user
+              name: #@ name()
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
-              key: postgres-root-password
+              key: postgres-password
               name: #@ name()
-        - name: POSTGRES_USER
-          value: spring
         - name: POSTGRES_DB
           value: #@ name()
         ports:
         - containerPort: 5432
           name: #@ name()
-        #!volumeMounts:
-        #!- name: data
-        #!  mountPath: /var/lib/mysql
-        #!args:
-        #!- "--ignore-db-dir=lost+found"
       volumes:
       - name: data
         persistentVolumeClaim:
