@@ -30,4 +30,4 @@ jobs:
         find tanzu/generated/package -type f | xargs sed -i "s/@spring-cloud-skipper.version@/$SKIPPER_VERSION/g"
         (cd tanzu/generated/package/bundle && vendir sync)
         kbld --file tanzu/generated/package/bundle --imgpkg-lock-output tanzu/generated/package/bundle/.imgpkg/images.yml
-        imgpkg push --bundle ghcr.io/jvalkeal/scdf:$DATAFLOW_VERSION --file tanzu/generated/package/bundle
+        imgpkg push --bundle ghcr.io/jvalkeal/scdf-package:$DATAFLOW_VERSION --file tanzu/generated/package/bundle
