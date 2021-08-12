@@ -25,7 +25,9 @@ jobs:
       run: |
         rm -fr tanzu/generated
         mkdir -p tanzu/generated/package
+        mkdir -p tanzu/generated/values
         cp -R tanzu/templates/package/scdf/* tanzu/generated/package
+        cp -R tanzu/templates/values/* tanzu/generated/values
         find tanzu/generated/package -type f | xargs sed -i "s/@project.version@/$DATAFLOW_VERSION/g"
         find tanzu/generated/package -type f | xargs sed -i "s/@spring-cloud-skipper.version@/$SKIPPER_VERSION/g"
         find tanzu/generated/values -type f | xargs sed -i "s/@project.version@/$DATAFLOW_VERSION/g"
