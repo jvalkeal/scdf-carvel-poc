@@ -28,6 +28,11 @@ jobs:
         cp -R tanzu/templates/package/scdf/* tanzu/generated/package
         find tanzu/generated/package -type f | xargs sed -i "s/@project.version@/$DATAFLOW_VERSION/g"
         find tanzu/generated/package -type f | xargs sed -i "s/@spring-cloud-skipper.version@/$SKIPPER_VERSION/g"
+        find tanzu/generated/values -type f | xargs sed -i "s/@project.version@/$DATAFLOW_VERSION/g"
+        find tanzu/generated/values -type f | xargs sed -i "s/@spring-cloud-skipper.version@/$SKIPPER_VERSION/g"
         (cd tanzu/generated/package/bundle && vendir sync)
-        kbld --file tanzu/generated/package/bundle --imgpkg-lock-output tanzu/generated/package/bundle/.imgpkg/images.yml
+        kbld \
+          -f <(ytt -f tanzu/generated/package/bundle -f tanzu/generated/values/config1.yml) \
+          -f <(ytt -f tanzu/generated/package/bundle -f tanzu/generated/values/config2.yml) \
+          --imgpkg-lock-output tanzu/generated/package/bundle/.imgpkg/images.yml
         imgpkg push --bundle ghcr.io/jvalkeal/scdf-package:$DATAFLOW_VERSION --file tanzu/generated/package/bundle

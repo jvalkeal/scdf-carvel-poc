@@ -1,0 +1,28 @@
+#@data/values
+---
+scdf:
+  deploy:
+    binder: kafka
+  database:
+    type: postgres
+  server:
+    image:
+      tag: @project.version@
+  ctr:
+    image:
+      tag: @project.version@
+  skipper:
+    image:
+      tag: @spring-cloud-skipper.version@
+  feature:
+    monitoring:
+      grafana:
+        enabled: true
+        image:
+          tag: @project.version@
+      prometheus:
+        enabled: true
+        image:
+          tag: @project.version@
+      prometheusRsocketProxy:
+        enabled: true
