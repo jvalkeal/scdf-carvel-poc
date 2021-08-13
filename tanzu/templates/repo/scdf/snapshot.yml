@@ -11,10 +11,10 @@ package_repository:
     - name: scdf
       domain: tanzu.vmware.com
       version: 2.8.2-SNAPSHOT
-      image: index.docker.io/jvalkeal/scdf:2.8.2-SNAPSHOT
+      image: ghcr.io/jvalkeal/scdf-package:2.8.2-SNAPSHOT
       description: Snapshot package for SCDF
     - name: scdf
       domain: tanzu.vmware.com
       version: 2.9.0-SNAPSHOT
-      image: index.docker.io/jvalkeal/scdf:2.9.0-SNAPSHOT
+      image: ghcr.io/jvalkeal/scdf-package:2.9.0-SNAPSHOT
       description: Snapshot package for SCDF
