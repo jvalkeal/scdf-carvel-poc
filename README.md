@@ -42,9 +42,9 @@ of a dataflow development and release channels like `snapshot`, `milestone` or `
 
 Deploy repository:
 ```
-$ kapp deploy -a scdf-repo-snapshot -f examples/scdf-repo-snapshot-vmware.yml -y
+$ kapp deploy -a scdf-repo-snapshot -f examples/scdf-repo-snapshot-ghcr.yml -y
 
-$ kapp deploy -a scdf-repo-release -f examples/scdf-repo-release-vmware.yml -y
+$ kapp deploy -a scdf-repo-release -f examples/scdf-repo-release-ghcr.yml -y
 
 $ kubectl get packagerepositories
 NAME                         AGE   DESCRIPTION
@@ -117,11 +117,33 @@ user as a consumer can use. Essentially this means that you will set
 options with either plain properties of combine those into fully set of
 yaml document.
 
-| Parameter                | Type                    | Default        | Description                                   |
-|--------------------------|-------------------------|----------------|-----------------------------------------------|
-| scdf.deploy.mode         | enum(minikube,cloud)    | minikube       | To ease deployment to minikube using nodeport |
-| scdf.deploy.binder       | enum(rabbit,kafka)      | rabbit         | Binder type type to use with apps             |
-| scdf.database.type       | enum(mysql,postgres)    | mysql          | Database type to use                          |
+| Parameter                                                       | Type                    | Default                                                | Description                                   |
+|-----------------------------------------------------------------|-------------------------|--------------------------------------------------------|-----------------------------------------------|
+| scdf.deploy.mode                                                | enum(minikube,cloud)    | minikube                                               | To ease deployment to minikube using nodeport |
+| scdf.deploy.binder                                              | enum(rabbit,kafka)      | rabbit                                                 | Binder type type to use with apps             |
+| scdf.database.type                                              | enum(mysql,postgres)    | mysql                                                  | Database type to use                          |
+| scdf.database.username                                          | string(base64)          | dataflow                                               | Database username                             |
+| scdf.database.password                                          | string(base64)          | secret                                                 | Database password                             |
+| scdf.server.image.repository                                    | string(image repo base) | springcloud/spring-cloud-dataflow-server               |                                               |
+| scdf.server.image.tag                                           | string(image tag)       | null                                                   |                                               |
+| scdf.server.config                                              | yaml(additional config) | null                                                   |                                               |
+| scdf.ctr.image.repository                                       | string(image repo base) | springcloud/spring-cloud-dataflow-composed-task-runner |                                               |
+| scdf.ctr.image.tag                                              | string(image tag)       | null                                                   |                                               |
+| scdf.skipper.image.repository                                   | string(image repo base) | springcloud/spring-cloud-skipper-server                |                                               |
+| scdf.skipper.image.tag                                          | string(image tag)       | null                                                   |                                               |
+| scdf.binder.kafka.host                                          | string(host)            | null                                                   |                                               |
+| scdf.binder.kafka.port                                          | string(port)            | null                                                   |                                               |
+| scdf.rabbit.kafka.host                                          | string(host)            | null                                                   |                                               |
+| scdf.rabbit.kafka.port                                          | string(port)            | null                                                   |                                               |
+| scdf.feature.monitoring.prometheus.enabled                      | boolean                 | false                                                  |                                               |
+| scdf.feature.monitoring.prometheus.image.repository             | string(image repo base) | springcloud/spring-cloud-dataflow-prometheus-local     |                                               |
+| scdf.feature.monitoring.prometheus.image.tag                    | string(image tag)       | null                                                   |                                               |
+| scdf.feature.monitoring.grafana.enabled                         | boolean                 | false                                                  |                                               |
+| scdf.feature.monitoring.grafana.image.repository                | string(image repo base) | springcloud/spring-cloud-dataflow-grafana-prometheus   |                                               |
+| scdf.feature.monitoring.grafana.image.tag                       | string(image tag)       | null                                                   |                                               |
+| scdf.feature.monitoring.prometheusRsocketProxy.enabled          | boolean                 | false                                                  |                                               |
+| scdf.feature.monitoring.prometheusRsocketProxy.image.repository | string(image repo base) | micrometermetrics/prometheus-rsocket-proxy             |                                               |
+| scdf.feature.monitoring.prometheusRsocketProxy.image.tag        | string(image tag)       | 1.0.0                                                  |                                               |
 
 ### Development
 Deploying this POC into your minikube or cloud environment depends of view things
