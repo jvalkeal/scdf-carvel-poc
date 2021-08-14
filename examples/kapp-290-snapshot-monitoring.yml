@@ -1,0 +1,27 @@
+#@data/values
+---
+scdf:
+  deploy:
+    mode: cloud
+    binder: rabbit
+  database:
+    type: postgres
+  server:
+    image:
+      tag: 2.9.0-SNAPSHOT
+  skipper:
+    image:
+      tag: 2.8.0-SNAPSHOT
+  ctr:
+    image:
+      tag: 2.9.0-SNAPSHOT
+  feature:
+    monitoring:
+      grafana:
+        enabled: true
+        image:
+          tag: 2.9.0-SNAPSHOT
+      prometheus:
+        enabled: true
+      prometheusRsocketProxy:
+        enabled: true

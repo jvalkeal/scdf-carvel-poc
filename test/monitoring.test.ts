@@ -34,7 +34,7 @@ describe('monitoring', () => {
     const prometheusDeployment = findDeployment(yaml, PROMETHEUS_NAME);
     expect(prometheusDeployment).toBeTruthy();
     const prometheusContainer = deploymentContainer(prometheusDeployment, PROMETHEUS_NAME);
-    expect(prometheusContainer?.image).toContain('springcloud/spring-cloud-dataflow-prometheus-local:1.2.3');
+    expect(prometheusContainer?.image).toContain('prom/prometheus:1.2.3');
   });
 
   it('prometheus-rsocket-proxy monitoring', async () => {

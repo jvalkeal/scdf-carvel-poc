@@ -8,8 +8,11 @@ metadata:
     app: #@ name()
 spec:
   ports:
-    - port: 9096
-    - port: 7001
-    - port: 8086
+    - name: scrape
+      port: 8080
+      targetPort: 8080
+    - name: rsocket
+      port: 7001
+      targetPort: 7001
   selector:
     app: #@ name()

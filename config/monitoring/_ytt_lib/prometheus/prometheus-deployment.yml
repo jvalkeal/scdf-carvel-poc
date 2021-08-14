@@ -3,11 +3,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: #@ name()
   labels:
     app: #@ name()
+  name: #@ name()
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: #@ name()
@@ -16,9 +15,25 @@ spec:
       labels:
         app: #@ name()
     spec:
+      serviceAccountName: prometheus
       containers:
-      - image: #@ prometheus_image()
-        name: prometheus
-        ports:
-        - containerPort: 9090
-          name: #@ name()
+        - name: prometheus
+          image: #@ prometheus_image()
+          args:
+            - "--config.file=/etc/prometheus/prometheus.yml"
+            - "--storage.tsdb.path=/prometheus/"
+            - "--web.enable-lifecycle"
+          ports:
+            - name: prometheus
+              containerPort: 9090
+          volumeMounts:
+            - name: prometheus-config-volume
+              mountPath: /etc/prometheus/
+            - name: prometheus-storage-volume
+              mountPath: /prometheus/
+      volumes:
+        - name: prometheus-config-volume
+          configMap:
+            name: prometheus
+        - name: prometheus-storage-volume
+          emptyDir: {}

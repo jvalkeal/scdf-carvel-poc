@@ -136,8 +136,8 @@ yaml document.
 | scdf.rabbit.kafka.host                                          | string(host)            | null                                                   |                                               |
 | scdf.rabbit.kafka.port                                          | string(port)            | null                                                   |                                               |
 | scdf.feature.monitoring.prometheus.enabled                      | boolean                 | false                                                  |                                               |
-| scdf.feature.monitoring.prometheus.image.repository             | string(image repo base) | springcloud/spring-cloud-dataflow-prometheus-local     |                                               |
-| scdf.feature.monitoring.prometheus.image.tag                    | string(image tag)       | null                                                   |                                               |
+| scdf.feature.monitoring.prometheus.image.repository             | string(image repo base) | prom/prometheus                                        |
+| scdf.feature.monitoring.prometheus.image.tag                    | string(image tag)       | v2.12.0                                                |                                               |
 | scdf.feature.monitoring.grafana.enabled                         | boolean                 | false                                                  |                                               |
 | scdf.feature.monitoring.grafana.image.repository                | string(image repo base) | springcloud/spring-cloud-dataflow-grafana-prometheus   |                                               |
 | scdf.feature.monitoring.grafana.image.tag                       | string(image tag)       | null                                                   |                                               |

@@ -7,7 +7,9 @@ metadata:
   labels:
     app: #@ name()
 spec:
-  ports:
-    - port: 3306
   selector:
     app: #@ name()
+  type: LoadBalancer
+  ports:
+    - port: 3000
+      targetPort: 3000

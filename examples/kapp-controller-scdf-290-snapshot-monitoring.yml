@@ -26,3 +26,11 @@ stringData:
         type: postgres
       deploy:
         binder: rabbit
+      feature:
+        monitoring:
+          grafana:
+            enabled: true
+          prometheus:
+            enabled: true
+          prometheusRsocketProxy:
+            enabled: true
