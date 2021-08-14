@@ -1,8 +1,12 @@
-import YAML from 'yaml';
+import { parseDocument, parseAllDocuments, Document } from 'yaml';
 import { loadYaml, V1Deployment, V1Container, V1ConfigMap, V1Secret, V1EnvVar } from '@kubernetes/client-node';
 
 export function parseDocuments(yaml: string): string[] {
-  return YAML.parseAllDocuments(yaml).map(d => d.toString());
+  return parseAllDocuments(yaml).map(d => d.toString());
+}
+
+export function parseYamlDocument(yaml: string): Document.Parsed {
+  return parseDocument(yaml);
 }
 
 export function findDeployment(yaml: string, name: string): V1Deployment | undefined {

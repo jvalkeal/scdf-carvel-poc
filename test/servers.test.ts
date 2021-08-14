@@ -1,5 +1,7 @@
+import lodash from "lodash";
+import 'jest-extended';
 import { execYtt } from '../src/ytt';
-import { findConfigMap, findDeployment, deploymentContainer, containerEnvValues } from '../src/k8s-helper';
+import { parseYamlDocument, findConfigMap, findDeployment, deploymentContainer, containerEnvValues } from '../src/k8s-helper';
 import { SCDF_SERVER_NAME, SKIPPER_NAME } from '../src/constants';
 
 describe('servers', () => {
@@ -253,5 +255,45 @@ describe('servers', () => {
         })
       ])
     );
+  });
+
+  it('monitoring dataflow server config', async () => {
+    const result = await execYtt({
+      files: ['config'],
+      dataValueYamls: [
+        'scdf.deploy.mode=cloud',
+        'scdf.database.type=postgres',
+        'scdf.server.image.tag=2.8.1',
+        'scdf.skipper.image.tag=2.7.1',
+        'scdf.ctr.image.tag=2.8.1',
+        'scdf.binder.kafka.host=localhost',
+        'scdf.binder.kafka.port=1234',
+        'scdf.server.config.foo=bar',
+        'scdf.feature.monitoring.grafana.enabled=true',
+        'scdf.feature.monitoring.grafana.image.tag=1.2.3',
+        'scdf.feature.monitoring.prometheus.enabled=true',
+        'scdf.feature.monitoring.prometheusRsocketProxy.enabled=true'
+      ]
+    });
+    expect(result.success).toBeTruthy();
+    const yaml = result.stdout;
+
+    const dataflowConfigMap = findConfigMap(yaml, SCDF_SERVER_NAME);
+    const skipperConfigMap = findConfigMap(yaml, SKIPPER_NAME);
+    const dataflowApplicationYaml = dataflowConfigMap?.data ? dataflowConfigMap.data['application.yaml'] : '';
+    const skipperApplicationYaml = skipperConfigMap?.data ? skipperConfigMap.data['application.yaml'] : '';
+    
+    const dataflowDoc = parseYamlDocument(dataflowApplicationYaml);
+    const dataflowJson = dataflowDoc.toJSON();
+    const enabled1 = lodash.get(dataflowJson, 'management.metrics.export.prometheus.enabled') as boolean;
+    expect(enabled1).toBeTrue();
+    const url = lodash.get(dataflowJson, 'spring.cloud.dataflow.metrics.dashboard.url') as string;
+    expect(url).toBeTruthy();
+    expect(url).toStartWith('http');
+
+    const skipperDoc = parseYamlDocument(skipperApplicationYaml);
+    const skipperJson = skipperDoc.toJSON();
+    const enabled2 = lodash.get(skipperJson, 'management.metrics.export.prometheus.enabled') as boolean;
+    expect(enabled2).toBeTrue();
   });
 });

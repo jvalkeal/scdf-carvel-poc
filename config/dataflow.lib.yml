@@ -2,6 +2,7 @@
 #@ load("@ytt:overlay", "overlay")
 #@ load("@ytt:template", "template")
 #@ load("db/db.lib.yml", "dataflow_datasource_config")
+#@ load("monitoring/monitoring.star", "grafana_enabled")
 
 #@ def dataflow_platform_config():
 limits:
@@ -28,6 +29,28 @@ config: #@ data.values.scdf.server.config
 #@ end
 #@ end
 
+#@ def monitoring_config():
+#@ if grafana_enabled():
+#@overlay/match-child-defaults missing_ok=True
+config:
+  management:
+    metrics:
+      export:
+        prometheus:
+          enabled: true
+          rsocket:
+            enabled: true
+            host: prometheus-rsocket-proxy
+            port: 7001
+  spring:
+    cloud:
+      dataflow:
+        metrics:
+          dashboard:
+            url: 'https://grafana:3000'
+#@ end
+#@ end
+
 #@ def dataflow_config():
---- #@ template.replace([overlay.apply(base_config(), user_config())["config"]])
+--- #@ template.replace([overlay.apply(base_config(), monitoring_config(), user_config())["config"]])
 #@ end
