@@ -89,12 +89,12 @@ it's just throwing out _k8s_ files into a cluster with some better control of wh
 above `kubectl` itself.
 
 ```
-$ kapp -y deploy -a dataflow -f <(ytt -f config -f examples/kapp-minikube-281-mysql-rabbit.yml)
+$ kapp -y deploy -a scdf-demo -f <(ytt -f config -f examples/kapp-290-snapshot-monitoring.yml)
 ```
 
 When you've done delete deployment
 ```
-$ kapp -y delete -a dataflow
+$ kapp -y delete -a scdf-demo
 ```
 
 ### Deploy via kubectl
