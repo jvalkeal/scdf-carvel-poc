@@ -1,7 +1,13 @@
-import lodash from "lodash";
+import lodash from 'lodash';
 import 'jest-extended';
 import { execYtt } from '../src/ytt';
-import { parseYamlDocument, findConfigMap, findDeployment, deploymentContainer, containerEnvValues } from '../src/k8s-helper';
+import {
+  parseYamlDocument,
+  findConfigMap,
+  findDeployment,
+  deploymentContainer,
+  containerEnvValues
+} from '../src/k8s-helper';
 import { SCDF_SERVER_NAME, SKIPPER_NAME } from '../src/constants';
 
 describe('servers', () => {
@@ -282,7 +288,7 @@ describe('servers', () => {
     const skipperConfigMap = findConfigMap(yaml, SKIPPER_NAME);
     const dataflowApplicationYaml = dataflowConfigMap?.data ? dataflowConfigMap.data['application.yaml'] : '';
     const skipperApplicationYaml = skipperConfigMap?.data ? skipperConfigMap.data['application.yaml'] : '';
-    
+
     const dataflowDoc = parseYamlDocument(dataflowApplicationYaml);
     const dataflowJson = dataflowDoc.toJSON();
     const enabled1 = lodash.get(dataflowJson, 'management.metrics.export.prometheus.enabled') as boolean;
@@ -306,7 +312,7 @@ describe('servers', () => {
         'scdf.server.image.tag=2.8.1',
         'scdf.server.metrics.dashboard.url=http://fakedashboard',
         'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
+        'scdf.ctr.image.tag=2.8.1'
       ]
     });
     expect(result.success).toBeTruthy();
@@ -314,11 +320,10 @@ describe('servers', () => {
 
     const dataflowConfigMap = findConfigMap(yaml, SCDF_SERVER_NAME);
     const dataflowApplicationYaml = dataflowConfigMap?.data ? dataflowConfigMap.data['application.yaml'] : '';
-    
+
     const dataflowDoc = parseYamlDocument(dataflowApplicationYaml);
     const dataflowJson = dataflowDoc.toJSON();
     const url = lodash.get(dataflowJson, 'spring.cloud.dataflow.metrics.dashboard.url') as string;
     expect(url).toEqual('http://fakedashboard');
   });
-
 });
