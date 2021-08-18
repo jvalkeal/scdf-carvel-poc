@@ -127,7 +127,8 @@ yaml document.
 | scdf.server.image.repository                                    | string(image repo base) | springcloud/spring-cloud-dataflow-server               |                                               |
 | scdf.server.image.tag                                           | string(image tag)       | null                                                   |                                               |
 | scdf.server.config                                              | yaml(additional config) | null                                                   |                                               |
-| scdf.ctr.image.repository                                       | string(image repo base) | springcloud/spring-cloud-dataflow-composed-task-runner |                                               |
+| scdf.server.metrics.dashboard.url                               | string                  | null                                                   |                                               |
+| scdf.ctr.image.repository                                       | string(image repo base) | springcloud/spring-cloud-dataflow-composed-task-runner | Metrics dashboard url                         |
 | scdf.ctr.image.tag                                              | string(image tag)       | null                                                   |                                               |
 | scdf.skipper.image.repository                                   | string(image repo base) | springcloud/spring-cloud-skipper-server                |                                               |
 | scdf.skipper.image.tag                                          | string(image tag)       | null                                                   |                                               |
@@ -136,7 +137,7 @@ yaml document.
 | scdf.rabbit.kafka.host                                          | string(host)            | null                                                   |                                               |
 | scdf.rabbit.kafka.port                                          | string(port)            | null                                                   |                                               |
 | scdf.feature.monitoring.prometheus.enabled                      | boolean                 | false                                                  |                                               |
-| scdf.feature.monitoring.prometheus.image.repository             | string(image repo base) | prom/prometheus                                        |
+| scdf.feature.monitoring.prometheus.image.repository             | string(image repo base) | prom/prometheus                                        |                                               |
 | scdf.feature.monitoring.prometheus.image.tag                    | string(image tag)       | v2.12.0                                                |                                               |
 | scdf.feature.monitoring.grafana.enabled                         | boolean                 | false                                                  |                                               |
 | scdf.feature.monitoring.grafana.image.repository                | string(image repo base) | springcloud/spring-cloud-dataflow-grafana-prometheus   |                                               |

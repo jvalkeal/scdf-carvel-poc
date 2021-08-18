@@ -42,12 +42,14 @@ config:
             enabled: true
             host: prometheus-rsocket-proxy
             port: 7001
+#@ if len(data.values.scdf.server.metrics.dashboard.url) > 0:
   spring:
     cloud:
       dataflow:
         metrics:
           dashboard:
-            url: 'https://grafana:3000'
+            url: #@ data.values.scdf.server.metrics.dashboard.url
+#@ end
 #@ end
 #@ end
 
