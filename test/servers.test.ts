@@ -32,7 +32,7 @@ describe('servers', () => {
     expect(applicationYaml).toContain('spring');
   });
 
-  it('additional dataflow server config', async () => {
+  it('should have additional server config', async () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
@@ -43,16 +43,28 @@ describe('servers', () => {
         'scdf.ctr.image.tag=2.8.1',
         'scdf.binder.kafka.host=localhost',
         'scdf.binder.kafka.port=1234',
-        'scdf.server.config.foo=bar'
+        'scdf.server.config.foo=bar',
+        'scdf.skipper.config.foo=bar'
       ]
     });
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
 
-    const skipperConfigMap = findConfigMap(yaml, SCDF_SERVER_NAME);
-    const applicationYaml = skipperConfigMap?.data ? skipperConfigMap.data['application.yaml'] : undefined;
-    expect(applicationYaml).toContain('spring');
-    expect(applicationYaml).toContain('bar');
+    const dataflowConfigMap = findConfigMap(yaml, SCDF_SERVER_NAME);
+    const skipperConfigMap = findConfigMap(yaml, SKIPPER_NAME);
+
+    const dataflowApplicationYaml = dataflowConfigMap?.data ? dataflowConfigMap.data['application.yaml'] : '';
+    const skipperApplicationYaml = skipperConfigMap?.data ? skipperConfigMap.data['application.yaml'] : '';
+
+    const dataflowDoc = parseYamlDocument(dataflowApplicationYaml);
+    const dataflowJson = dataflowDoc.toJSON();
+    const dataflowFoo = lodash.get(dataflowJson, 'foo') as string;
+    expect(dataflowFoo).toEqual('bar');
+
+    const skipperDoc = parseYamlDocument(skipperApplicationYaml);
+    const skipperJson = skipperDoc.toJSON();
+    const skipperFoo = lodash.get(skipperJson, 'foo') as string;
+    expect(skipperFoo).toEqual('bar');
   });
 
   it('skipper should have default env values', async () => {

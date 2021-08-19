@@ -132,6 +132,7 @@ yaml document.
 | scdf.ctr.image.tag                                              | string(image tag)       | null                                                   |                                               |
 | scdf.skipper.image.repository                                   | string(image repo base) | springcloud/spring-cloud-skipper-server                |                                               |
 | scdf.skipper.image.tag                                          | string(image tag)       | null                                                   |                                               |
+| scdf.skipper.config                                             | yaml(additional config) | null                                                   |                                               |
 | scdf.binder.kafka.host                                          | string(host)            | null                                                   |                                               |
 | scdf.binder.kafka.port                                          | string(port)            | null                                                   |                                               |
 | scdf.rabbit.kafka.host                                          | string(host)            | null                                                   |                                               |

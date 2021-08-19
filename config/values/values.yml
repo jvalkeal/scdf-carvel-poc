@@ -38,6 +38,9 @@ scdf:
       repository: springcloud/spring-cloud-skipper-server
       #! skipper server image tag (required)
       tag: ""
+    #! additional skipper server configuration
+    #@schema/type any=True
+    config:
   #! external binder settings, will disable binder deployment
   binder:
     kafka:
