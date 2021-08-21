@@ -5,3 +5,5 @@
 #@ def grafana_image():
 #@ return data.values.image.repository + ":" + data.values.image.tag
 #@ end
+
+#@ def service_spec_type(): return data.values.service.spec.type

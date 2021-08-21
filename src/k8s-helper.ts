@@ -1,5 +1,13 @@
 import { parseDocument, parseAllDocuments, Document } from 'yaml';
-import { loadYaml, V1Deployment, V1Container, V1ConfigMap, V1Secret, V1EnvVar } from '@kubernetes/client-node';
+import {
+  loadYaml,
+  V1Deployment,
+  V1Container,
+  V1ConfigMap,
+  V1Secret,
+  V1EnvVar,
+  V1Service
+} from '@kubernetes/client-node';
 
 export function parseDocuments(yaml: string): string[] {
   return parseAllDocuments(yaml).map(d => d.toString());
@@ -14,6 +22,16 @@ export function findDeployment(yaml: string, name: string): V1Deployment | undef
     .map(d => loadYaml<V1Deployment>(d))
     .find(node => {
       if (node?.kind === 'Deployment' && node?.metadata?.name === name) {
+        return node;
+      }
+    });
+}
+
+export function findService(yaml: string, name: string): V1Service | undefined {
+  return parseDocuments(yaml)
+    .map(d => loadYaml<V1Service>(d))
+    .find(node => {
+      if (node?.kind === 'Service' && node?.metadata?.name === name) {
         return node;
       }
     });

@@ -4,9 +4,12 @@
 #@ load("@ytt:library", "library")
 #@ load("monitoring.star", "grafana_enabled", "prometheus_enabled", "prometheus_rsocket_proxy_enabled")
 
-#@ def grafana_values():
+#@ def grafana_values(service_spec_type):
 name: grafana
 image: #@ data.values.scdf.feature.monitoring.grafana.image
+service:
+  spec:
+    type: #@ service_spec_type
 #@ end
 
 #@ def prometheus_values():
@@ -19,8 +22,9 @@ name: prometheus-rsocket-proxy
 image: #@ data.values.scdf.feature.monitoring.prometheusRsocketProxy.image
 #@ end
 
+#@ def monitoring_config(service_spec_type):
 #@ if grafana_enabled():
---- #@ template.replace(overlay.apply(library.get("grafana").with_data_values(grafana_values()).eval()))
+--- #@ template.replace(overlay.apply(library.get("grafana").with_data_values(grafana_values(service_spec_type)).eval()))
 #@ end
 
 #@ if prometheus_enabled():
@@ -29,4 +33,5 @@ image: #@ data.values.scdf.feature.monitoring.prometheusRsocketProxy.image
 
 #@ if prometheus_rsocket_proxy_enabled():
 --- #@ template.replace(overlay.apply(library.get("prometheus-rsocket-proxy").with_data_values(prometheus_rsocket_proxy_values()).eval()))
+#@ end
 #@ end

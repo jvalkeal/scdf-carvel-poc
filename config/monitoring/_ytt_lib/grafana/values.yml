@@ -4,3 +4,6 @@ name: grafana
 image:
   repository: springcloud/spring-cloud-dataflow-grafana-prometheus
   tag: ""
+service:
+  spec:
+    type: NodePort

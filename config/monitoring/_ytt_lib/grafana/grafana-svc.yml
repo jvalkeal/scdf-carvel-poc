@@ -1,4 +1,4 @@
-#@ load("grafana.lib.yml", "name")
+#@ load("grafana.lib.yml", "name", "service_spec_type")
 
 apiVersion: v1
 kind: Service
@@ -9,7 +9,7 @@ metadata:
 spec:
   selector:
     app: #@ name()
-  type: LoadBalancer
+  type: #@ service_spec_type()
   ports:
     - port: 3000
       targetPort: 3000
