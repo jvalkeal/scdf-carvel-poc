@@ -3,7 +3,7 @@ import { findDeployment, findService, deploymentContainer } from '../src/k8s-hel
 import { GRAFANA_NAME, PROMETHEUS_NAME, PROMETHEUS_RSOCKET_PROXY_NAME } from '../src/constants';
 
 describe('monitoring', () => {
-  it('grafana monitoring', async () => {
+  it('should have grafana', async () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
@@ -28,7 +28,7 @@ describe('monitoring', () => {
     expect(grafanaService?.spec?.type).toBe('NodePort');
   });
 
-  it('grafana monitoring cloud', async () => {
+  it('should have grafana with load balancer', async () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
@@ -49,7 +49,7 @@ describe('monitoring', () => {
     expect(grafanaService?.spec?.type).toBe('LoadBalancer');
   });
 
-  it('prometheus monitoring', async () => {
+  it('should have prometheus', async () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
@@ -57,7 +57,6 @@ describe('monitoring', () => {
         'scdf.server.image.tag=2.8.1',
         'scdf.skipper.image.tag=2.7.1',
         'scdf.ctr.image.tag=2.8.1',
-        'scdf.feature.monitoring.grafana.enabled=true',
         'scdf.feature.monitoring.prometheus.enabled=true',
         'scdf.feature.monitoring.prometheus.image.tag=1.2.3'
       ]
@@ -71,7 +70,7 @@ describe('monitoring', () => {
     expect(prometheusContainer?.image).toContain('prom/prometheus:1.2.3');
   });
 
-  it('prometheus-rsocket-proxy monitoring', async () => {
+  it('should have prometheus-rsocket-proxy', async () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
@@ -79,7 +78,6 @@ describe('monitoring', () => {
         'scdf.server.image.tag=2.8.1',
         'scdf.skipper.image.tag=2.7.1',
         'scdf.ctr.image.tag=2.8.1',
-        'scdf.feature.monitoring.grafana.enabled=true',
         'scdf.feature.monitoring.prometheusRsocketProxy.enabled=true'
       ]
     });
