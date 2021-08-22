@@ -63,15 +63,17 @@ NOTE: Above package and package repos are defined within public repos on a
 VMWare space so you don't get trouble with rate limiting(which would be
 a case with dockerhub).
 
-Install `2.8.1` with `postgres` and `rabbit`:
+Install `2.9.0-SNAPSHOT` with `postgres` and `rabbit`:
 ```
+$ kapp deploy -a scdf-demo -f examples/kapp-controller-scdf-290-snapshot-postgres-rabbit.yml -y
+
 $ kubectl get packageinstalls
 NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION   AGE
-scdf-demo   scdf.tanzu.vmware.com   2.8.1             Reconciling   12s
+scdf-demo   scdf.tanzu.vmware.com   2.9.0-SNAPSHOT    Reconciling   12s
 
 $ kubectl get packageinstalls
 NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION           AGE
-scdf-demo   scdf.tanzu.vmware.com   2.8.1             Reconcile succeeded   2m44s
+scdf-demo   scdf.tanzu.vmware.com   2.9.0-SNAPSHOT    Reconcile succeeded   88s
 ```
 
 Cleanup:
