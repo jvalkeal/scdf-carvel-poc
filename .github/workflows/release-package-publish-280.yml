@@ -18,10 +18,13 @@ jobs:
         registry: ghcr.io
         username: jvalkeal
         password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Setup Envs
+      run: |
+        echo DATAFLOW_VERSION=2.8.0 >> $GITHUB_ENV
+        echo SKIPPER_VERSION=2.7.0 >> $GITHUB_ENV
+        echo RTAG=$(date +%y%m%d%s%N) >> $GITHUB_ENV
+        echo TAG=2.8.0 >> $GITHUB_ENV
     - name: Tanzu Dance
-      env:
-        DATAFLOW_VERSION: 2.8.0
-        SKIPPER_VERSION: 2.7.0
       run: |
         rm -fr tanzu/generated
         mkdir -p tanzu/generated/package
@@ -37,4 +40,9 @@ jobs:
           -f <(ytt -f tanzu/generated/package/bundle -f tanzu/generated/values/config1.yml) \
           -f <(ytt -f tanzu/generated/package/bundle -f tanzu/generated/values/config2.yml) \
           --imgpkg-lock-output tanzu/generated/package/bundle/.imgpkg/images.yml
-        imgpkg push --bundle ghcr.io/jvalkeal/scdf-package:$DATAFLOW_VERSION --file tanzu/generated/package/bundle
+        imgpkg push --bundle ghcr.io/jvalkeal/springcloud/scdf-package:$RTAG --file tanzu/generated/package/bundle
+        docker pull ghcr.io/jvalkeal/springcloud/scdf-package:$RTAG
+        docker tag ghcr.io/jvalkeal/springcloud/scdf-package:$RTAG ghcr.io/jvalkeal/springcloud/scdf-package:$TAG
+        docker tag ghcr.io/jvalkeal/springcloud/scdf-package:$RTAG ghcr.io/jvalkeal/springcloud/scdf-package:$TAG-$RTAG
+        docker push ghcr.io/jvalkeal/springcloud/scdf-package:$TAG
+        docker push ghcr.io/jvalkeal/springcloud/scdf-package:$TAG-$RTAG
