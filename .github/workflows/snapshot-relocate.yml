@@ -22,4 +22,4 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Tanzu Dance
       run: |
-        imgpkg copy -b ghcr.io/jvalkeal/scdf-repo:snapshot --to-repo ghcr.io/jvalkeal/scdf-relocate
+        imgpkg copy -b ghcr.io/jvalkeal/springcloud/scdf-repo:snapshot --to-repo ghcr.io/jvalkeal/airgapped/scdf-repo
