@@ -22,7 +22,5 @@ scdf:
           tag: @project.version@
       prometheus:
         enabled: true
-        image:
-          tag: @project.version@
       prometheusRsocketProxy:
         enabled: true
