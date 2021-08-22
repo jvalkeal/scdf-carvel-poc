@@ -5,4 +5,4 @@ metadata:
 spec:
   fetch:
     imgpkgBundle:
-      image: ghcr.io/jvalkeal/scdf-relocate:release
+      image: ghcr.io/jvalkeal/airgapped/scdf-repo:release
