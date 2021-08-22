@@ -11,10 +11,10 @@ package_repository:
     - name: scdf
       domain: tanzu.vmware.com
       version: 2.8.1
-      image: index.docker.io/jvalkeal/scdf:2.8.1
+      image: ghcr.io/jvalkeal/springcloud/scdf-package:2.8.1
       description: Release package for SCDF
     - name: scdf
       domain: tanzu.vmware.com
       version: 2.8.0
-      image: index.docker.io/jvalkeal/scdf:2.8.0
+      image: ghcr.io/jvalkeal/springcloud/scdf-package:2.8.0
       description: Release package for SCDF

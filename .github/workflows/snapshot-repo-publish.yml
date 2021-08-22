@@ -18,6 +18,10 @@ jobs:
         registry: ghcr.io
         username: jvalkeal
         password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Setup Envs
+      run: |
+        echo RTAG=$(date +%y%m%d%s%N) >> $GITHUB_ENV
+        echo TAG=snapshot >> $GITHUB_ENV
     - name: Tanzu Dance
       run: |
         rm -fr tanzu/generated
@@ -26,4 +30,9 @@ jobs:
         ytt -f tanzu/templates/repo/scdf/package.yml -f tanzu/templates/repo/scdf/snapshot.yml > tanzu/generated/snapshot/packages/packages.yml
         kbld --file tanzu/generated/snapshot/packages --imgpkg-lock-output tanzu/generated/snapshot/.imgpkg/images.yml
         ytt -f tanzu/templates/repo/scdf/metadata.yml --data-value name=scdf-repo-snapshot.tanzu.vmware.com --output-files tanzu/generated/snapshot/packages
-        imgpkg push -b ghcr.io/jvalkeal/scdf-repo:snapshot -f tanzu/generated/snapshot
+        imgpkg push --bundle ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG -f tanzu/generated/snapshot
+        docker pull ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG
+        docker tag ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG ghcr.io/jvalkeal/springcloud/scdf-repo:$TAG
+        docker tag ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG ghcr.io/jvalkeal/springcloud/scdf-repo:$TAG-$RTAG
+        docker push ghcr.io/jvalkeal/springcloud/scdf-repo:$TAG
+        docker push ghcr.io/jvalkeal/springcloud/scdf-repo:$TAG-$RTAG
