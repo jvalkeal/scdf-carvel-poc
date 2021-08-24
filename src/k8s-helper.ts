@@ -17,6 +17,24 @@ export function parseYamlDocument(yaml: string): Document.Parsed {
   return parseDocument(yaml);
 }
 
+export function findAnnotation(node: V1Service | V1Deployment | undefined, name: string): string | undefined {
+  return node?.metadata?.annotations ? node?.metadata?.annotations[name] : undefined;
+}
+
+export function findAnnotations(node: V1Service | V1Deployment | undefined, name: string): string[] {
+  let values: string[] = [];
+  const annotations = node?.metadata?.annotations;
+  if (annotations) {
+    for (const k in annotations) {
+      if (k.includes(name)) {
+        const v = annotations[k];
+        values.push(v);
+      }
+    }
+  }
+  return values;
+}
+
 export function findDeployment(yaml: string, name: string): V1Deployment | undefined {
   return parseDocuments(yaml)
     .map(d => loadYaml<V1Deployment>(d))
