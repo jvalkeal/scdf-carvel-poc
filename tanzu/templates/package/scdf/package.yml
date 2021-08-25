@@ -47,7 +47,7 @@ spec:
     spec:
       fetch:
         - imgpkgBundle:
-            image: ghcr.io/jvalkeal/springcloud/scdf-package:@project.version@
+            image: #@ "ghcr.io/jvalkeal/springcloud/scdf-package:" + data.values.project.version
       template:
         - ytt:
             paths:
