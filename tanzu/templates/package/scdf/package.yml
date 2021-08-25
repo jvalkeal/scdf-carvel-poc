@@ -46,7 +46,7 @@ spec:
     spec:
       fetch:
         - imgpkgBundle:
-            image: index.docker.io/jvalkeal/scdf:@project.version@
+            image: ghcr.io/jvalkeal/springcloud/scdf-package:@project.version@
       template:
         - ytt:
             paths:
