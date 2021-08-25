@@ -42,7 +42,8 @@ describe('ordering', () => {
       'upsert after upserting scdf.tanzu.vmware.com/skipper'
     ]);
     expect(findAnnotations(dataflowDeployment, 'kapp.k14s.io/change-rule')).toContainAnyValues([
-      'upsert after upserting scdf.tanzu.vmware.com/db'
+      'upsert after upserting scdf.tanzu.vmware.com/db',
+      'upsert after upserting scdf.tanzu.vmware.com/skipper'
     ]);
   });
 });
