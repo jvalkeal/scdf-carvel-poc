@@ -2,6 +2,9 @@ name: Snapshot Relocate
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Snapshot Repo Publish"]
+    types: [completed]
 
 jobs:
   publish:

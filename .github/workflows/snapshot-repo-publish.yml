@@ -2,6 +2,9 @@ name: Snapshot Repo Publish
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Snapshot Package Publish 29x"]
+    types: [completed]
 
 jobs:
   publish:

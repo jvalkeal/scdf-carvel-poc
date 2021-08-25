@@ -2,6 +2,7 @@ name: Snapshot Package Publish 29x
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   publish:
