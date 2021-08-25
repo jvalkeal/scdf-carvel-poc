@@ -1,4 +1,4 @@
-#@data/values
+(@ load("@ytt:data", "data") @)#@data/values
 ---
 scdf:
   deploy:
@@ -7,19 +7,19 @@ scdf:
     type: postgres
   server:
     image:
-      tag: @project.version@
+      tag: (@= data.values.project.version @)
   ctr:
     image:
-      tag: @project.version@
+      tag: (@= data.values.project.version @)
   skipper:
     image:
-      tag: @spring-cloud-skipper.version@
+      tag: (@= data.values.spring.cloud.skipper.version @)
   feature:
     monitoring:
       grafana:
         enabled: true
         image:
-          tag: @project.version@
+          tag: (@= data.values.project.version @)
       prometheus:
         enabled: true
       prometheusRsocketProxy:

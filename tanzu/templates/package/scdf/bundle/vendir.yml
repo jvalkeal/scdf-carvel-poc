@@ -6,4 +6,4 @@ directories:
   contents:
   - path: scdf
     directory:
-      path: ../../../../config
+      path: ../../../../../config

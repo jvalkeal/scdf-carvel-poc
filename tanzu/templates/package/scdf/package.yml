@@ -1,3 +1,4 @@
+#@ load("@ytt:data", "data")
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: Package
 metadata:
@@ -5,8 +6,8 @@ metadata:
   namespace: scdf
 spec:
   refName: scdf.tanzu.vmware.com
-  version: @project.version@
-  releaseNotes: "scdf @project.version@"
+  version: #@ data.values.project.version
+  releaseNotes: #@ "scdf " + data.values.project.version
   licenses:
     - "Apache 2.0"
   valuesSchema:

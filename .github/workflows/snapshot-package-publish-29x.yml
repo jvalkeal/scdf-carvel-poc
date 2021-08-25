@@ -26,21 +26,25 @@ jobs:
         echo TAG=2.9.0-SNAPSHOT >> $GITHUB_ENV
     - name: Tanzu Dance
       run: |
-        rm -fr tanzu/generated
-        mkdir -p tanzu/generated/package
-        mkdir -p tanzu/generated/values
-        cp -R tanzu/templates/package/scdf/* tanzu/generated/package
-        cp -R tanzu/templates/values/* tanzu/generated/values
-        find tanzu/generated/package -type f | xargs sed -i "s/@project.version@/$DATAFLOW_VERSION/g"
-        find tanzu/generated/package -type f | xargs sed -i "s/@spring-cloud-skipper.version@/$SKIPPER_VERSION/g"
-        find tanzu/generated/values -type f | xargs sed -i "s/@project.version@/$DATAFLOW_VERSION/g"
-        find tanzu/generated/values -type f | xargs sed -i "s/@spring-cloud-skipper.version@/$SKIPPER_VERSION/g"
-        (cd tanzu/generated/package/bundle && vendir sync)
+        ytt \
+          -f tanzu/templates/package/scdf \
+          --output-files tanzu/generated/package/scdf \
+          --data-value-yaml project.version=$DATAFLOW_VERSION \
+          --data-value-yaml spring.cloud.skipper.version=$SKIPPER_VERSION \
+          --file-mark 'bundle/config/values.yml:type=text-template'
+        ytt \
+          -f tanzu/templates/values \
+          --output-files tanzu/generated/values \
+          --data-value-yaml project.version=$DATAFLOW_VERSION \
+          --data-value-yaml spring.cloud.skipper.version=$SKIPPER_VERSION \
+          --file-mark 'config1.yml:type=text-template' \
+          --file-mark 'config2.yml:type=text-template'
+        vendir sync --chdir tanzu/generated/package/scdf/bundle
         kbld \
-          -f <(ytt -f tanzu/generated/package/bundle -f tanzu/generated/values/config1.yml) \
-          -f <(ytt -f tanzu/generated/package/bundle -f tanzu/generated/values/config2.yml) \
-          --imgpkg-lock-output tanzu/generated/package/bundle/.imgpkg/images.yml
-        imgpkg push --bundle ghcr.io/jvalkeal/springcloud/scdf-package:$RTAG --file tanzu/generated/package/bundle
+          -f <(ytt -f tanzu/generated/package/scdf/bundle -f tanzu/generated/values/config1.yml) \
+          -f <(ytt -f tanzu/generated/package/scdf/bundle -f tanzu/generated/values/config2.yml) \
+          --imgpkg-lock-output tanzu/generated/package/scdf/bundle/.imgpkg/images.yml
+        imgpkg push --bundle ghcr.io/jvalkeal/springcloud/scdf-package:$RTAG --file tanzu/generated/package/scdf/bundle
         docker pull ghcr.io/jvalkeal/springcloud/scdf-package:$RTAG
         docker tag ghcr.io/jvalkeal/springcloud/scdf-package:$RTAG ghcr.io/jvalkeal/springcloud/scdf-package:$TAG
         docker tag ghcr.io/jvalkeal/springcloud/scdf-package:$RTAG ghcr.io/jvalkeal/springcloud/scdf-package:$TAG-$RTAG
