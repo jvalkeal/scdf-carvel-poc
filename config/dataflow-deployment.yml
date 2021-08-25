@@ -4,6 +4,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: scdf-server
+  annotations:
+    kapp.k14s.io/change-group: "scdf.tanzu.vmware.com/server"
+    kapp.k14s.io/change-rule: "upsert after upserting scdf.tanzu.vmware.com/db"
   labels:
     app: scdf-server
 spec:
