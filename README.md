@@ -137,8 +137,8 @@ yaml document.
 | scdf.skipper.config                                             | yaml(additional config) | null                                                   |                                               |
 | scdf.binder.kafka.host                                          | string(host)            | null                                                   |                                               |
 | scdf.binder.kafka.port                                          | string(port)            | null                                                   |                                               |
-| scdf.rabbit.kafka.host                                          | string(host)            | null                                                   |                                               |
-| scdf.rabbit.kafka.port                                          | string(port)            | null                                                   |                                               |
+| scdf.binder.rabbit.host                                         | string(host)            | null                                                   |                                               |
+| scdf.binder.rabbit.port                                         | string(port)            | null                                                   |                                               |
 | scdf.feature.monitoring.prometheus.enabled                      | boolean                 | false                                                  |                                               |
 | scdf.feature.monitoring.prometheus.image.repository             | string(image repo base) | prom/prometheus                                        |                                               |
 | scdf.feature.monitoring.prometheus.image.tag                    | string(image tag)       | v2.12.0                                                |                                               |
