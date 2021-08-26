@@ -176,5 +176,5 @@ Download flat bundles:
 
 ```
 imgpkg pull -b ghcr.io/jvalkeal/springcloud/scdf-repo:snapshot -o scdf-repo-snapshot
-imgpkg pull -b ghcr.io/jvalkeal/springcloud/scdf-package:2.9.0-SNAPSHOT -o scdf-pacage-snapshot
+imgpkg pull -b ghcr.io/jvalkeal/springcloud/scdf-package:2.9.0-SNAPSHOT -o scdf-package-snapshot
 ```
