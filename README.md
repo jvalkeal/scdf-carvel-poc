@@ -32,9 +32,9 @@ Install `kapp-controller`:
 
 Deploy controller:
 ```
-$ kapp deploy -y -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml
+kapp deploy -y -a default-ns-rbac -f https://raw.githubusercontent.com/vmware-tanzu/carvel-kapp-controller/develop/examples/rbac/default-ns.yml
 
-$ kapp deploy -y -a kc -f https://raw.githubusercontent.com/jvalkeal/scdf-carvel-poc/main/examples/kapp-controller-ghcr.yml
+kapp deploy -y -a kc -f https://raw.githubusercontent.com/jvalkeal/scdf-carvel-poc/main/examples/kapp-controller-ghcr.yml
 ```
 
 After `kapp-controller` has been deployed you can deploy repositories for different stages
@@ -42,16 +42,16 @@ of a dataflow development and release channels like `snapshot`, `milestone` or `
 
 Deploy repository:
 ```
-$ kapp deploy -a scdf-repo-snapshot -f examples/scdf-repo-snapshot-ghcr.yml -y
+kapp deploy -a scdf-repo-snapshot -f examples/scdf-repo-snapshot-ghcr.yml -y
 
-$ kapp deploy -a scdf-repo-release -f examples/scdf-repo-release-ghcr.yml -y
+kapp deploy -a scdf-repo-release -f examples/scdf-repo-release-ghcr.yml -y
 
-$ kubectl get packagerepositories
+kubectl get packagerepositories
 NAME                         AGE   DESCRIPTION
 scdf-release.tanzu.vmware    23s   Reconcile succeeded
 scdf-snapshot.tanzu.vmware   60s   Reconcile succeeded
 
-$ kubectl get packages
+kubectl get packages
 NAME                                   PACKAGEMETADATA NAME    VERSION          AGE
 scdf.tanzu.vmware.com.2.8.0            scdf.tanzu.vmware.com   2.8.0            8s
 scdf.tanzu.vmware.com.2.8.1            scdf.tanzu.vmware.com   2.8.1            8s
@@ -65,13 +65,13 @@ a case with dockerhub).
 
 Install `2.9.0-SNAPSHOT` with `postgres` and `rabbit`:
 ```
-$ kapp deploy -a scdf-demo -f examples/kapp-controller-scdf-290-snapshot-postgres-rabbit.yml -y
+kapp deploy -a scdf-demo -f examples/kapp-controller-scdf-290-snapshot-postgres-rabbit.yml -y
 
-$ kubectl get packageinstalls
+kubectl get packageinstalls
 NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION   AGE
 scdf-demo   scdf.tanzu.vmware.com   2.9.0-SNAPSHOT    Reconciling   12s
 
-$ kubectl get packageinstalls
+kubectl get packageinstalls
 NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION           AGE
 scdf-demo   scdf.tanzu.vmware.com   2.9.0-SNAPSHOT    Reconcile succeeded   88s
 ```
@@ -91,12 +91,12 @@ it's just throwing out _k8s_ files into a cluster with some better control of wh
 above `kubectl` itself.
 
 ```
-$ kapp -y deploy -a scdf-demo -f <(ytt -f config -f examples/kapp-290-snapshot-monitoring.yml)
+kapp -y deploy -a scdf-demo -f <(ytt -f config -f examples/kapp-290-snapshot-monitoring.yml)
 ```
 
 When you've done delete deployment
 ```
-$ kapp -y delete -a scdf-demo
+kapp -y delete -a scdf-demo
 ```
 
 ### Deploy via kubectl
@@ -170,4 +170,11 @@ tests can be run with:
 $ npm install
 
 $ npm run test
+```
+### Random Notes
+Download flat bundles:
+
+```
+imgpkg pull -b ghcr.io/jvalkeal/springcloud/scdf-repo:snapshot -o scdf-repo-snapshot
+imgpkg pull -b ghcr.io/jvalkeal/springcloud/scdf-package:2.9.0-SNAPSHOT -o scdf-pacage-snapshot
 ```
