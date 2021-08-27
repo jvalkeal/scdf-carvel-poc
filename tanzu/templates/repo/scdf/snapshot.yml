@@ -3,6 +3,7 @@
 package_repository:
   name: scdf-snapshot.tanzu.vmware
   imgpkgBundle: index.docker.io/jvalkeal/scdf-repo:snapshot
+  schema:
   packageSpec:
     syncPeriod: 5m
     deploy:

@@ -30,7 +30,7 @@ jobs:
         rm -fr tanzu/generated
         mkdir -p tanzu/generated/snapshot/packages
         mkdir -p tanzu/generated/snapshot/.imgpkg
-        ytt -f tanzu/templates/repo/scdf/package.yml -f tanzu/templates/repo/scdf/snapshot.yml > tanzu/generated/snapshot/packages/packages.yml
+        ytt -f tanzu/templates/repo/scdf/package.yml -f tanzu/templates/repo/scdf/snapshot.yml -f tanzu/templates/repo/scdf/openapi.yml > tanzu/generated/snapshot/packages/packages.yml
         kbld --file tanzu/generated/snapshot/packages --imgpkg-lock-output tanzu/generated/snapshot/.imgpkg/images.yml
         ytt -f tanzu/templates/repo/scdf/metadata.yml --data-value name=scdf-repo-snapshot.tanzu.vmware.com --output-files tanzu/generated/snapshot/packages
         imgpkg push --bundle ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG -f tanzu/generated/snapshot

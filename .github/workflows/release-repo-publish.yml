@@ -27,7 +27,7 @@ jobs:
         rm -fr tanzu/generated
         mkdir -p tanzu/generated/release/packages
         mkdir -p tanzu/generated/release/.imgpkg
-        ytt -f tanzu/templates/repo/scdf/package.yml -f tanzu/templates/repo/scdf/release.yml > tanzu/generated/release/packages/packages.yml
+        ytt -f tanzu/templates/repo/scdf/package.yml -f tanzu/templates/repo/scdf/release.yml -f tanzu/templates/repo/scdf/openapi.yml > tanzu/generated/release/packages/packages.yml
         kbld --file tanzu/generated/release/packages --imgpkg-lock-output tanzu/generated/release/.imgpkg/images.yml
         ytt -f tanzu/templates/repo/scdf/metadata.yml --data-value name=scdf-repo-release.tanzu.vmware.com --output-files tanzu/generated/release/packages
         imgpkg push --bundle ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG -f tanzu/generated/release

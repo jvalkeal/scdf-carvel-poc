@@ -18,6 +18,8 @@ spec:
   publicName: #@ package.name + "." + str(package.domain)
   version: #@ package.version
   description: #@ package.description
+  valuesSchema:
+    openAPIv3: #@ data.values.package_repository.schema
   template:
     spec:
       syncPeriod: #@ get_package_spec(package).syncPeriod

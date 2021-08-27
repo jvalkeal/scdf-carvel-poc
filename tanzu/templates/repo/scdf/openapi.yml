@@ -1,55 +1,59 @@
-title: scdf.tanzu.vmware.com values schema
-properties:
-  scdf:
-    type: object
-    description: SCDF configuration
+#@data/values
+---
+package_repository:
+  schema:
+    title: scdf.tanzu.vmware.com values schema
     properties:
-      deploy:
+      scdf:
         type: object
-        description: Deploy configuration
+        description: SCDF configuration
         properties:
-          mode:
-            type: string
-            description: Deploy type
-            enum:
-            - minikube
-            - cloud
-            default: minikube
-          binder:
-            type: string
-            description: Binder type
-            enum:
-            - rabbit
-            - kafka
-            default: rabbit
-            examples:
-            - rabbit
-            - kafka
-      database:
-        type: object
-        description: Database configuration
-        properties:
-          type:
-            type: string
-            description: Database type
-            enum:
-            - postgres
-            - mysql
-          username:
-            type: string
-            description: Database username
-          password:
-            type: string
-            description: Database password
-      server:
-        type: object
-        properties:
-          image:
+          deploy:
+            type: object
+            description: Deploy configuration
+            properties:
+              mode:
+                type: string
+                description: Deploy type
+                enum:
+                - minikube
+                - cloud
+                default: minikube
+              binder:
+                type: string
+                description: Binder type
+                enum:
+                - rabbit
+                - kafka
+                default: rabbit
+                examples:
+                - rabbit
+                - kafka
+          database:
+            type: object
+            description: Database configuration
+            properties:
+              type:
+                type: string
+                description: Database type
+                enum:
+                - postgres
+                - mysql
+              username:
+                type: string
+                description: Database username
+              password:
+                type: string
+                description: Database password
+          server:
             type: object
             properties:
-              repository:
+              image:
+                type: object
+                properties:
+                  repository:
+                    type: string
+                  tag:
+                    type: string
+              config:
                 type: string
-              tag:
-                type: string
-          config:
-            type: string
