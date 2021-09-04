@@ -178,3 +178,14 @@ Download flat bundles:
 imgpkg pull -b ghcr.io/jvalkeal/springcloud/scdf-repo:snapshot -o scdf-repo-snapshot
 imgpkg pull -b ghcr.io/jvalkeal/springcloud/scdf-package:2.9.0-SNAPSHOT -o scdf-package-snapshot
 ```
+
+Repo bundles are relocated into `jvalkeal/airgapped`: 
+```
+imgpkg pull -b ghcr.io/jvalkeal/airgapped/scdf-repo:snapshot -o airgapped-scdf-repo-snapshot
+```
+
+Looking _ImagesLock_ in airgapped repo it points to something like which then itself have
+_ImagesLock_ for package images pointing to airgapped location:
+```
+imgpkg pull -b ghcr.io/jvalkeal/airgapped/scdf-repo@sha256:51e99e890f9158cb9463b859e2c6a3918ebdc29809ee82573b3abe3aebc5b9f9 -o airgapped-scdf-package-snapshot
+```
