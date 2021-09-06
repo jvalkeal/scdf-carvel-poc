@@ -4,8 +4,8 @@ scdf:
   deploy:
     mode: cloud
     binder: rabbit
-  database:
-    type: mysql
+    database:
+      type: mysql
   server:
     image:
       tag: 2.8.1

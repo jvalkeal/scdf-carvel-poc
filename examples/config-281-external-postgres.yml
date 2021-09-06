@@ -1,0 +1,28 @@
+#@data/values
+---
+scdf:
+  deploy:
+    mode: minikube
+    binder: rabbit
+    database:
+      enabled: false
+  server:
+    image:
+      tag: 2.8.1
+    database:
+      url: jdbc:postgresql://localhost:5432/dataflow
+      username: username
+      password: password
+      driverClassName: "org.postgresql.Driver"
+  skipper:
+    image:
+      tag: 2.7.1
+    database:
+      url: jdbc:postgresql://localhost:5432/skipper
+      username: username
+      password: password
+      driverClassName: "org.postgresql.Driver"
+      testOnBorrow: false
+  ctr:
+    image:
+      tag: 2.8.1

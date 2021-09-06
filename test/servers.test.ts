@@ -16,7 +16,7 @@ describe('servers', () => {
       files: ['config'],
       dataValueYamls: [
         'scdf.deploy.mode=cloud',
-        'scdf.database.type=postgres',
+        'scdf.deploy.database.type=postgres',
         'scdf.server.image.tag=2.8.1',
         'scdf.skipper.image.tag=2.7.1',
         'scdf.ctr.image.tag=2.8.1',
@@ -37,7 +37,7 @@ describe('servers', () => {
       files: ['config'],
       dataValueYamls: [
         'scdf.deploy.mode=cloud',
-        'scdf.database.type=postgres',
+        'scdf.deploy.database.type=postgres',
         'scdf.server.image.tag=2.8.1',
         'scdf.skipper.image.tag=2.7.1',
         'scdf.ctr.image.tag=2.8.1',
@@ -72,7 +72,7 @@ describe('servers', () => {
       files: ['config'],
       dataValueYamls: [
         'scdf.deploy.mode=cloud',
-        'scdf.database.type=postgres',
+        'scdf.deploy.database.type=postgres',
         'scdf.server.image.tag=2.8.1',
         'scdf.skipper.image.tag=2.7.1',
         'scdf.ctr.image.tag=2.8.1',
@@ -116,7 +116,7 @@ describe('servers', () => {
       files: ['config'],
       dataValueYamls: [
         'scdf.deploy.mode=cloud',
-        'scdf.database.type=postgres',
+        'scdf.deploy.database.type=postgres',
         'scdf.server.image.tag=2.8.1',
         'scdf.skipper.image.tag=2.7.1',
         'scdf.ctr.image.tag=2.8.1',
@@ -160,7 +160,7 @@ describe('servers', () => {
       files: ['config'],
       dataValueYamls: [
         'scdf.deploy.mode=cloud',
-        'scdf.database.type=postgres',
+        'scdf.deploy.database.type=postgres',
         'scdf.server.image.tag=2.8.1',
         'scdf.skipper.image.tag=2.7.1',
         'scdf.ctr.image.tag=2.8.1',
@@ -233,7 +233,7 @@ describe('servers', () => {
       files: ['config'],
       dataValueYamls: [
         'scdf.deploy.mode=cloud',
-        'scdf.database.type=postgres',
+        'scdf.deploy.database.type=postgres',
         'scdf.server.image.tag=2.8.1',
         'scdf.skipper.image.tag=2.7.1',
         'scdf.ctr.image.tag=2.8.1',
@@ -280,7 +280,7 @@ describe('servers', () => {
       files: ['config'],
       dataValueYamls: [
         'scdf.deploy.mode=cloud',
-        'scdf.database.type=postgres',
+        'scdf.deploy.database.type=postgres',
         'scdf.server.image.tag=2.8.1',
         'scdf.skipper.image.tag=2.7.1',
         'scdf.ctr.image.tag=2.8.1',
@@ -319,7 +319,7 @@ describe('servers', () => {
       files: ['config'],
       dataValueYamls: [
         'scdf.deploy.mode=cloud',
-        'scdf.database.type=postgres',
+        'scdf.deploy.database.type=postgres',
         'scdf.feature.monitoring.grafana.enabled=true',
         'scdf.server.image.tag=2.8.1',
         'scdf.server.metrics.dashboard.url=http://fakedashboard',

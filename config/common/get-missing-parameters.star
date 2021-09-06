@@ -14,7 +14,7 @@ requirements = {
    "scdf.skipper.image.repository": non_empty_string,
    "scdf.skipper.image.tag": non_empty_string,
    "binder_type": non_empty_string,
-   "scdf.database.type": non_empty_string,
+   "scdf.deploy.database.type": non_empty_string,
 }
 
 def is_present(values, param):
@@ -42,6 +42,6 @@ def get_missing_parameters(values):
 scdf.server.image.tag
 scdf.ctr.image.tag
 scdf.skipper.image.tag
-scdf.database.type'''.split("\n")
+scdf.deploy.database.type'''.split("\n")
     return [param for param in required_parameters if is_missing(values, param)]
 end

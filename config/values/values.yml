@@ -7,13 +7,16 @@ scdf:
     mode: minikube
     #! binder type, either rabbit or kafka (needed if external binder is not defined)
     binder: ""
-  database:
-    #! database type, either mysql or postgres (required)
-    type: ""
-    #! database username (defaults to dataflow)
-    username: ZGF0YWZsb3c=
-    #! database password (default to secret)
-    password: c2VjcmV0
+    #! deploy database settings
+    database:
+      #! if database deployment is enabled
+      enabled: true
+      #! database type, either mysql or postgres (required)
+      type: postgres
+      #! database username (defaults to dataflow)
+      username: ZGF0YWZsb3c=
+      #! database password (default to secret)
+      password: c2VjcmV0
   server:
     image:
       #! dataflow server image repository id
@@ -23,6 +26,13 @@ scdf:
     metrics:
       dashboard:
         url: ""
+    database:
+      url: ""
+      username: ""
+      password: ""
+      driverClassName: ""
+      testOnBorrow: true
+      validationQuery: ""
     #! additional dataflow server configuration
     #@schema/type any=True
     config:
@@ -38,6 +48,13 @@ scdf:
       repository: springcloud/spring-cloud-skipper-server
       #! skipper server image tag (required)
       tag: ""
+    database:
+      url: ""
+      username: ""
+      password: ""
+      driverClassName: ""
+      testOnBorrow: true
+      validationQuery: ""
     #! additional skipper server configuration
     #@schema/type any=True
     config:

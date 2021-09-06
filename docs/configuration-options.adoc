@@ -1,0 +1,211 @@
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+[[configuration-options]]
+== Configuration Options
+
+Main point of a _carvel_ is to provide a clear _API_ for consuming and using
+its features. From a user point of view this means that there is a set of
+options user can set which then drives k8s deployment files templating
+and deployment into an environment. This sections documents these options
+user as a consumer can use. Essentially this means that you will set
+options with either plain properties of combine those into fully set of
+yaml document.
+
+*Curated List of Options:*
+
+- <<configuration-options-scdf.deploy.mode>>
+- <<configuration-options-scdf.deploy.binder>>
+- <<configuration-options-scdf.deploy.database.enabled>>
+- <<configuration-options-scdf.deploy.database.type>>
+- <<configuration-options-scdf.deploy.database.username>>
+- <<configuration-options-scdf.deploy.database.password>>
+- <<configuration-options-scdf.server.database.url>>
+- <<configuration-options-scdf.skipper.database.url>>
+
+=== Options
+
+[[configuration-options-scdf.deploy.mode]]`scdf.deploy.mode`::
+  Description:::
+To ease deployment to minikube using nodeport
+  Required:::
+No
+  Type:::
+Enum(minikube,cloud)
+   Default Value:::
+minikube
+
+[[configuration-options-scdf.deploy.binder]]`scdf.deploy.binder`::
+  Description:::
+Defines a binder type which is deployed and configured to be used with dataflow and skipper.
+  Required:::
+No
+  Type:::
+enum(rabbit,kafka)
+   Default Value:::
+rabbit
+
+[[configuration-options-scdf.deploy.database.enabled]]`scdf.deploy.database.enabled`::
+  Description:::
+Defines if a database is deployed.
+  Required:::
+No
+  Type:::
+Boolean
+   Default Value:::
+true
+
+[[configuration-options-scdf.deploy.database.type]]`scdf.deploy.database.type`::
+  Description:::
+Defines a database type which is deployed and configured to be used with dataflow and skipper.
+  Required:::
+No
+  Type:::
+Enum(mysql,postgres)
+   Default Value:::
+postgres
+
+[[configuration-options-scdf.deploy.database.username]]`scdf.deploy.database.username`::
+  Description:::
+Defines username for a created database.
+  Required:::
+No
+  Type:::
+String (base64 encoded)
+   Default Value:::
+dataflow
+
+[[configuration-options-scdf.deploy.database.password]]`scdf.deploy.database.password`::
+  Description:::
+Defines password for a created database.
+  Required:::
+No
+  Type:::
+String (base64 encoded)
+   Default Value:::
+secret
+
+[[configuration-options-scdf.server.database.url]]`scdf.server.database.url`::
+  Description:::
+Datasource url setting
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.server.database.username]]`scdf.server.database.username`::
+  Description:::
+Datasource username setting
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.server.database.password]]`scdf.server.database.password`::
+  Description:::
+Datasource password setting
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.server.database.driverClassName]]`scdf.server.database.driverClassName`::
+  Description:::
+Datasource driverClassName setting
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.server.database.validationQuery]]`scdf.server.database.validationQuery`::
+  Description:::
+Datasource validationQuery setting
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.server.database.testOnBorrow]]`scdf.server.database.testOnBorrow`::
+  Description:::
+Datasource testOnBorrow setting
+  Required:::
+No
+  Type:::
+Boolean
+   Default Value:::
+True
+
+[[configuration-options-scdf.skipper.database.url]]`scdf.skipper.database.url`::
+  Description:::
+Datasource url setting
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.skipper.database.username]]`scdf.skipper.database.username`::
+  Description:::
+Datasource username setting
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.skipper.database.password]]`scdf.skipper.database.password`::
+  Description:::
+Datasource password setting
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.skipper.database.driverClassName]]`scdf.skipper.database.driverClassName`::
+  Description:::
+Datasource driverClassName setting
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.skipper.database.validationQuery]]`scdf.skipper.database.validationQuery`::
+  Description:::
+Datasource validationQuery setting
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.skipper.database.testOnBorrow]]`scdf.skipper.database.testOnBorrow`::
+  Description:::
+Datasource testOnBorrow setting
+  Required:::
+No
+  Type:::
+Boolean
+   Default Value:::
+True

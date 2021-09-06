@@ -10,7 +10,7 @@ describe('binders', () => {
         'scdf.server.image.tag=2.8.1',
         'scdf.skipper.image.tag=2.7.1',
         'scdf.ctr.image.tag=2.8.1',
-        'scdf.database.type=mysql',
+        'scdf.deploy.database.type=mysql',
         'scdf.deploy.binder=rabbit'
       ]
     });
@@ -36,7 +36,7 @@ describe('binders', () => {
         'scdf.server.image.tag=2.8.1',
         'scdf.skipper.image.tag=2.7.1',
         'scdf.ctr.image.tag=2.8.1',
-        'scdf.database.type=postgres',
+        'scdf.deploy.database.type=postgres',
         'scdf.deploy.binder=kafka'
       ]
     });
@@ -59,7 +59,7 @@ describe('binders', () => {
       files: ['config'],
       dataValueYamls: [
         'scdf.deploy.mode=cloud',
-        'scdf.database.type=mysql',
+        'scdf.deploy.database.type=mysql',
         'scdf.server.image.tag=2.8.1',
         'scdf.skipper.image.tag=2.7.1',
         'scdf.ctr.image.tag=2.8.1',
@@ -87,7 +87,7 @@ describe('binders', () => {
       files: ['config'],
       dataValueYamls: [
         'scdf.deploy.mode=cloud',
-        'scdf.database.type=postgres',
+        'scdf.deploy.database.type=postgres',
         'scdf.server.image.tag=2.8.1',
         'scdf.skipper.image.tag=2.7.1',
         'scdf.ctr.image.tag=2.8.1',
