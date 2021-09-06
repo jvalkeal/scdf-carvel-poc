@@ -25,8 +25,31 @@ yaml document.
 - <<configuration-options-scdf.deploy.database.type>>
 - <<configuration-options-scdf.deploy.database.username>>
 - <<configuration-options-scdf.deploy.database.password>>
+- <<configuration-options-scdf.server.image.repository>>
+- <<configuration-options-scdf.server.image.tag>>
 - <<configuration-options-scdf.server.database.url>>
+- <<configuration-options-scdf.server.config>>
+- <<configuration-options-scdf.server.metrics.dashboard.url>>
+- <<configuration-options-scdf.ctr.image.repository>>
+- <<configuration-options-scdf.ctr.image.tag>>
+- <<configuration-options-scdf.skipper.image.repository>>
+- <<configuration-options-scdf.skipper.image.tag>>
 - <<configuration-options-scdf.skipper.database.url>>
+- <<configuration-options-scdf.skipper.config>>
+- <<configuration-options-scdf.binder.kafka.host>>
+- <<configuration-options-scdf.binder.kafka.port>>
+- <<configuration-options-scdf.binder.rabbit.host>>
+- <<configuration-options-scdf.binder.rabbit.port>>
+- <<configuration-options-scdf.feature.monitoring.prometheus.enabled>>
+- <<configuration-options-scdf.feature.monitoring.prometheus.image.repository>>
+- <<configuration-options-scdf.feature.monitoring.prometheus.image.tag>>
+- <<configuration-options-scdf.feature.monitoring.grafana.enabled>>
+- <<configuration-options-scdf.feature.monitoring.grafana.image.repository>>
+- <<configuration-options-scdf.feature.monitoring.grafana.image.tag>>
+- <<configuration-options-scdf.feature.monitoring.prometheusRsocketProxy.enabled>>
+- <<configuration-options-scdf.feature.monitoring.prometheusRsocketProxy.image.repository>>
+- <<configuration-options-scdf.feature.monitoring.prometheusRsocketProxy.image.tag>>
+
 
 === Options
 
