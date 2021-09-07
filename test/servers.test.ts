@@ -8,18 +8,16 @@ import {
   deploymentContainer,
   containerEnvValues
 } from '../src/k8s-helper';
-import { SCDF_SERVER_NAME, SKIPPER_NAME } from '../src/constants';
+import { SCDF_SERVER_NAME, SKIPPER_NAME, DEFAULT_REQUIRED_DATA_VALUES } from '../src/constants';
 
 describe('servers', () => {
   it('no additional dataflow server config', async () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
         'scdf.binder.kafka.host=localhost',
         'scdf.binder.kafka.port=1234'
       ]
@@ -36,11 +34,9 @@ describe('servers', () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
         'scdf.binder.kafka.host=localhost',
         'scdf.binder.kafka.port=1234',
         'scdf.server.config.foo=bar',
@@ -71,11 +67,9 @@ describe('servers', () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
         'scdf.binder.kafka.host=localhost',
         'scdf.binder.kafka.port=1234',
         'scdf.server.config.foo=bar'
@@ -115,11 +109,9 @@ describe('servers', () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
         'scdf.binder.kafka.host=localhost',
         'scdf.binder.kafka.port=1234',
         'scdf.server.config.foo=bar',
@@ -159,11 +151,9 @@ describe('servers', () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
         'scdf.binder.kafka.host=localhost',
         'scdf.binder.kafka.port=1234',
         'scdf.server.config.foo=bar'
@@ -232,11 +222,9 @@ describe('servers', () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
         'scdf.binder.kafka.host=localhost',
         'scdf.binder.kafka.port=1234',
         'scdf.server.config.foo=bar',
@@ -279,11 +267,9 @@ describe('servers', () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
         'scdf.binder.kafka.host=localhost',
         'scdf.binder.kafka.port=1234',
         'scdf.server.config.foo=bar',
@@ -318,13 +304,11 @@ describe('servers', () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
         'scdf.feature.monitoring.grafana.enabled=true',
-        'scdf.server.image.tag=2.8.1',
-        'scdf.server.metrics.dashboard.url=http://fakedashboard',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1'
+        'scdf.server.metrics.dashboard.url=http://fakedashboard'
       ]
     });
     expect(result.success).toBeTruthy();

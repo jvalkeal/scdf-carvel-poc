@@ -1,16 +1,12 @@
 import { execYtt } from '../src/ytt';
 import { deploymentContainer, findDeployment, containerEnvValue } from '../src/k8s-helper';
+import { DEFAULT_REQUIRED_DATA_VALUES } from '../src/constants';
 
 describe('versions', () => {
   it('should replace versions', async () => {
     const result = await execYtt({
       files: ['config'],
-      dataValues: [
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
-        'scdf.deploy.database.type=postgres'
-      ]
+      dataValues: [...DEFAULT_REQUIRED_DATA_VALUES, 'scdf.deploy.database.type=postgres']
     });
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;

@@ -1,19 +1,13 @@
 import lodash from 'lodash';
 import { execYtt } from '../src/ytt';
 import { findDeployment, findConfigMap, parseYamlDocument } from '../src/k8s-helper';
-import { BINDER_RABBIT_NAME, BINDER_KAFKA_NAME } from '../src/constants';
+import { BINDER_RABBIT_NAME, BINDER_KAFKA_NAME, DEFAULT_REQUIRED_DATA_VALUES } from '../src/constants';
 
 describe('binders', () => {
   it('should have rabbit deployment', async () => {
     const result = await execYtt({
       files: ['config'],
-      dataValues: [
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
-        'scdf.deploy.database.type=mysql',
-        'scdf.deploy.binder.type=rabbit'
-      ]
+      dataValues: [...DEFAULT_REQUIRED_DATA_VALUES, 'scdf.deploy.database.type=mysql', 'scdf.deploy.binder.type=rabbit']
     });
 
     expect(result.success).toBeTruthy();
@@ -34,9 +28,7 @@ describe('binders', () => {
     const result = await execYtt({
       files: ['config'],
       dataValues: [
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.database.type=postgres',
         'scdf.deploy.binder.type=kafka'
       ]
@@ -59,12 +51,10 @@ describe('binders', () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=mysql',
         'scdf.deploy.binder.enabled=false',
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
         'scdf.binder.rabbit.host=localhost',
         'scdf.binder.rabbit.port=1234'
       ]
@@ -95,12 +85,10 @@ describe('binders', () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
         'scdf.deploy.binder.enabled=false',
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
         'scdf.binder.kafka.host=localhost',
         'scdf.binder.kafka.port=1234'
       ]

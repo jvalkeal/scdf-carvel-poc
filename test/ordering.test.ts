@@ -1,18 +1,19 @@
 import { execYtt } from '../src/ytt';
 import 'jest-extended';
 import { findService, findDeployment, findAnnotation, findAnnotations } from '../src/k8s-helper';
-import { SCDF_SERVER_NAME, SKIPPER_NAME, DB_SKIPPER_NAME, DB_DATAFLOW_NAME } from '../src/constants';
+import {
+  SCDF_SERVER_NAME,
+  SKIPPER_NAME,
+  DB_SKIPPER_NAME,
+  DB_DATAFLOW_NAME,
+  DEFAULT_REQUIRED_DATA_VALUES
+} from '../src/constants';
 
 describe('ordering', () => {
   it('should have correct kapp change ordering', async () => {
     const result = await execYtt({
       files: ['config'],
-      dataValueYamls: [
-        'scdf.deploy.database.type=postgres',
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1'
-      ]
+      dataValueYamls: [...DEFAULT_REQUIRED_DATA_VALUES, 'scdf.deploy.database.type=postgres']
     });
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;

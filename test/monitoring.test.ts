@@ -1,16 +1,19 @@
 import { execYtt } from '../src/ytt';
 import { findDeployment, findService, deploymentContainer } from '../src/k8s-helper';
-import { GRAFANA_NAME, PROMETHEUS_NAME, PROMETHEUS_RSOCKET_PROXY_NAME } from '../src/constants';
+import {
+  GRAFANA_NAME,
+  PROMETHEUS_NAME,
+  PROMETHEUS_RSOCKET_PROXY_NAME,
+  DEFAULT_REQUIRED_DATA_VALUES
+} from '../src/constants';
 
 describe('monitoring', () => {
   it('should have grafana', async () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.database.type=postgres',
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
         'scdf.feature.monitoring.grafana.enabled=true',
         'scdf.feature.monitoring.grafana.image.tag=1.2.3'
       ]
@@ -32,11 +35,9 @@ describe('monitoring', () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
         'scdf.feature.monitoring.grafana.enabled=true',
         'scdf.feature.monitoring.grafana.image.tag=1.2.3'
       ]
@@ -53,10 +54,8 @@ describe('monitoring', () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.database.type=postgres',
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
         'scdf.feature.monitoring.prometheus.enabled=true',
         'scdf.feature.monitoring.prometheus.image.tag=1.2.3'
       ]
@@ -74,10 +73,8 @@ describe('monitoring', () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.database.type=postgres',
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
         'scdf.feature.monitoring.prometheusRsocketProxy.enabled=true'
       ]
     });

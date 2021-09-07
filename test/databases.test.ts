@@ -7,14 +7,15 @@ import {
   DB_SKIPPER_NAME,
   DB_DATAFLOW_NAME,
   SCDF_SERVER_NAME,
-  SKIPPER_NAME
+  SKIPPER_NAME,
+  DEFAULT_REQUIRED_DATA_VALUES
 } from '../src/constants';
 
 describe('databases', () => {
   it('should default to postgres', async () => {
     const result = await execYtt({
       files: ['config'],
-      dataValues: ['scdf.server.image.tag=2.8.1', 'scdf.skipper.image.tag=2.7.1', 'scdf.ctr.image.tag=2.8.1']
+      dataValues: [...DEFAULT_REQUIRED_DATA_VALUES]
     });
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
@@ -43,12 +44,7 @@ describe('databases', () => {
   it('should deploy mysql', async () => {
     const result = await execYtt({
       files: ['config'],
-      dataValues: [
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
-        'scdf.deploy.database.type=mysql'
-      ]
+      dataValues: [...DEFAULT_REQUIRED_DATA_VALUES, 'scdf.deploy.database.type=mysql']
     });
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
@@ -77,12 +73,7 @@ describe('databases', () => {
   it('should deploy postgres', async () => {
     const result = await execYtt({
       files: ['config'],
-      dataValues: [
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
-        'scdf.deploy.database.type=postgres'
-      ]
+      dataValues: [...DEFAULT_REQUIRED_DATA_VALUES, 'scdf.deploy.database.type=postgres']
     });
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
@@ -112,9 +103,7 @@ describe('databases', () => {
     const result = await execYtt({
       files: ['config'],
       dataValues: [
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.database.type=mysql',
         'scdf.deploy.database.username=user',
         'scdf.deploy.database.password=pass'
@@ -148,9 +137,7 @@ describe('databases', () => {
     const result = await execYtt({
       files: ['config'],
       dataValues: [
-        'scdf.server.image.tag=2.8.1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.ctr.image.tag=2.8.1',
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.database.type=postgres',
         'scdf.deploy.database.username=user',
         'scdf.deploy.database.password=pass'
@@ -184,12 +171,10 @@ describe('databases', () => {
     const result = await execYtt({
       files: ['config'],
       dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.database.enabled=false',
-        'scdf.server.image.tag=2.8.1',
         'scdf.server.database.url=fakeurl1',
-        'scdf.skipper.image.tag=2.7.1',
-        'scdf.skipper.database.url=fakeurl2',
-        'scdf.ctr.image.tag=2.8.1'
+        'scdf.skipper.database.url=fakeurl2'
       ]
     });
     expect(result.success, result.stderr).toBeTruthy();
