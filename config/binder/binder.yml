@@ -6,9 +6,13 @@
 #@ load("binder.star", "rabbitmq_enabled")
 #@ load("binder.star", "kafka_enabled")
 
+#@ def binder_rabbit_values():
+name: rabbitmq
+#@ end
+
 #@ if binder_install_enabled():
 #@ if rabbitmq_enabled():
---- #@ template.replace(overlay.apply(library.get("rabbitmq").with_data_values({"name": "rabbitmq"}).eval(), binder_overlay()))
+--- #@ template.replace(overlay.apply(library.get("rabbitmq").with_data_values(binder_rabbit_values()).eval(), binder_overlay()))
 #@ end
 
 #@ if kafka_enabled():

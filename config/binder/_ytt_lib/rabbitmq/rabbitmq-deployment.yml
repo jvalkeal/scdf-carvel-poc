@@ -1,22 +1,22 @@
-#@ load("@ytt:data", "data")
+#@ load("rabbitmq.lib.yml", "name")
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rabbitmq
+  name: #@ name()
   labels:
-    app: rabbitmq
+    app: #@ name()
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rabbitmq
+      app: #@ name()
   template:
     metadata:
       labels:
-        app: rabbitmq
+        app: #@ name()
     spec:
       containers:
       - image: rabbitmq:3.6.10
-        name: rabbitmq
+        name: #@ name()
         ports:
         - containerPort: 5672
