@@ -1,5 +1,6 @@
+import lodash from 'lodash';
 import { execYtt } from '../src/ytt';
-import { findDeployment, findConfigMap } from '../src/k8s-helper';
+import { findDeployment, findConfigMap, parseYamlDocument } from '../src/k8s-helper';
 import { BINDER_RABBIT_NAME, BINDER_KAFKA_NAME } from '../src/constants';
 
 describe('binders', () => {
@@ -11,7 +12,7 @@ describe('binders', () => {
         'scdf.skipper.image.tag=2.7.1',
         'scdf.ctr.image.tag=2.8.1',
         'scdf.deploy.database.type=mysql',
-        'scdf.deploy.binder=rabbit'
+        'scdf.deploy.binder.type=rabbit'
       ]
     });
 
@@ -37,7 +38,7 @@ describe('binders', () => {
         'scdf.skipper.image.tag=2.7.1',
         'scdf.ctr.image.tag=2.8.1',
         'scdf.deploy.database.type=postgres',
-        'scdf.deploy.binder=kafka'
+        'scdf.deploy.binder.type=kafka'
       ]
     });
     expect(result.success).toBeTruthy();
@@ -60,6 +61,7 @@ describe('binders', () => {
       dataValueYamls: [
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=mysql',
+        'scdf.deploy.binder.enabled=false',
         'scdf.server.image.tag=2.8.1',
         'scdf.skipper.image.tag=2.7.1',
         'scdf.ctr.image.tag=2.8.1',
@@ -78,8 +80,15 @@ describe('binders', () => {
     expect(rabbitDeployment).toBeFalsy();
 
     const skipperConfigMap = findConfigMap(yaml, 'skipper');
-    const applicationYaml = skipperConfigMap?.data ? skipperConfigMap.data['application.yaml'] : undefined;
-    expect(applicationYaml).toContain('localhost');
+    const skipperApplicationYaml = skipperConfigMap?.data ? skipperConfigMap.data['application.yaml'] : '';
+
+    const skipperDoc = parseYamlDocument(skipperApplicationYaml);
+    const skipperJson = skipperDoc.toJSON();
+    const skipperDatasourceUrl = lodash.get(
+      skipperJson,
+      'spring.cloud.skipper.server.platform.kubernetes.accounts.default.environmentVariables'
+    ) as string;
+    expect(skipperDatasourceUrl).toContain('SPRING_RABBITMQ_HOST=localhost');
   });
 
   it('should skip binder deploy if external kafka settings given', async () => {
@@ -88,6 +97,7 @@ describe('binders', () => {
       dataValueYamls: [
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
+        'scdf.deploy.binder.enabled=false',
         'scdf.server.image.tag=2.8.1',
         'scdf.skipper.image.tag=2.7.1',
         'scdf.ctr.image.tag=2.8.1',
@@ -105,7 +115,14 @@ describe('binders', () => {
     expect(rabbitDeployment).toBeFalsy();
 
     const skipperConfigMap = findConfigMap(yaml, 'skipper');
-    const applicationYaml = skipperConfigMap?.data ? skipperConfigMap.data['application.yaml'] : undefined;
-    expect(applicationYaml).toContain('localhost');
+    const skipperApplicationYaml = skipperConfigMap?.data ? skipperConfigMap.data['application.yaml'] : '';
+
+    const skipperDoc = parseYamlDocument(skipperApplicationYaml);
+    const skipperJson = skipperDoc.toJSON();
+    const skipperDatasourceUrl = lodash.get(
+      skipperJson,
+      'spring.cloud.skipper.server.platform.kubernetes.accounts.default.environmentVariables'
+    ) as string;
+    expect(skipperDatasourceUrl).toContain('SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=localhost');
   });
 });

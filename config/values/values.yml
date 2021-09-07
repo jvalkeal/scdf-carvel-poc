@@ -5,8 +5,10 @@ scdf:
   deploy:
     #! deploy mode, either minikube or cloud
     mode: minikube
-    #! binder type, either rabbit or kafka (needed if external binder is not defined)
-    binder: ""
+    binder:
+      #! if binder deployment is enabled
+      enabled: true
+      type: rabbit
     #! deploy database settings
     database:
       #! if database deployment is enabled

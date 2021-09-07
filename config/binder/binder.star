@@ -5,12 +5,16 @@ def non_empty_string(value):
   return type(value) == "string" and len(value) > 0
 end
 
+def binder_deploy_enabled():
+  return data.values.scdf.deploy.binder.enabled == True
+end
+
 def rabbitmq_enabled():
-  return binder_types.get(data.values.scdf.deploy.binder) == "rabbit"
+  return binder_types.get(data.values.scdf.deploy.binder.type) == "rabbit" and binder_deploy_enabled()
 end
 
 def kafka_enabled():
-  return binder_types.get(data.values.scdf.deploy.binder) == "kafka"
+  return binder_types.get(data.values.scdf.deploy.binder.type) == "kafka" and binder_deploy_enabled()
 end
 
 def external_rabbitmq_enabled():

@@ -26,7 +26,8 @@ stringData:
         type: postgres
       deploy:
         mode: cloud
-        binder: rabbit
+        binder: 
+          type: rabbit
       feature:
         monitoring:
           grafana:

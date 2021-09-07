@@ -3,7 +3,8 @@
 scdf:
   deploy:
     mode: cloud
-    binder: rabbit
+    binder:
+      type: rabbit
     database:
       type: mysql
   server:
