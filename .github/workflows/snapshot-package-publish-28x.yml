@@ -27,24 +27,24 @@ jobs:
     - name: Tanzu Dance
       run: |
         ytt \
-          -f tanzu/templates/package/scdf \
-          --output-files tanzu/generated/package/scdf \
+          -f templates/package/scdf \
+          --output-files templates/generated/package/scdf \
           --data-value-yaml project.version=$DATAFLOW_VERSION \
           --data-value-yaml spring.cloud.skipper.version=$SKIPPER_VERSION \
           --file-mark 'bundle/config/values.yml:type=text-template'
         ytt \
-          -f tanzu/templates/values \
-          --output-files tanzu/generated/values \
+          -f templates/values \
+          --output-files templates/generated/values \
           --data-value-yaml project.version=$DATAFLOW_VERSION \
           --data-value-yaml spring.cloud.skipper.version=$SKIPPER_VERSION \
           --file-mark 'config1.yml:type=text-template' \
           --file-mark 'config2.yml:type=text-template'
-        vendir sync --chdir tanzu/generated/package/scdf/bundle
+        vendir sync --chdir templates/generated/package/scdf/bundle
         kbld \
-          -f <(ytt -f tanzu/generated/package/scdf/bundle -f tanzu/generated/values/config1.yml) \
-          -f <(ytt -f tanzu/generated/package/scdf/bundle -f tanzu/generated/values/config2.yml) \
-          --imgpkg-lock-output tanzu/generated/package/scdf/bundle/.imgpkg/images.yml
-        imgpkg push --bundle ghcr.io/jvalkeal/springcloud/scdf-package:$RTAG --file tanzu/generated/package/scdf/bundle
+          -f <(ytt -f templates/generated/package/scdf/bundle -f templates/generated/values/config1.yml) \
+          -f <(ytt -f templates/generated/package/scdf/bundle -f templates/generated/values/config2.yml) \
+          --imgpkg-lock-output templates/generated/package/scdf/bundle/.imgpkg/images.yml
+        imgpkg push --bundle ghcr.io/jvalkeal/springcloud/scdf-package:$RTAG --file templates/generated/package/scdf/bundle
         docker pull ghcr.io/jvalkeal/springcloud/scdf-package:$RTAG
         docker tag ghcr.io/jvalkeal/springcloud/scdf-package:$RTAG ghcr.io/jvalkeal/springcloud/scdf-package:$TAG
         docker tag ghcr.io/jvalkeal/springcloud/scdf-package:$RTAG ghcr.io/jvalkeal/springcloud/scdf-package:$TAG-$RTAG

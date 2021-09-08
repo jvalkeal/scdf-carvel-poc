@@ -24,13 +24,13 @@ jobs:
         echo TAG=release >> $GITHUB_ENV
     - name: Tanzu Dance
       run: |
-        rm -fr tanzu/generated
-        mkdir -p tanzu/generated/release/packages
-        mkdir -p tanzu/generated/release/.imgpkg
-        ytt -f tanzu/templates/repo/scdf/package.yml -f tanzu/templates/repo/scdf/release.yml -f tanzu/templates/repo/scdf/openapi.yml > tanzu/generated/release/packages/packages.yml
-        kbld --file tanzu/generated/release/packages --imgpkg-lock-output tanzu/generated/release/.imgpkg/images.yml
-        ytt -f tanzu/templates/repo/scdf/metadata.yml --data-value name=scdf-repo-release.tanzu.vmware.com --output-files tanzu/generated/release/packages
-        imgpkg push --bundle ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG -f tanzu/generated/release
+        rm -fr templates/generated
+        mkdir -p templates/generated/release/packages
+        mkdir -p templates/generated/release/.imgpkg
+        ytt -f templates/repo/scdf/package.yml -f templates/repo/scdf/release.yml -f templates/repo/scdf/openapi.yml > templates/generated/release/packages/packages.yml
+        kbld --file templates/generated/release/packages --imgpkg-lock-output templates/generated/release/.imgpkg/images.yml
+        ytt -f templates/repo/scdf/metadata.yml --data-value name=scdf-repo-release.tanzu.vmware.com --output-files templates/generated/release/packages
+        imgpkg push --bundle ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG -f templates/generated/release
         docker pull ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG
         docker tag ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG ghcr.io/jvalkeal/springcloud/scdf-repo:$TAG
         docker tag ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG ghcr.io/jvalkeal/springcloud/scdf-repo:$TAG-$RTAG
