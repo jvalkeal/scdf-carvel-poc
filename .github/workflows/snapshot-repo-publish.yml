@@ -30,10 +30,20 @@ jobs:
         rm -fr templates/generated
         mkdir -p templates/generated/snapshot/packages
         mkdir -p templates/generated/snapshot/.imgpkg
-        ytt -f templates/repo/scdf/package.yml -f templates/repo/scdf/snapshot.yml -f templates/repo/scdf/openapi.yml > templates/generated/snapshot/packages/packages.yml
-        kbld --file templates/generated/snapshot/packages --imgpkg-lock-output templates/generated/snapshot/.imgpkg/images.yml
-        ytt -f templates/repo/scdf/metadata.yml --data-value name=scdf-repo-snapshot.tanzu.vmware.com --output-files templates/generated/snapshot/packages
-        imgpkg push --bundle ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG -f templates/generated/snapshot
+        ytt \
+          -f templates/repo/scdf/package.yml \
+          -f templates/repo/scdf/snapshot.yml \
+          -f templates/repo/scdf/openapi.yml > templates/generated/snapshot/packages/packages.yml
+        kbld \
+          --file templates/generated/snapshot/packages \
+          --imgpkg-lock-output templates/generated/snapshot/.imgpkg/images.yml
+        ytt \
+          -f templates/repo/scdf/metadata.yml \
+          --data-value name=scdf-repo-snapshot.tanzu.vmware.com \
+          --output-files templates/generated/snapshot/packages
+        imgpkg push \
+          --bundle ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG \
+          -f templates/generated/snapshot
         docker pull ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG
         docker tag ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG ghcr.io/jvalkeal/springcloud/scdf-repo:$TAG
         docker tag ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG ghcr.io/jvalkeal/springcloud/scdf-repo:$TAG-$RTAG
