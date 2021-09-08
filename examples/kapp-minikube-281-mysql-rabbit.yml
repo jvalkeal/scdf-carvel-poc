@@ -5,8 +5,8 @@ scdf:
     mode: minikube
     binder: 
       type: rabbit
-  database:
-    type: mysql
+    database:
+      type: mysql
   server:
     image:
       tag: 2.8.1

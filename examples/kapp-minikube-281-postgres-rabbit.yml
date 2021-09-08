@@ -5,8 +5,8 @@ scdf:
     mode: minikube
     binder:
       type: rabbit
-  database:
-    type: postgres
+    database:
+      type: postgres
   server:
     image:
       tag: 2.8.1

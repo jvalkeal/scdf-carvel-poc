@@ -2,9 +2,10 @@
 ---
 scdf:
   deploy:
-    binder: rabbit
-  database:
-    type: mysql
+    binder:
+      type: rabbit
+    database:
+      type: mysql
   server:
     image:
       tag: (@= data.values.project.version @)

@@ -25,5 +25,5 @@ stringData:
         mode: cloud
         binder:
           type: rabbit
-      database:
-        type: postgres
+        database:
+          type: postgres

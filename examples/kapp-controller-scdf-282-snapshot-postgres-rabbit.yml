@@ -22,9 +22,9 @@ stringData:
   values.yml: |
     ---
     scdf:
-      database:
-        type: postgres
       deploy:
         mode: cloud
         binder: 
           type: rabbit
+        database:
+          type: postgres

@@ -2,9 +2,10 @@
 ---
 scdf:
   deploy:
-    binder: kafka
-  database:
-    type: postgres
+    binder:
+      type: kafka
+    database:
+      type: postgres
   server:
     image:
       tag: (@= data.values.project.version @)
