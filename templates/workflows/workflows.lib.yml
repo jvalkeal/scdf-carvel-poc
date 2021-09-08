@@ -1,0 +1,56 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:overlay", "overlay")
+#@ load("@ytt:template", "template")
+#@ load("workflows.star", "job_name")
+
+#@ def base():
+name: Snapshot Package Publish
+"on":
+  workflow_dispatch:
+  push:
+jobs:
+#@ end
+
+#@ def jobs_base(key_value):
+#@overlay/match-child-defaults missing_ok=True
+jobs:
+  _: #@ template.replace(key_value)
+#@ end
+
+#@ def job():
+name: Publish Snapshot
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v2
+- uses: actions/setup-node@v2
+  with:
+    node-version: 12
+- uses: vmware-tanzu/carvel-setup-action@v1
+- uses: docker/login-action@v1
+  with:
+    registry: ghcr.io
+    username: jvalkeal
+    password: ${{ secrets.GITHUB_TOKEN }}
+- name: Setup Envs
+  run: |
+    echo DATAFLOW_VERSION=2.9.0-SNAPSHOT >> $GITHUB_ENV
+    echo SKIPPER_VERSION=2.8.0-SNAPSHOT >> $GITHUB_ENV
+    echo RTAG=$(date +%y%m%d%s%N) >> $GITHUB_ENV
+    echo TAG=2.9.0-SNAPSHOT >> $GITHUB_ENV
+- name: Tanzu Dance
+  run: |
+    ytt \
+      -f templates/package/scdf \
+      --output-files templates/generated/package/scdf \
+      --data-value-yaml project.version=$DATAFLOW_VERSION \
+      --data-value-yaml spring.cloud.skipper.version=$SKIPPER_VERSION \
+      --file-mark 'bundle/config/values.yml:type=text-template'
+#@ end
+
+#@ def jobs():
+#@   ret = {}
+#@   for snapshot in data.values.snapshots:
+#@     ret.update({job_name(snapshot.version): job()})
+#@   end
+#@   return ret
+#@ end

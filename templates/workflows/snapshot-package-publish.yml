@@ -1,0 +1,6 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:overlay", "overlay")
+#@ load("@ytt:template", "template")
+#@ load("workflows.lib.yml", "base", "jobs_base", "jobs")
+
+--- #@ template.replace([overlay.apply(base(), jobs_base(jobs()))])
