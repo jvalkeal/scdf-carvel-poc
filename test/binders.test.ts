@@ -36,7 +36,7 @@ describe('binders', () => {
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
 
-    const kafkaDeployment = findDeployment(yaml, BINDER_KAFKA_NAME);
+    const kafkaDeployment = findDeployment(yaml, `${BINDER_KAFKA_NAME}-zk`);
     expect(kafkaDeployment).toBeTruthy();
 
     const rabbitDeployment = findDeployment(yaml, BINDER_RABBIT_NAME);
@@ -63,7 +63,7 @@ describe('binders', () => {
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
 
-    const kafkaDeployment = findDeployment(yaml, BINDER_KAFKA_NAME);
+    const kafkaDeployment = findDeployment(yaml, `${BINDER_KAFKA_NAME}-zk`);
     expect(kafkaDeployment).toBeFalsy();
 
     const rabbitDeployment = findDeployment(yaml, BINDER_RABBIT_NAME);
@@ -96,7 +96,7 @@ describe('binders', () => {
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
 
-    const kafkaDeployment = findDeployment(yaml, BINDER_KAFKA_NAME);
+    const kafkaDeployment = findDeployment(yaml, `${BINDER_KAFKA_NAME}-zk`);
     expect(kafkaDeployment).toBeFalsy();
 
     const rabbitDeployment = findDeployment(yaml, BINDER_RABBIT_NAME);

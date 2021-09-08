@@ -6,7 +6,8 @@ import {
   V1ConfigMap,
   V1Secret,
   V1EnvVar,
-  V1Service
+  V1Service,
+  V1StatefulSet
 } from '@kubernetes/client-node';
 
 export function parseDocuments(yaml: string): string[] {
@@ -40,6 +41,16 @@ export function findDeployment(yaml: string, name: string): V1Deployment | undef
     .map(d => loadYaml<V1Deployment>(d))
     .find(node => {
       if (node?.kind === 'Deployment' && node?.metadata?.name === name) {
+        return node;
+      }
+    });
+}
+
+export function findStatefulSet(yaml: string, name: string): V1StatefulSet | undefined {
+  return parseDocuments(yaml)
+    .map(d => loadYaml<V1StatefulSet>(d))
+    .find(node => {
+      if (node?.kind === 'StatefulSet' && node?.metadata?.name === name) {
         return node;
       }
     });

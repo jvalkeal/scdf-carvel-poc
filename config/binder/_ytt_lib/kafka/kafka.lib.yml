@@ -1,0 +1,7 @@
+#@ load("@ytt:data", "data")
+
+#@ def name(): return data.values.name
+
+#@ def broker_name(): return data.values.name + "-broker"
+
+#@ def zk_name(): return data.values.name + "-zk"

@@ -1,25 +1,25 @@
-#@ load("@ytt:data", "data")
+#@ load("kafka.lib.yml", "name", "broker_name")
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: kafka-broker
+  name: #@ broker_name()
   labels:
-    app: kafka
-    component: kafka-broker
+    app: #@ name()
+    component: #@ broker_name()
 spec:
-  serviceName: kafka-broker
+  serviceName: #@ broker_name()
   replicas: 1
   selector:
     matchLabels:
-      app: kafka
+      app: #@ name()
   template:
     metadata:
       labels:
-        app: kafka
-        component: kafka-broker
+        app: #@ name()
+        component: #@ broker_name()
     spec:
       containers:
-      - name: kafka
+      - name: #@ name()
         image: confluentinc/cp-kafka:5.5.2
         ports:
         - containerPort: 9092

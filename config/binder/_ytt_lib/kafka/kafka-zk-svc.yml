@@ -1,10 +1,11 @@
+#@ load("kafka.lib.yml", "name", "zk_name")
 apiVersion: v1
 kind: Service
 metadata:
-  name: kafka-zk
+  name: #@ zk_name()
   labels:
-    app: kafka
-    component: kafka-zk
+    app: #@ name()
+    component: #@ zk_name()
 spec:
   ports:
   - name: client
@@ -17,5 +18,5 @@ spec:
     port: 3888
     protocol: TCP
   selector:
-    app: kafka-zk
-    component: kafka-zk
+    app: #@ zk_name()
+    component: #@ zk_name()

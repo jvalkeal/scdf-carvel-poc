@@ -1,10 +1,11 @@
+#@ load("kafka.lib.yml", "name", "broker_name")
 apiVersion: v1
 kind: Service
 metadata:
-  name: kafka-broker
+  name: #@ broker_name()
   labels:
-    app: kafka
-    component: kafka-broker
+    app: #@ name()
+    component: #@ broker_name()
 spec:
   clusterIP: None
   ports:
@@ -13,5 +14,5 @@ spec:
     targetPort: 9092
     protocol: TCP
   selector:
-    app: kafka
-    component: kafka-broker
+    app: #@ name()
+    component: #@ broker_name()

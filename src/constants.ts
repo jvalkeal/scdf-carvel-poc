@@ -1,4 +1,4 @@
-export const BINDER_KAFKA_NAME = 'kafka-zk';
+export const BINDER_KAFKA_NAME = 'kafka';
 export const BINDER_RABBIT_NAME = 'rabbitmq';
 export const DB_MYSQL_NAME = 'mysql';
 export const DB_POSTGRES_NAME = 'postgres';
