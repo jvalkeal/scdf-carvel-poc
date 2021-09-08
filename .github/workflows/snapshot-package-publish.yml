@@ -16,6 +16,9 @@ jobs:
          - nickname: scdf 29x
            dataflow-version: 2.9.0-SNAPSHOT
            skipper-version: 2.8.0-SNAPSHOT
+         - nickname: scdf 28x
+           dataflow-version: 2.8.2-SNAPSHOT
+           skipper-version: 2.7.2-SNAPSHOT
 
     steps:
     - uses: actions/checkout@v2
