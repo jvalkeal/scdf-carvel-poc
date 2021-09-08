@@ -9,6 +9,9 @@ scdf:
       #! if binder deployment is enabled
       enabled: true
       type: rabbit
+      rabbit:
+        #@schema/type any=True
+        config:
     #! deploy database settings
     database:
       #! if database deployment is enabled

@@ -4,7 +4,7 @@ scdf:
   deploy:
     mode: minikube
     binder:
-    type: rabbit
+      type: rabbit
   database:
     type: postgres
   server:

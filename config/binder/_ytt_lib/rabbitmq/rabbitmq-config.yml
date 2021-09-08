@@ -1,0 +1,10 @@
+#@ load("@ytt:data", "data")
+#@ load("rabbitmq.lib.yml", "name", "config_name", "config")
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: #@ config_name()
+  labels:
+    app: #@ name()
+data:
+  rabbitmq.conf: #@ config()

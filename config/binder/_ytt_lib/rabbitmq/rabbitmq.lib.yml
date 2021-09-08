@@ -1,3 +1,16 @@
 #@ load("@ytt:data", "data")
 
 #@ def name(): return data.values.name
+
+#@ def config_name(): return data.values.name + "-config"
+
+#@ def config():
+#@  ret = ""
+#@  if type(data.values.config) == "struct":
+#@    conf = data.values.config
+#@    for c in conf:
+#@      ret = ret + c + " = " + conf[c] + "\n"
+#@    end
+#@  end
+#@  return ret
+#@ end

@@ -20,7 +20,9 @@ yaml document.
 *Curated List of Options:*
 
 - <<configuration-options-scdf.deploy.mode>>
-- <<configuration-options-scdf.deploy.binder>>
+- <<configuration-options-scdf.deploy.binder.enabled>>
+- <<configuration-options-scdf.deploy.binder.type>>
+- <<configuration-options-scdf.deploy.binder.rabbit.config>>
 - <<configuration-options-scdf.deploy.database.enabled>>
 - <<configuration-options-scdf.deploy.database.type>>
 - <<configuration-options-scdf.deploy.database.username>>
@@ -63,7 +65,17 @@ Enum(minikube,cloud)
    Default Value:::
 minikube
 
-[[configuration-options-scdf.deploy.binder]]`scdf.deploy.binder`::
+[[configuration-options-scdf.deploy.binder.enabled]]`scdf.deploy.binder.enabled`::
+  Description:::
+Defines if binder is automatically deployed.
+  Required:::
+No
+  Type:::
+Boolean
+   Default Value:::
+true
+
+[[configuration-options-scdf.deploy.binder.type]]`scdf.deploy.binder.type`::
   Description:::
 Defines a binder type which is deployed and configured to be used with dataflow and skipper.
   Required:::
@@ -72,6 +84,36 @@ No
 enum(rabbit,kafka)
    Default Value:::
 rabbit
+
+[[configuration-options-scdf.deploy.binder.rabbit.config]]`scdf.deploy.binder.rabbit.config`::
+  Description:::
+Defines keys and values used in a rabbit's configuration file mounted into a container.
+
+For example:
+[source, yaml]
+----
+scdf:
+  deploy:
+    binder:
+      rabbit:
+        config:
+          key1: value1
+          key2: value2
+----
+
+results `rabbitmq.conf` with:
+[source, text]
+----
+key1 = value1
+key2 = value2
+----
+
+  Required:::
+No
+  Type:::
+Dict
+   Default Value:::
+Empty
 
 [[configuration-options-scdf.deploy.database.enabled]]`scdf.deploy.database.enabled`::
   Description:::

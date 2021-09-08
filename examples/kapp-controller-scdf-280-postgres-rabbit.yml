@@ -23,6 +23,7 @@ stringData:
     scdf:
       deploy:
         mode: cloud
-        binder: rabbit
+        binder:
+          type: rabbit
       database:
         type: postgres
