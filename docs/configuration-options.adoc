@@ -365,6 +365,56 @@ Boolean
    Default Value:::
 True
 
+[[configuration-options-scdf.skipper.config]]`scdf.skipper.config`::
+  Description:::
+Raw skipper config as yml.
+  Required:::
+No
+  Type:::
+String(yml)
+   Default Value:::
+None
+
+[[configuration-options-scdf.binder.kafka.host]]`scdf.binder.kafka.host`::
+  Description:::
+External kafka host.
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.binder.kafka.port]]`scdf.binder.kafka.port`::
+  Description:::
+External kafka port.
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.binder.rabbit.host]]`scdf.binder.rabbit.host`::
+  Description:::
+External rabbit host.
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.binder.rabbit.port]]`scdf.binder.rabbit.port`::
+  Description:::
+External rabbit port.
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
 [[configuration-options-scdf.feature.monitoring.prometheus.enabled]]`scdf.feature.monitoring.prometheus.enabled`::
   Description:::
 Prometheus feature enabled.
