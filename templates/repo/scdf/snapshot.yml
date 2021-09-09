@@ -1,8 +1,7 @@
 #@data/values
 ---
 package_repository:
-  name: scdf-snapshot.tanzu.vmware
-  imgpkgBundle: index.docker.io/jvalkeal/scdf-repo:snapshot
+  name: scdf-repo-snapshot.tanzu.vmware.com
   schema:
   packageSpec:
     syncPeriod: 5m

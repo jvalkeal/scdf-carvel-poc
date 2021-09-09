@@ -39,7 +39,7 @@ jobs:
           --imgpkg-lock-output templates/generated/snapshot/.imgpkg/images.yml
         ytt \
           -f templates/repo/scdf/metadata.yml \
-          --data-value name=scdf-repo-snapshot.tanzu.vmware.com \
+          -f templates/repo/scdf/snapshot.yml \
           --output-files templates/generated/snapshot/packages
         imgpkg push \
           --bundle ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG \

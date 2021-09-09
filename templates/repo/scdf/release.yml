@@ -1,8 +1,7 @@
 #@data/values
 ---
 package_repository:
-  name: scdf-release.tanzu.vmware
-  imgpkgBundle: index.docker.io/jvalkeal/scdf-repo:release
+  name: scdf-repo-release.tanzu.vmware.com
   packageSpec:
     syncPeriod: 5m
     deploy:
