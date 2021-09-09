@@ -245,6 +245,46 @@ Boolean
    Default Value:::
 True
 
+[[configuration-options-scdf.server.config]]`scdf.server.config`::
+  Description:::
+Raw server config as yml.
+  Required:::
+No
+  Type:::
+String(yml)
+   Default Value:::
+None
+
+[[configuration-options-scdf.server.metrics.dashboard.url]]`scdf.server.metrics.dashboard.url`::
+  Description:::
+Metrics dashboard url for UI
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.ctr.image.repository]]`scdf.ctr.image.repository`::
+  Description:::
+Composed Task Runner image repository
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+springcloud/spring-cloud-dataflow-composed-task-runner
+
+[[configuration-options-scdf.ctr.image.tag]]`scdf.ctr.image.tag`::
+  Description:::
+Composed Task Runner image tag
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
 [[configuration-options-scdf.skipper.image.repository]]`scdf.skipper.image.repository`::
   Description:::
 Skipper image repository
