@@ -1,0 +1,48 @@
+name: Milestone Repo Publish
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Publish Milestone
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 12
+    - uses: vmware-tanzu/carvel-setup-action@v1
+    - uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: jvalkeal
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Setup Envs
+      run: |
+        echo RTAG=$(date +%y%m%d%s%N) >> $GITHUB_ENV
+        echo TAG=milestone >> $GITHUB_ENV
+    - name: Tanzu Dance
+      run: |
+        rm -fr templates/generated
+        mkdir -p templates/generated/milestone/packages
+        mkdir -p templates/generated/milestone/.imgpkg
+        ytt \
+          -f templates/repo/scdf/package.yml \
+          -f templates/repo/scdf/milestone.yml \
+          -f templates/repo/scdf/openapi.yml > templates/generated/milestone/packages/packages.yml
+        kbld \
+          --file templates/generated/milestone/packages \
+          --imgpkg-lock-output templates/generated/milestone/.imgpkg/images.yml
+        ytt \
+          -f templates/repo/scdf/metadata.yml \
+          -f templates/repo/scdf/milestone.yml \
+          --output-files templates/generated/milestone/packages
+        imgpkg push \
+          --bundle ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG \
+          -f templates/generated/milestone
+        docker pull ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG
+        docker tag ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG ghcr.io/jvalkeal/springcloud/scdf-repo:$TAG
+        docker tag ghcr.io/jvalkeal/springcloud/scdf-repo:$RTAG ghcr.io/jvalkeal/springcloud/scdf-repo:$TAG-$RTAG
+        docker push ghcr.io/jvalkeal/springcloud/scdf-repo:$TAG
+        docker push ghcr.io/jvalkeal/springcloud/scdf-repo:$TAG-$RTAG

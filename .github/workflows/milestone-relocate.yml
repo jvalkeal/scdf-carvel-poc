@@ -1,0 +1,25 @@
+name: Milestone Relocate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Relocate
+    runs-on: ubuntu-latest
+    steps:
+    - uses: vmware-tanzu/carvel-setup-action@v1
+    - name: Login ghrc
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: jvalkeal
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Login dockerhub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Tanzu Dance
+      run: |
+        imgpkg copy -b ghcr.io/jvalkeal/springcloud/scdf-repo:milestone --to-repo ghcr.io/jvalkeal/airgapped/scdf-repo

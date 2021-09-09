@@ -2,6 +2,7 @@
 ---
 package_repository:
   name: scdf-repo-release.tanzu.vmware.com
+  schema:
   packageSpec:
     syncPeriod: 5m
     deploy:
