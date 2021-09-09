@@ -30,6 +30,11 @@ yaml document.
 - <<configuration-options-scdf.server.image.repository>>
 - <<configuration-options-scdf.server.image.tag>>
 - <<configuration-options-scdf.server.database.url>>
+- <<configuration-options-scdf.server.database.username>>
+- <<configuration-options-scdf.server.database.password>>
+- <<configuration-options-scdf.server.database.driverClassName>>
+- <<configuration-options-scdf.server.database.testOnBorrow>>
+- <<configuration-options-scdf.server.database.validationQuery>>
 - <<configuration-options-scdf.server.config>>
 - <<configuration-options-scdf.server.metrics.dashboard.url>>
 - <<configuration-options-scdf.ctr.image.repository>>
@@ -37,6 +42,11 @@ yaml document.
 - <<configuration-options-scdf.skipper.image.repository>>
 - <<configuration-options-scdf.skipper.image.tag>>
 - <<configuration-options-scdf.skipper.database.url>>
+- <<configuration-options-scdf.skipper.database.username>>
+- <<configuration-options-scdf.skipper.database.password>>
+- <<configuration-options-scdf.skipper.database.driverClassName>>
+- <<configuration-options-scdf.skipper.database.testOnBorrow>>
+- <<configuration-options-scdf.skipper.database.validationQuery>>
 - <<configuration-options-scdf.skipper.config>>
 - <<configuration-options-scdf.binder.kafka.host>>
 - <<configuration-options-scdf.binder.kafka.port>>
