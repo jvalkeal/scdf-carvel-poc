@@ -1,0 +1,31 @@
+openapi: 3.0.3
+info:
+  version: 1.0.0
+  title: Openapi schema for scdf
+components:
+  schemas:
+    scdf:
+      type: object
+      description: SCDF configuration
+      properties:
+        deploy:
+          type: object
+          title: scdf.deploy
+          description: Deploy configuration
+          properties:
+            binder:
+              type: object
+              description: Deploy Binder configuration
+              properties:
+                enabled:
+                  type: boolean
+                  description: If binder deploy is enabled
+                  default: true
+                type:
+                  type: string
+                  description: Binder type
+                  enum:
+                    - rabbit
+                    - kafka
+                  default: rabbit
+paths: {}

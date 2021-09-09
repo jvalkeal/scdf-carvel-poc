@@ -33,7 +33,9 @@ jobs:
         ytt \
           -f templates/repo/scdf/package.yml \
           -f templates/repo/scdf/snapshot.yml \
-          -f templates/repo/scdf/openapi.yml > templates/generated/snapshot/packages/packages.yml
+          -f templates/repo/scdf/values-schema.yml \
+          -f templates/repo/scdf/values-schema.star \
+          --file-mark 'values-schema.yml:type=data' > templates/generated/snapshot/packages/packages.yml
         kbld \
           --file templates/generated/snapshot/packages \
           --imgpkg-lock-output templates/generated/snapshot/.imgpkg/images.yml

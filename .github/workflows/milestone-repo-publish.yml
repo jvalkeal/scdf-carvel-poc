@@ -30,7 +30,9 @@ jobs:
         ytt \
           -f templates/repo/scdf/package.yml \
           -f templates/repo/scdf/milestone.yml \
-          -f templates/repo/scdf/openapi.yml > templates/generated/milestone/packages/packages.yml
+          -f templates/repo/scdf/values-schema.yml \
+          -f templates/repo/scdf/values-schema.star \
+          --file-mark 'values-schema.yml:type=data' > templates/generated/milestone/packages/packages.yml
         kbld \
           --file templates/generated/milestone/packages \
           --imgpkg-lock-output templates/generated/milestone/.imgpkg/images.yml

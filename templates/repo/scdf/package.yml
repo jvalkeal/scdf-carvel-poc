@@ -1,4 +1,5 @@
 #@ load("@ytt:data", "data")
+#@ load("values-schema.star", "schema")
 
 #@ def get_package_spec(package):
 #@ if hasattr(package, 'spec'):
@@ -19,7 +20,7 @@ spec:
   version: #@ package.version
   description: #@ package.description
   valuesSchema:
-    openAPIv3: #@ data.values.package_repository.schema
+    openAPIv3: #@ schema()
   template:
     spec:
       syncPeriod: #@ get_package_spec(package).syncPeriod
