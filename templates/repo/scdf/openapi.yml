@@ -20,40 +20,40 @@ package_repository:
                 - cloud
                 default: minikube
               binder:
-                type: string
-                description: Binder type
-                enum:
-                - rabbit
-                - kafka
-                default: rabbit
-                examples:
-                - rabbit
-                - kafka
-          database:
-            type: object
-            description: Database configuration
-            properties:
-              type:
-                type: string
-                description: Database type
-                enum:
-                - postgres
-                - mysql
-              username:
-                type: string
-                description: Database username
-              password:
-                type: string
-                description: Database password
-          server:
-            type: object
-            properties:
-              image:
                 type: object
+                description: Deploy Binder configuration
                 properties:
-                  repository:
+                  enabled:
+                    type: boolean
+                    description: If binder deploy is enabled
+                    default: true
+                  type:
                     type: string
-                  tag:
+                    description: Binder type
+                    enum:
+                    - rabbit
+                    - kafka
+                    default: rabbit
+                    examples:
+                    - rabbit
+                    - kafka
+              database:
+                type: object
+                description: Deploy Database configuration
+                properties:
+                  enabled:
+                    type: boolean
+                    description: If database deploy is enabled
+                    default: true
+                  type:
                     type: string
-              config:
-                type: string
+                    description: Database type
+                    enum:
+                    - postgres
+                    - mysql
+                  username:
+                    type: string
+                    description: Database username
+                  password:
+                    type: string
+                    description: Database password
