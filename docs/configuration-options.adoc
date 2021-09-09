@@ -165,6 +165,26 @@ String (base64 encoded)
    Default Value:::
 secret
 
+[[configuration-options-scdf.server.image.repository]]`scdf.server.image.repository`::
+  Description:::
+Server image repository
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+springcloud/spring-cloud-dataflow-server
+
+[[configuration-options-scdf.server.image.tag]]`scdf.server.image.tag`::
+  Description:::
+Server image tag
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
 [[configuration-options-scdf.server.database.url]]`scdf.server.database.url`::
   Description:::
 Datasource url setting
@@ -225,6 +245,26 @@ Boolean
    Default Value:::
 True
 
+[[configuration-options-scdf.skipper.image.repository]]`scdf.skipper.image.repository`::
+  Description:::
+Skipper image repository
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+springcloud/spring-cloud-skipper-server
+
+[[configuration-options-scdf.skipper.image.tag]]`scdf.skipper.image.tag`::
+  Description:::
+Skipper image tag
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
 [[configuration-options-scdf.skipper.database.url]]`scdf.skipper.database.url`::
   Description:::
 Datasource url setting
@@ -284,3 +324,93 @@ No
 Boolean
    Default Value:::
 True
+
+[[configuration-options-scdf.feature.monitoring.prometheus.enabled]]`scdf.feature.monitoring.prometheus.enabled`::
+  Description:::
+Prometheus feature enabled.
+  Required:::
+No
+  Type:::
+Boolean
+   Default Value:::
+False
+
+[[configuration-options-scdf.feature.monitoring.prometheus.image.repository]]`scdf.feature.monitoring.prometheus.image.repository`::
+  Description:::
+Prometheus image repository.
+  Required:::
+No
+  Type:::
+Strig
+   Default Value:::
+prom/prometheus
+
+[[configuration-options-scdf.feature.monitoring.prometheus.image.tag]]`scdf.feature.monitoring.prometheus.image.tag`::
+  Description:::
+Prometheus image tag.
+  Required:::
+No
+  Type:::
+Strig
+   Default Value:::
+v2.12.0
+
+[[configuration-options-scdf.feature.monitoring.prometheusRsocketProxy.enabled]]`scdf.feature.monitoring.prometheusRsocketProxy.enabled`::
+  Description:::
+Prometheus rsocket proxy profeature enabled.
+  Required:::
+No
+  Type:::
+Boolean
+   Default Value:::
+False
+
+[[configuration-options-scdf.feature.monitoring.prometheusRsocketProxy.image.repository]]`scdf.feature.monitoring.prometheusRsocketProxy.image.repository`::
+  Description:::
+Prometheus rsocket proxy image repository.
+  Required:::
+No
+  Type:::
+Strig
+   Default Value:::
+micrometermetrics/prometheus-rsocket-proxy
+
+[[configuration-options-scdf.feature.monitoring.prometheusRsocketProxy.image.tag]]`scdf.feature.monitoring.prometheusRsocketProxy.image.tag`::
+  Description:::
+Prometheus rsocket proxy image tag.
+  Required:::
+No
+  Type:::
+Strig
+   Default Value:::
+1.0.0
+
+[[configuration-options-scdf.feature.monitoring.grafana.enabled]]`scdf.feature.monitoring.grafana.enabled`::
+  Description:::
+Grafana feature enabled.
+  Required:::
+No
+  Type:::
+Boolean
+   Default Value:::
+False
+
+[[configuration-options-scdf.feature.monitoring.grafana.image.repository]]`scdf.feature.monitoring.grafana.image.repository`::
+  Description:::
+Grafana image repository.
+  Required:::
+No
+  Type:::
+Strig
+   Default Value:::
+springcloud/spring-cloud-dataflow-grafana-prometheus
+
+[[configuration-options-scdf.feature.monitoring.grafana.image.tag]]`scdf.feature.monitoring.grafana.image.tag`::
+  Description:::
+Grafana image tag.
+  Required:::
+No
+  Type:::
+Strig
+   Default Value:::
+None
