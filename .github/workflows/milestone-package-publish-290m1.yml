@@ -23,7 +23,7 @@ jobs:
         echo DATAFLOW_VERSION=2.9.0-M1 >> $GITHUB_ENV
         echo SKIPPER_VERSION=2.8.0-M1 >> $GITHUB_ENV
         echo RTAG=$(date +%y%m%d%s%N) >> $GITHUB_ENV
-        echo TAG=2.8.1 >> $GITHUB_ENV
+        echo TAG=2.9.0-M1 >> $GITHUB_ENV
     - name: Tanzu Dance
       run: |
         ytt \
