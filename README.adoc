@@ -151,6 +151,8 @@ $ npm run test
 === Random Notes
 Download flat bundles:
 
+==== Checking Bundles
+
 [source, bash]
 ----
 imgpkg pull -b ghcr.io/jvalkeal/springcloud/scdf-repo:snapshot -o scdf-repo-snapshot
@@ -171,3 +173,29 @@ _ImagesLock_ for package images pointing to airgapped location:
 ----
 imgpkg pull -b ghcr.io/jvalkeal/airgapped/scdf-repo@sha256:51e99e890f9158cb9463b859e2c6a3918ebdc29809ee82573b3abe3aebc5b9f9 -o airgapped-scdf-package-snapshot
 ----
+
+==== Airgap kapp-controller
+`kapp-controller` install still points to dockerhub so we want to relocate to
+not hit rate limiting.
+
+Download current release:
+[source, bash]
+----
+curl -OL https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
+----
+
+Open and find image pointing to dockerhub and relocate it, for example:
+[source, bash]
+----
+imgpkg copy \
+  -i index.docker.io/k14s/kapp-controller@sha256:ee05e345582e51a02249a24adf67c53f65a5fcc404bd41e74cd22704674f211f \
+  --to-repo ghcr.io/jvalkeal/k14s/kapp-controller
+----
+
+Fix image in `release.yml` to point to new location and update:
+
+[source, bash]
+----
+mv release.yml examples/kapp-controller-ghcr.yml
+----
+
