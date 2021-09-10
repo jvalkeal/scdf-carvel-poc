@@ -1,0 +1,16 @@
+#@data/values
+---
+scdf:
+  deploy:
+    mode: minikube
+    binder:
+      type: rabbit
+  server:
+    image:
+      tag: 2.8.1
+  skipper:
+    image:
+      tag: 2.7.1
+  ctr:
+    image:
+      tag: 2.8.1
