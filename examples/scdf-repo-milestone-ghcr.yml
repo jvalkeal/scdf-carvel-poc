@@ -1,0 +1,8 @@
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: scdf-milestone.tanzu.vmware
+spec:
+  fetch:
+    imgpkgBundle:
+      image: ghcr.io/jvalkeal/airgapped/scdf-repo:milestone
