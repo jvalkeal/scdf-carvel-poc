@@ -49,18 +49,20 @@ Deploy repository:
 [source, bash]
 ----
 kapp deploy -a scdf-repo-snapshot -f examples/scdf-repo-snapshot-ghcr.yml -y
-
+kapp deploy -a scdf-repo-milestone -f examples/scdf-repo-milestone-ghcr.yml -y
 kapp deploy -a scdf-repo-release -f examples/scdf-repo-release-ghcr.yml -y
 
 kubectl get packagerepositories
 NAME                         AGE   DESCRIPTION
 scdf-release.tanzu.vmware    23s   Reconcile succeeded
+scdf-milestone.tanzu.vmware  43s   Reconcile succeeded
 scdf-snapshot.tanzu.vmware   60s   Reconcile succeeded
 
 kubectl get packages
 NAME                                   PACKAGEMETADATA NAME    VERSION          AGE
 scdf.tanzu.vmware.com.2.8.0            scdf.tanzu.vmware.com   2.8.0            8s
 scdf.tanzu.vmware.com.2.8.1            scdf.tanzu.vmware.com   2.8.1            8s
+scdf.tanzu.vmware.com.2.9.0-M1         scdf.tanzu.vmware.com   2.9.0-M1         18s
 scdf.tanzu.vmware.com.2.8.2-SNAPSHOT   scdf.tanzu.vmware.com   2.8.2-SNAPSHOT   28s
 scdf.tanzu.vmware.com.2.9.0-SNAPSHOT   scdf.tanzu.vmware.com   2.9.0-SNAPSHOT   28s
 ----
@@ -89,8 +91,9 @@ Cleanup:
 [source, bash]
 ----
 kapp delete -a scdf-demo -y
-
-kapp delete -a scdf-repo-main -y
+kapp delete -a scdf-repo-snapshot -y
+kapp delete -a scdf-repo-milestone -y
+kapp delete -a scdf-repo-release -y
 ----
 
 === Deploy via kapp
@@ -119,6 +122,11 @@ is but you're then responsible to handle further actions like manually deleting
 everything if that needs to be done or handle all other scenarious when things
 are changed. Not really a recommended way unless you need to work with very
 low level deployment files.
+
+[source, bash]
+----
+ytt -f config -f examples/config-281-postgres.yml | kubectl apply -f-
+----
 
 == Project
 Development notes about this POC.
