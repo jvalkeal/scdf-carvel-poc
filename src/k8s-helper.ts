@@ -97,3 +97,13 @@ export function containerEnvValue(container: V1Container | undefined, name: stri
 export function containerEnvValues(container: V1Container | undefined): V1EnvVar[] | undefined {
   return container?.env;
 }
+
+export function envStringToMap(envString: string): Map<string, string> {
+  return envString.split(',').reduce((envMap, cur) => {
+    const s = cur.split('=', 2).map(e => e.trim());
+    if (s.length === 2) {
+      envMap.set(s[0], s[1]);
+    }
+    return envMap;
+  }, new Map<string, string>());
+}
