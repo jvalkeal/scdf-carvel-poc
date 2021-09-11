@@ -16,7 +16,7 @@ spec:
         app: #@ name()
     spec:
       containers:
-      - image: rabbitmq:3.6.10
+      - image: rabbitmq:3.9.5
         name: #@ name()
         volumeMounts:
         - name: rabbitmq-config-volume
