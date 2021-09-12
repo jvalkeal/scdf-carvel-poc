@@ -14,3 +14,7 @@
 #@  end
 #@  return ret
 #@ end
+
+#@ def image():
+#@   return data.values.image.repository + ":" + data.values.image.tag
+#@ end

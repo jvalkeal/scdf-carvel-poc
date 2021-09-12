@@ -10,6 +10,9 @@ scdf:
       enabled: true
       type: rabbit
       rabbit:
+        image:
+          repository: rabbitmq
+          tag: 3.9.5
         #@schema/type any=True
         config:
     #! deploy database settings

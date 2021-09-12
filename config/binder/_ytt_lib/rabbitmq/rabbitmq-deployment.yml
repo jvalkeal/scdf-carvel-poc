@@ -1,4 +1,4 @@
-#@ load("rabbitmq.lib.yml", "name", "config_name")
+#@ load("rabbitmq.lib.yml", "name", "config_name", "image")
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,7 +16,7 @@ spec:
         app: #@ name()
     spec:
       containers:
-      - image: rabbitmq:3.9.5
+      - image: #@ image()
         name: #@ name()
         volumeMounts:
         - name: rabbitmq-config-volume

@@ -3,3 +3,6 @@
 name: rabbitmq
 #@schema/type any=True
 config:
+image:
+  repository: rabbitmq
+  tag: 3.9.5

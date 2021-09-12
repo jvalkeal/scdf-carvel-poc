@@ -15,6 +15,9 @@ describe('rabbitmq', () => {
     const rabbitDeployment = findDeployment(yaml, BINDER_RABBIT_NAME);
     expect(rabbitDeployment).toBeTruthy();
     expect(rabbitDeployment?.spec?.replicas).toBe(1);
+    expect(rabbitDeployment?.spec?.template?.spec?.containers.find(c => c.name === BINDER_RABBIT_NAME)?.image).toEqual(
+      'rabbitmq:3.9.5'
+    );
     expect(rabbitDeployment?.spec?.template?.spec?.containers.map(c => c.ports?.map(cp => cp.containerPort))).toEqual([
       [5672]
     ]);
@@ -47,5 +50,26 @@ describe('rabbitmq', () => {
     expect(rabbitConfigMap).toBeTruthy();
     const rabbitConf = rabbitConfigMap?.data ? rabbitConfigMap.data['rabbitmq.conf'] : '';
     expect(rabbitConf).toContain('key1 = value1');
+  });
+
+  it('should change image', async () => {
+    const result = await execYtt({
+      files: ['config/binder', 'config/values'],
+      dataValueYamls: [
+        'scdf.deploy.binder.type=rabbit',
+        'scdf.deploy.binder.rabbit.image.repository=fakerepo',
+        'scdf.deploy.binder.rabbit.image.tag=faketag'
+      ]
+    });
+
+    expect(result.success, result.stderr).toBeTruthy();
+    const yaml = result.stdout;
+
+    const rabbitDeployment = findDeployment(yaml, BINDER_RABBIT_NAME);
+    expect(rabbitDeployment).toBeTruthy();
+    expect(rabbitDeployment?.spec?.replicas).toBe(1);
+    expect(rabbitDeployment?.spec?.template?.spec?.containers.find(c => c.name === BINDER_RABBIT_NAME)?.image).toEqual(
+      'fakerepo:faketag'
+    );
   });
 });

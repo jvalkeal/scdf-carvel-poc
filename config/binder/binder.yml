@@ -10,6 +10,9 @@
 #@ def binder_rabbit_values():
 name: rabbitmq
 config: #@ data.values.scdf.deploy.binder.rabbit.config
+image:
+  repository: #@ data.values.scdf.deploy.binder.rabbit.image.repository
+  tag: #@ data.values.scdf.deploy.binder.rabbit.image.tag
 #@ end
 
 #@ def binder_kafka_values():

@@ -23,6 +23,8 @@ yaml document.
 - <<configuration-options-scdf.deploy.binder.enabled>>
 - <<configuration-options-scdf.deploy.binder.type>>
 - <<configuration-options-scdf.deploy.binder.rabbit.config>>
+- <<configuration-options-scdf.deploy.binder.rabbit.image.repository>>
+- <<configuration-options-scdf.deploy.binder.rabbit.image.tag>>
 - <<configuration-options-scdf.deploy.database.enabled>>
 - <<configuration-options-scdf.deploy.database.type>>
 - <<configuration-options-scdf.deploy.database.username>>
@@ -124,6 +126,26 @@ No
 Dict
    Default Value:::
 Empty
+
+[[configuration-options-scdf.deploy.binder.rabbit.image.repository]]`scdf.deploy.binder.rabbit.image.repository`::
+  Description:::
+Rabbit binder image repository
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+rabbitmq
+
+[[configuration-options-scdf.deploy.binder.rabbit.image.tag]]`scdf.deploy.binder.rabbit.image.tag`::
+  Description:::
+Rabbit binder image tag
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+3.9.5
 
 [[configuration-options-scdf.deploy.database.enabled]]`scdf.deploy.database.enabled`::
   Description:::
