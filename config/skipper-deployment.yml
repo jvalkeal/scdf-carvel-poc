@@ -1,5 +1,7 @@
 #@ load("@ytt:data", "data")
 #@ load("skipper.star", "skipper_image", "skipper_container_env")
+#@ load("binder/binder.star", "rabbitmq_enabled")
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -30,6 +32,11 @@ spec:
         - name: database
           mountPath: /etc/secrets/database
           readOnly: true
+        #@ if rabbitmq_enabled():
+        - name: rabbitmq
+          mountPath: /etc/secrets/rabbitmq
+          readOnly: true
+        #@ end
         ports:
         - containerPort: 80
         livenessProbe:
@@ -61,3 +68,8 @@ spec:
       - name: database
         secret:
           secretName: db-skipper
+      #@ if rabbitmq_enabled():
+      - name: rabbitmq
+        secret:
+          secretName: rabbitmq
+      #@ end

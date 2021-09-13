@@ -6,3 +6,5 @@ config:
 image:
   repository: rabbitmq
   tag: 3.9.5
+username: ""
+password: ""

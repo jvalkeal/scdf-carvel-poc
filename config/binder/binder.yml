@@ -13,6 +13,8 @@ config: #@ data.values.scdf.deploy.binder.rabbit.config
 image:
   repository: #@ data.values.scdf.deploy.binder.rabbit.image.repository
   tag: #@ data.values.scdf.deploy.binder.rabbit.image.tag
+username: #@ data.values.scdf.deploy.binder.rabbit.username
+password: #@ data.values.scdf.deploy.binder.rabbit.password
 #@ end
 
 #@ def binder_kafka_values():

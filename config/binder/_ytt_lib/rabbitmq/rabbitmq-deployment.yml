@@ -18,6 +18,17 @@ spec:
       containers:
       - image: #@ image()
         name: #@ name()
+        env:
+        - name: RABBITMQ_DEFAULT_USER
+          valueFrom:
+            secretKeyRef:
+              key: rabbitmq-user
+              name: #@ name()
+        - name: RABBITMQ_DEFAULT_PASS
+          valueFrom:
+            secretKeyRef:
+              key: rabbitmq-password
+              name: #@ name()
         volumeMounts:
         - name: rabbitmq-config-volume
           mountPath: /etc/rabbitmq

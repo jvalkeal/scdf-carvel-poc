@@ -1,8 +1,16 @@
 import lodash from 'lodash';
 import 'jest-extended';
 import { execYtt } from '../src/ytt';
-import { findDeployment, findConfigMap, parseYamlDocument, envStringToMap } from '../src/k8s-helper';
-import { BINDER_RABBIT_NAME, BINDER_KAFKA_NAME, DEFAULT_REQUIRED_DATA_VALUES } from '../src/constants';
+import {
+  findDeployment,
+  findConfigMap,
+  parseYamlDocument,
+  envStringToMap,
+  deploymentVolume,
+  deploymentContainer,
+  containerVolumeMount
+} from '../src/k8s-helper';
+import { BINDER_RABBIT_NAME, BINDER_KAFKA_NAME, DEFAULT_REQUIRED_DATA_VALUES, SKIPPER_NAME } from '../src/constants';
 
 describe('binders', () => {
   it('should have rabbit deployment', async () => {
@@ -31,6 +39,16 @@ describe('binders', () => {
     const envs = envStringToMap(platformDefEnv);
     expect(envs.get('SPRING_RABBITMQ_HOST')).toBe('${RABBITMQ_SERVICE_HOST}');
     expect(envs.get('SPRING_RABBITMQ_PORT')).toBe('${RABBITMQ_SERVICE_PORT}');
+    expect(envs.get('SPRING_RABBITMQ_USERNAME')).toBe('${rabbitmq-user}');
+    expect(envs.get('SPRING_RABBITMQ_PASSWORD')).toBe('${rabbitmq-password}');
+
+    const skipperDeployment = findDeployment(yaml, SKIPPER_NAME);
+    const skipperContainer = deploymentContainer(skipperDeployment, SKIPPER_NAME);
+    const rabbitVolume = deploymentVolume(skipperDeployment, 'rabbitmq');
+    expect(rabbitVolume?.secret?.secretName).toBe('rabbitmq');
+
+    const rabbitVolumeMount = containerVolumeMount(skipperContainer, 'rabbitmq');
+    expect(rabbitVolumeMount?.mountPath).toBe('/etc/secrets/rabbitmq');
   });
 
   it('should have kafka deployment', async () => {
@@ -54,6 +72,14 @@ describe('binders', () => {
     const skipperConfigMap = findConfigMap(yaml, 'skipper');
     const applicationYaml = skipperConfigMap?.data ? skipperConfigMap.data['application.yaml'] : '';
     expect(applicationYaml).toContain('KAFKA');
+
+    // kafka so no rabbit spesific secrets in volumes
+    const skipperDeployment = findDeployment(yaml, SKIPPER_NAME);
+    const skipperContainer = deploymentContainer(skipperDeployment, SKIPPER_NAME);
+    const rabbitVolume = deploymentVolume(skipperDeployment, 'rabbitmq');
+    expect(rabbitVolume).toBeFalsy();
+    const rabbitVolumeMount = containerVolumeMount(skipperContainer, 'rabbitmq');
+    expect(rabbitVolumeMount).toBeFalsy();
   });
 
   it('should skip binder deploy if external rabbit settings given', async () => {

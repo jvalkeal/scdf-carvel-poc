@@ -7,7 +7,9 @@ import {
   V1Secret,
   V1EnvVar,
   V1Service,
-  V1StatefulSet
+  V1StatefulSet,
+  V1VolumeMount,
+  V1Volume
 } from '@kubernetes/client-node';
 
 export function parseDocuments(yaml: string): string[] {
@@ -90,12 +92,24 @@ export function deploymentContainer(deployment: V1Deployment | undefined, name: 
   return deployment?.spec?.template?.spec?.containers.find(container => container.name === name);
 }
 
+export function deploymentVolume(deployment: V1Deployment | undefined, name: string): V1Volume | undefined {
+  return deployment?.spec?.template?.spec?.volumes?.find(volume => volume.name === name);
+}
+
 export function containerEnvValue(container: V1Container | undefined, name: string): string | undefined {
   return container?.env?.find(env => env.name === name)?.value;
 }
 
 export function containerEnvValues(container: V1Container | undefined): V1EnvVar[] | undefined {
   return container?.env;
+}
+
+export function containerVolumeMounts(container: V1Container | undefined): V1VolumeMount[] | undefined {
+  return container?.volumeMounts;
+}
+
+export function containerVolumeMount(container: V1Container | undefined, name: string): V1VolumeMount | undefined {
+  return container?.volumeMounts?.find(vm => vm.name === name);
 }
 
 export function envStringToMap(envString: string): Map<string, string> {

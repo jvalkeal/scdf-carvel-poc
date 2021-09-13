@@ -13,6 +13,10 @@ scdf:
         image:
           repository: rabbitmq
           tag: 3.9.5
+        #! rabbit username (defaults to dataflow)
+        username: ZGF0YWZsb3c=
+        #! rabbit password (default to secret)
+        password: c2VjcmV0
         #@schema/type any=True
         config:
     #! deploy database settings

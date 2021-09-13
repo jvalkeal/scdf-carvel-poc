@@ -1,5 +1,5 @@
 import { execYtt } from '../src/ytt';
-import { findDeployment, findService, findConfigMap } from '../src/k8s-helper';
+import { findDeployment, findService, findConfigMap, findSecret } from '../src/k8s-helper';
 import { BINDER_RABBIT_NAME } from '../src/constants';
 
 describe('rabbitmq', () => {
@@ -25,6 +25,22 @@ describe('rabbitmq', () => {
       ['rabbitmq-config-volume']
     ]);
     expect(rabbitDeployment?.spec?.template?.spec?.volumes?.map(v => v.name)).toEqual(['rabbitmq-config-volume']);
+    expect(
+      rabbitDeployment?.spec?.template?.spec?.containers
+        .find(c => c.name === BINDER_RABBIT_NAME)
+        ?.env?.find(e => e.name === 'RABBITMQ_DEFAULT_USER')?.valueFrom?.secretKeyRef?.key
+    ).toEqual('rabbitmq-user');
+    expect(
+      rabbitDeployment?.spec?.template?.spec?.containers
+        .find(c => c.name === BINDER_RABBIT_NAME)
+        ?.env?.find(e => e.name === 'RABBITMQ_DEFAULT_PASS')?.valueFrom?.secretKeyRef?.key
+    ).toEqual('rabbitmq-password');
+
+    const rabbitSecret = findSecret(yaml, BINDER_RABBIT_NAME);
+    expect(rabbitSecret).toBeTruthy();
+    const rabbitSecretData = rabbitSecret?.data || {};
+    expect(rabbitSecretData['rabbitmq-user']).toBe('ZGF0YWZsb3c=');
+    expect(rabbitSecretData['rabbitmq-password']).toBe('c2VjcmV0');
 
     const rabbitService = findService(yaml, BINDER_RABBIT_NAME);
     expect(rabbitService).toBeTruthy();
@@ -71,5 +87,27 @@ describe('rabbitmq', () => {
     expect(rabbitDeployment?.spec?.template?.spec?.containers.find(c => c.name === BINDER_RABBIT_NAME)?.image).toEqual(
       'fakerepo:faketag'
     );
+  });
+
+  it('should change user', async () => {
+    const result = await execYtt({
+      files: ['config/binder', 'config/values'],
+      dataValueYamls: [
+        'scdf.deploy.binder.type=rabbit',
+        'scdf.deploy.binder.rabbit.image.repository=fakerepo',
+        'scdf.deploy.binder.rabbit.image.tag=faketag',
+        'scdf.deploy.binder.rabbit.username=user',
+        'scdf.deploy.binder.rabbit.password=pass'
+      ]
+    });
+
+    expect(result.success, result.stderr).toBeTruthy();
+    const yaml = result.stdout;
+
+    const rabbitSecret = findSecret(yaml, BINDER_RABBIT_NAME);
+    expect(rabbitSecret).toBeTruthy();
+    const rabbitSecretData = rabbitSecret?.data || {};
+    expect(rabbitSecretData['rabbitmq-user']).toBe('user');
+    expect(rabbitSecretData['rabbitmq-password']).toBe('pass');
   });
 });

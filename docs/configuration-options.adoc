@@ -147,6 +147,26 @@ String
    Default Value:::
 3.9.5
 
+[[configuration-options-scdf.deploy.binder.rabbit.username]]`scdf.deploy.binder.rabbit.username`::
+  Description:::
+Defines username for a created rabbit.
+  Required:::
+No
+  Type:::
+String (base64 encoded)
+   Default Value:::
+dataflow
+
+[[configuration-options-scdf.deploy.binder.rabbit.password]]`scdf.deploy.binder.rabbit.password`::
+  Description:::
+Defines password for a created rabbit.
+  Required:::
+No
+  Type:::
+String (base64 encoded)
+   Default Value:::
+secret
+
 [[configuration-options-scdf.deploy.database.enabled]]`scdf.deploy.database.enabled`::
   Description:::
 Defines if a database is deployed.

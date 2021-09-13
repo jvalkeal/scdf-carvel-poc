@@ -9,7 +9,7 @@ load("monitoring/monitoring.star", "grafana_enabled")
 def env_config():
   env = ""
   if rabbitmq_enabled():
-    env = "SPRING_RABBITMQ_HOST=${RABBITMQ_SERVICE_HOST},SPRING_RABBITMQ_PORT=${RABBITMQ_SERVICE_PORT}"
+    env = "SPRING_RABBITMQ_HOST=${RABBITMQ_SERVICE_HOST},SPRING_RABBITMQ_PORT=${RABBITMQ_SERVICE_PORT},SPRING_RABBITMQ_USERNAME=${rabbitmq-user},SPRING_RABBITMQ_PASSWORD=${rabbitmq-password}"
   elif kafka_enabled():
     env = "SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka-broker:9092,SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=${KAFKA_ZK_SERVICE_HOST}:${KAFKA_ZK_SERVICE_PORT}"
   else:
