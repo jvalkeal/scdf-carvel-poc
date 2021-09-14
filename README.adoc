@@ -53,18 +53,18 @@ kapp deploy -a scdf-repo-milestone -f examples/scdf-repo-milestone-ghcr.yml -y
 kapp deploy -a scdf-repo-release -f examples/scdf-repo-release-ghcr.yml -y
 
 kubectl get packagerepositories
-NAME                         AGE   DESCRIPTION
-scdf-release.tanzu.vmware    23s   Reconcile succeeded
-scdf-milestone.tanzu.vmware  43s   Reconcile succeeded
-scdf-snapshot.tanzu.vmware   60s   Reconcile succeeded
+NAME                          AGE     DESCRIPTION
+scdf-milestone.tanzu.vmware   99s     Reconcile succeeded
+scdf-release.tanzu.vmware     33s     Reconcile succeeded
+scdf-snapshot.tanzu.vmware    2m35s   Reconcile succeeded
 
 kubectl get packages
 NAME                                   PACKAGEMETADATA NAME    VERSION          AGE
-scdf.tanzu.vmware.com.2.8.0            scdf.tanzu.vmware.com   2.8.0            8s
-scdf.tanzu.vmware.com.2.8.1            scdf.tanzu.vmware.com   2.8.1            8s
-scdf.tanzu.vmware.com.2.9.0-M1         scdf.tanzu.vmware.com   2.9.0-M1         18s
-scdf.tanzu.vmware.com.2.8.2-SNAPSHOT   scdf.tanzu.vmware.com   2.8.2-SNAPSHOT   28s
-scdf.tanzu.vmware.com.2.9.0-SNAPSHOT   scdf.tanzu.vmware.com   2.9.0-SNAPSHOT   28s
+scdf.tanzu.vmware.com.2.8.0            scdf.tanzu.vmware.com   2.8.0            26s
+scdf.tanzu.vmware.com.2.8.1            scdf.tanzu.vmware.com   2.8.1            27s
+scdf.tanzu.vmware.com.2.8.2-SNAPSHOT   scdf.tanzu.vmware.com   2.8.2-SNAPSHOT   2m23s
+scdf.tanzu.vmware.com.2.9.0-M1         scdf.tanzu.vmware.com   2.9.0-M1         1m30s
+scdf.tanzu.vmware.com.2.9.0-SNAPSHOT   scdf.tanzu.vmware.com   2.9.0-SNAPSHOT   2m23s
 ----
 
 NOTE: Above package and package repos are defined within public repos on a
@@ -84,6 +84,26 @@ scdf-demo   scdf.tanzu.vmware.com   2.9.0-SNAPSHOT    Reconciling   12s
 kubectl get packageinstalls
 NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION           AGE
 scdf-demo   scdf.tanzu.vmware.com   2.9.0-SNAPSHOT    Reconcile succeeded   88s
+----
+
+To try an upgrade, first install `2.8.0` with `postgres` and `rabbit`:
+[source, bash]
+----
+kapp deploy -a scdf-demo -f examples/kapp-controller-scdf-280-postgres-rabbit.yml -y
+
+kubectl get packageinstalls
+NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION           AGE
+scdf-demo   scdf.tanzu.vmware.com   2.8.0             Reconcile succeeded   121m
+----
+
+Do an upgrade:
+[source, bash]
+----
+kapp deploy -a scdf-demo -f examples/kapp-controller-scdf-281-postgres-rabbit.yml -y
+
+kubectl get packageinstalls
+NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION           AGE
+scdf-demo   scdf.tanzu.vmware.com   2.8.1             Reconcile succeeded   121m
 ----
 
 Cleanup:
