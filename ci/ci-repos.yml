@@ -1,0 +1,8 @@
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  name: scdf-snapshot.tanzu.vmware
+spec:
+  fetch:
+    imgpkgBundle:
+      image: ghcr.io/jvalkeal/airgapped/scdf-repo:snapshot
