@@ -91,7 +91,9 @@ describe('binders', () => {
         'scdf.deploy.database.type=mysql',
         'scdf.deploy.binder.enabled=false',
         'scdf.binder.rabbit.host=localhost',
-        'scdf.binder.rabbit.port=1234'
+        'scdf.binder.rabbit.port=1234',
+        'scdf.binder.rabbit.username=user',
+        'scdf.binder.rabbit.password=pass'
       ]
     });
 
@@ -116,6 +118,8 @@ describe('binders', () => {
     const envs = envStringToMap(platformDefEnv);
     expect(envs.get('SPRING_RABBITMQ_HOST')).toBe('localhost');
     expect(envs.get('SPRING_RABBITMQ_PORT')).toBe('1234');
+    expect(envs.get('SPRING_RABBITMQ_USERNAME')).toBe('user');
+    expect(envs.get('SPRING_RABBITMQ_PASSWORD')).toBe('pass');
   });
 
   it('should skip binder deploy if external kafka settings given', async () => {

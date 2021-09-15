@@ -54,6 +54,8 @@ yaml document.
 - <<configuration-options-scdf.binder.kafka.port>>
 - <<configuration-options-scdf.binder.rabbit.host>>
 - <<configuration-options-scdf.binder.rabbit.port>>
+- <<configuration-options-scdf.binder.rabbit.username>>
+- <<configuration-options-scdf.binder.rabbit.password>>
 - <<configuration-options-scdf.feature.monitoring.prometheus.enabled>>
 - <<configuration-options-scdf.feature.monitoring.prometheus.image.repository>>
 - <<configuration-options-scdf.feature.monitoring.prometheus.image.tag>>
@@ -450,6 +452,26 @@ None
 [[configuration-options-scdf.binder.rabbit.port]]`scdf.binder.rabbit.port`::
   Description:::
 External rabbit port.
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.binder.rabbit.username]]`scdf.binder.rabbit.username`::
+  Description:::
+External rabbit username.
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.binder.rabbit.password]]`scdf.binder.rabbit.password`::
+  Description:::
+External rabbit password.
   Required:::
 No
   Type:::
