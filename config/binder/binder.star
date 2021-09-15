@@ -28,3 +28,20 @@ end
 def binder_install_enabled():
   return not non_empty_string(data.values.scdf.binder.rabbit.host) or not non_empty_string(data.values.scdf.binder.kafka.host);
 end
+
+def external_rabbitmq_env_str():
+  values = []
+  if non_empty_string(data.values.scdf.binder.rabbit.host):
+    values.append("SPRING_RABBITMQ_HOST=" + data.values.scdf.binder.rabbit.host)
+  end
+  if non_empty_string(str(data.values.scdf.binder.rabbit.port)):
+    values.append("SPRING_RABBITMQ_PORT=" + str(data.values.scdf.binder.rabbit.port))
+  end
+  if non_empty_string(data.values.scdf.binder.rabbit.username):
+    values.append("SPRING_RABBITMQ_USERNAME=" + data.values.scdf.binder.rabbit.username)
+  end
+  if non_empty_string(data.values.scdf.binder.rabbit.password):
+    values.append("SPRING_RABBITMQ_PASSWORD=" + data.values.scdf.binder.rabbit.password)
+  end
+  return ",".join(values)
+end

@@ -4,6 +4,7 @@ load("binder/binder.star", "rabbitmq_enabled")
 load("binder/binder.star", "kafka_enabled")
 load("binder/binder.star", "external_rabbitmq_enabled")
 load("binder/binder.star", "external_kafka_enabled")
+load("binder/binder.star", "external_rabbitmq_env_str")
 load("monitoring/monitoring.star", "grafana_enabled")
 
 def env_config():
@@ -14,7 +15,7 @@ def env_config():
     env = "SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka-broker:9092,SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=${KAFKA_ZK_SERVICE_HOST}:${KAFKA_ZK_SERVICE_PORT}"
   else:
     if external_rabbitmq_enabled():
-      env = "SPRING_RABBITMQ_HOST=" + data.values.scdf.binder.rabbit.host + ",SPRING_RABBITMQ_PORT=" + str(data.values.scdf.binder.rabbit.port) + ",SPRING_RABBITMQ_USERNAME=" + data.values.scdf.binder.rabbit.username  + ",SPRING_RABBITMQ_PASSWORD=" + data.values.scdf.binder.rabbit.password
+      env = external_rabbitmq_env_str()
     elif external_kafka_enabled():
       env = "SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=" + data.values.scdf.binder.kafka.host
     end
