@@ -1,4 +1,5 @@
-#@ load("prometheus.lib.yml", "name", "prometheus_image")
+#@ load("prometheus.lib.yml", "name")
+#@ load("prometheus.lib.yml", "prometheus_image")
 
 apiVersion: apps/v1
 kind: Deployment

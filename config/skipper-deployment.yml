@@ -1,5 +1,6 @@
 #@ load("@ytt:data", "data")
-#@ load("skipper.star", "skipper_image", "skipper_container_env")
+#@ load("skipper.star", "skipper_image")
+#@ load("skipper.star", "skipper_container_env")
 #@ load("binder/binder.star", "rabbitmq_enabled")
 
 apiVersion: apps/v1

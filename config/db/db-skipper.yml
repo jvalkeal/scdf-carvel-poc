@@ -4,7 +4,10 @@
 #@ load("@ytt:overlay", "overlay")
 #@ load("@ytt:template", "template")
 #@ load("db.lib.yml", "db_overlay")
-#@ load("db.star", "mysql_enabled", "postgres_enabled", "db_username", "db_password")
+#@ load("db.star", "mysql_enabled")
+#@ load("db.star", "postgres_enabled")
+#@ load("db.star", "db_username")
+#@ load("db.star", "db_password")
 
 #@ def db_values():
 name: db-skipper

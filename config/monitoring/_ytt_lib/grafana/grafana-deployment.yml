@@ -1,4 +1,5 @@
-#@ load("grafana.lib.yml", "name", "grafana_image")
+#@ load("grafana.lib.yml", "name")
+#@ load("grafana.lib.yml", "grafana_image")
 
 apiVersion: apps/v1
 kind: Deployment

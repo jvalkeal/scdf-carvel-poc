@@ -1,4 +1,5 @@
-#@ load("prometheus-rsocket-proxy.lib.yml", "name", "prometheus_rsocket_proxy_image")
+#@ load("prometheus-rsocket-proxy.lib.yml", "name")
+#@ load("prometheus-rsocket-proxy.lib.yml", "prometheus_rsocket_proxy_image")
 
 apiVersion: apps/v1
 kind: Deployment

@@ -2,7 +2,9 @@
 #@ load("@ytt:template", "template")
 #@ load("@ytt:overlay", "overlay")
 #@ load("@ytt:library", "library")
-#@ load("monitoring.star", "grafana_enabled", "prometheus_enabled", "prometheus_rsocket_proxy_enabled")
+#@ load("monitoring.star", "grafana_enabled")
+#@ load("monitoring.star", "prometheus_enabled")
+#@ load("monitoring.star", "prometheus_rsocket_proxy_enabled")
 
 #@ def grafana_values(service_spec_type):
 name: grafana

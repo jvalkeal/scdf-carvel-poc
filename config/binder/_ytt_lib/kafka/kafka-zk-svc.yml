@@ -1,4 +1,5 @@
-#@ load("kafka.lib.yml", "name", "zk_name")
+#@ load("kafka.lib.yml", "name")
+#@ load("kafka.lib.yml", "zk_name")
 apiVersion: v1
 kind: Service
 metadata:

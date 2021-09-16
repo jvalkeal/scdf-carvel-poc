@@ -1,5 +1,7 @@
 #@ load("@ytt:data", "data")
-#@ load("dataflow.star", "dataflow_image", "ctr_image", "dataflow_container_env")
+#@ load("dataflow.star", "dataflow_image")
+#@ load("dataflow.star", "ctr_image")
+#@ load("dataflow.star", "dataflow_container_env")
 apiVersion: apps/v1
 kind: Deployment
 metadata:

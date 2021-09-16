@@ -1,4 +1,6 @@
-#@ load("mysql.lib.yml", "name", "username", "password")
+#@ load("mysql.lib.yml", "name")
+#@ load("mysql.lib.yml", "username")
+#@ load("mysql.lib.yml", "password")
 
 apiVersion: apps/v1
 kind: Deployment

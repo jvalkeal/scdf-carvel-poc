@@ -1,5 +1,9 @@
 #@ load("@ytt:library", "library")
-#@ load("db.star", "db_external_dataflow", "db_external_skipper", "db_deploy_enabled", "mysql_enabled", "postgres_enabled")
+#@ load("db.star", "db_external_dataflow")
+#@ load("db.star", "db_external_skipper")
+#@ load("db.star", "db_deploy_enabled")
+#@ load("db.star", "mysql_enabled")
+#@ load("db.star", "postgres_enabled")
 
 #@ def skipper_datasource_config():
 #@   if db_deploy_enabled():
