@@ -45,3 +45,11 @@ def external_rabbitmq_env_str():
   end
   return ",".join(values)
 end
+
+def external_kafka_env_str():
+  values = []
+  if non_empty_string(data.values.scdf.binder.kafka.host):
+    values.append("SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=" + data.values.scdf.binder.kafka.host)
+  end
+  return ",".join(values)
+end
