@@ -1,0 +1,19 @@
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+ifndef::env-github[]
+endif::[]
+
+= Spring Cloud Data Flow Carvel Documentation
+
+toc::[]
+
+ifdef::env-github[]
+link:configuration-options.adoc[Configuration Options]
+link:binder.adoc[Binder]
+link:database.adoc[Database]
+endif::[]
