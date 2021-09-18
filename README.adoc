@@ -12,7 +12,7 @@ endif::[]
 
 = SCDF Carvel POC
 
-This is a POC repo to create full [carvel dance](https://carvel.dev) with scdf.
+This is a POC repo to create full https://carvel.dev[carvel dance] with scdf.
 
 - Template k8s deployment files with `ytt`
 - Create packages and package repos for `kapp-controller`.
@@ -22,7 +22,7 @@ This is a POC repo to create full [carvel dance](https://carvel.dev) with scdf.
 
 [NOTE]
 ====
-You need to have tools `kapp`, `kbld`, `ytt` and `imgpkg` installed from https://carvel.dev
+You need to have tools `kapp`, `kbld`, `ytt` and `imgpkg` installed from https://carvel.dev[carvel]
 ====
 
 You can pick different routes to use this POC. Firstly have your _k8s_ environment running
