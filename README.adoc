@@ -4,7 +4,7 @@ ifdef::env-github[]
 :important-caption: :heavy_exclamation_mark:
 :caution-caption: :fire:
 :warning-caption: :warning:
-:main-docs: link:docs/[]
+:main-docs: link:docs[]
 endif::[]
 ifndef::env-github[]
 :main-docs: <<main-docs>>
