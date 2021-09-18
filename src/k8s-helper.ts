@@ -96,6 +96,10 @@ export function deploymentVolume(deployment: V1Deployment | undefined, name: str
   return deployment?.spec?.template?.spec?.volumes?.find(volume => volume.name === name);
 }
 
+export function statefulSetContainer(ss: V1StatefulSet | undefined, name: string): V1Container | undefined {
+  return ss?.spec?.template?.spec?.containers.find(container => container.name === name);
+}
+
 export function containerEnvValue(container: V1Container | undefined, name: string): string | undefined {
   return container?.env?.find(env => env.name === name)?.value;
 }

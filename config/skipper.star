@@ -13,7 +13,7 @@ def env_config():
   if rabbitmq_enabled():
     env = "SPRING_RABBITMQ_HOST=${RABBITMQ_SERVICE_HOST},SPRING_RABBITMQ_PORT=${RABBITMQ_SERVICE_PORT},SPRING_RABBITMQ_USERNAME=${rabbitmq-user},SPRING_RABBITMQ_PASSWORD=${rabbitmq-password}"
   elif kafka_enabled():
-    env = "SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka-broker:9092,SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=${KAFKA_ZK_SERVICE_HOST}:${KAFKA_ZK_SERVICE_PORT}"
+    env = "SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka-broker:9092,SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=kafka-zk-client:2181"
   else:
     if external_rabbitmq_enabled():
       env = external_rabbitmq_env_str()

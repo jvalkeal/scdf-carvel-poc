@@ -1,23 +1,33 @@
-#@ load("kafka.lib.yml", "name")
-#@ load("kafka.lib.yml", "zk_name")
+#@ load("kafka.star", "name")
+#@ load("kafka.star", "zk_name")
+#@ load("kafka.star", "zk_client_name")
+#@ load("kafka.star", "zk_server_name")
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: #@ zk_name()
+  name: #@ zk_server_name()
   labels:
-    app: #@ name()
-    component: #@ zk_name()
+    app: #@ zk_name()
+spec:
+  ports:
+  - name: follower
+    port: 2888
+  - name: leader
+    port: 3888
+  clusterIP: None
+  selector:
+    app: #@ zk_name()
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #@ zk_client_name()
+  labels:
+    app: #@ zk_name()
 spec:
   ports:
   - name: client
     port: 2181
-    protocol: TCP
-  - name: follower
-    port: 2888
-    protocol: TCP
-  - name: leader
-    port: 3888
-    protocol: TCP
   selector:
     app: #@ zk_name()
-    component: #@ zk_name()

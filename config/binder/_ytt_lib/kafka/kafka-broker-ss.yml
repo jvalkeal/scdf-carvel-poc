@@ -1,0 +1,27 @@
+#@ load("kafka.star", "name")
+#@ load("kafka.star", "broker_name")
+#@ load("kafka.star", "kafka_broker_container_env")
+#@ load("kafka.lib.yml", "broker_image")
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: #@ broker_name()
+  labels:
+    app: #@ broker_name()
+spec:
+  serviceName: #@ broker_name()
+  replicas: 1
+  selector:
+    matchLabels:
+      app: #@ broker_name()
+  template:
+    metadata:
+      labels:
+        app: #@ broker_name()
+    spec:
+      containers:
+      - name: #@ broker_name()
+        image: #@ broker_image()
+        ports:
+        - containerPort: 9092
+        env: #@ kafka_broker_container_env()

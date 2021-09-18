@@ -8,7 +8,8 @@ import {
   envStringToMap,
   deploymentVolume,
   deploymentContainer,
-  containerVolumeMount
+  containerVolumeMount,
+  findService
 } from '../src/k8s-helper';
 import { BINDER_RABBIT_NAME, BINDER_KAFKA_NAME, DEFAULT_REQUIRED_DATA_VALUES, SKIPPER_NAME } from '../src/constants';
 
@@ -105,8 +106,8 @@ describe('binders kafka', () => {
     expect(result.success).toBeTruthy();
     const yaml = result.stdout;
 
-    const kafkaDeployment = findDeployment(yaml, `${BINDER_KAFKA_NAME}-zk`);
-    expect(kafkaDeployment).toBeTruthy();
+    const kafkaBrokerService = findService(yaml, `${BINDER_KAFKA_NAME}-broker`);
+    expect(kafkaBrokerService).toBeTruthy();
 
     const rabbitDeployment = findDeployment(yaml, BINDER_RABBIT_NAME);
     expect(rabbitDeployment).toBeFalsy();
@@ -156,5 +157,5 @@ describe('binders kafka', () => {
     ) as string;
     const envs = envStringToMap(platformDefEnv);
     expect(envs.get('SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS')).toBe('localhost');
-  });  
+  });
 });
