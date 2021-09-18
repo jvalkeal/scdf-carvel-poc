@@ -13,7 +13,11 @@ endif::[]
 toc::[]
 
 ifdef::env-github[]
+
 link:configuration-options.adoc[Configuration Options]
+
 link:binder.adoc[Binder]
+
 link:database.adoc[Database]
+
 endif::[]
