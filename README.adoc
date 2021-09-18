@@ -1,3 +1,15 @@
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+:main-docs: link:docs/[]
+endif::[]
+ifndef::env-github[]
+:main-docs: <<main-docs>>
+endif::[]
+
 = SCDF Carvel POC
 
 This is a POC repo to create full [carvel dance](https://carvel.dev) with scdf.
@@ -17,6 +29,11 @@ You can pick different routes to use this POC. Firstly have your _k8s_ environme
 on _minikube_ or a proper _cloud environment_, secondly choose how you want to deploy which would
 be via `kapp-controller`, `kapp` or `kubectl`, and thirdly choose combination of _database_,
 _binder_ and optional _features_ like monitoring.
+
+[NOTE]
+====
+More detailed docs under {main-docs}.
+====
 
 == Examples
 We go through few common examples how to deploy and manage dataflow.
