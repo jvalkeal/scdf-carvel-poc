@@ -177,7 +177,7 @@ $ npm run test
 ----
 
 === Random Notes
-Download flat bundles:
+Just notes needed for development and checking things out.
 
 ==== Checking Bundles
 
