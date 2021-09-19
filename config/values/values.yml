@@ -32,10 +32,16 @@ scdf:
       enabled: true
       #! database type, either mysql or postgres (required)
       type: postgres
-      #! database username (defaults to dataflow)
-      username: ZGF0YWZsb3c=
-      #! database password (default to secret)
-      password: c2VjcmV0
+      postgres:
+        #! database username (defaults to dataflow)
+        username: ZGF0YWZsb3c=
+        #! database password (default to secret)
+        password: c2VjcmV0
+      mysql:
+        #! database username (defaults to dataflow)
+        username: ZGF0YWZsb3c=
+        #! database password (default to secret)
+        password: c2VjcmV0
   server:
     image:
       #! dataflow server image repository id

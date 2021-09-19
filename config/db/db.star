@@ -64,10 +64,18 @@ def postgres_enabled():
   return database_types.get(data.values.scdf.deploy.database.type) == "postgres" and db_deploy_enabled()
 end
 
-def db_username():
-  return data.values.scdf.deploy.database.username;
+def db_postgres_username():
+  return data.values.scdf.deploy.database.postgres.username;
 end
 
-def db_password():
-  return data.values.scdf.deploy.database.password;
+def db_postgres_password():
+  return data.values.scdf.deploy.database.postgres.password;
+end
+
+def db_mysql_username():
+  return data.values.scdf.deploy.database.mysql.username;
+end
+
+def db_mysql_password():
+  return data.values.scdf.deploy.database.mysql.password;
 end

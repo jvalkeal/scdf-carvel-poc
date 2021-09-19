@@ -31,8 +31,10 @@ yaml document.
 - <<configuration-options-scdf.deploy.binder.kafka.zkImage.tag>>
 - <<configuration-options-scdf.deploy.database.enabled>>
 - <<configuration-options-scdf.deploy.database.type>>
-- <<configuration-options-scdf.deploy.database.username>>
-- <<configuration-options-scdf.deploy.database.password>>
+- <<configuration-options-scdf.deploy.database.postgres.username>>
+- <<configuration-options-scdf.deploy.database.postgres.password>>
+- <<configuration-options-scdf.deploy.database.mysql.username>>
+- <<configuration-options-scdf.deploy.database.mysql.password>>
 - <<configuration-options-scdf.server.image.repository>>
 - <<configuration-options-scdf.server.image.tag>>
 - <<configuration-options-scdf.server.database.url>>
@@ -233,7 +235,7 @@ Enum(mysql,postgres)
    Default Value:::
 postgres
 
-[[configuration-options-scdf.deploy.database.username]]`scdf.deploy.database.username`::
+[[configuration-options-scdf.deploy.database.postgres.username]]`scdf.deploy.database.postgres.username`::
   Description:::
 Defines username for a created database.
   Required:::
@@ -243,7 +245,27 @@ String (base64 encoded)
    Default Value:::
 dataflow
 
-[[configuration-options-scdf.deploy.database.password]]`scdf.deploy.database.password`::
+[[configuration-options-scdf.deploy.database.postgres.password]]`scdf.deploy.database.postgres.password`::
+  Description:::
+Defines password for a created database.
+  Required:::
+No
+  Type:::
+String (base64 encoded)
+   Default Value:::
+secret
+
+[[configuration-options-scdf.deploy.database.mysql.username]]`scdf.deploy.database.mysql.username`::
+  Description:::
+Defines username for a created database.
+  Required:::
+No
+  Type:::
+String (base64 encoded)
+   Default Value:::
+dataflow
+
+[[configuration-options-scdf.deploy.database.mysql.password]]`scdf.deploy.database.mysql.password`::
   Description:::
 Defines password for a created database.
   Required:::

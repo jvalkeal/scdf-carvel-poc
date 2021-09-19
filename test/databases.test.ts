@@ -105,8 +105,8 @@ describe('databases', () => {
       dataValues: [
         ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.database.type=mysql',
-        'scdf.deploy.database.username=user',
-        'scdf.deploy.database.password=pass'
+        'scdf.deploy.database.mysql.username=user',
+        'scdf.deploy.database.mysql.password=pass'
       ]
     });
     expect(result.success).toBeTruthy();
@@ -139,8 +139,8 @@ describe('databases', () => {
       dataValues: [
         ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.database.type=postgres',
-        'scdf.deploy.database.username=user',
-        'scdf.deploy.database.password=pass'
+        'scdf.deploy.database.postgres.username=user',
+        'scdf.deploy.database.postgres.password=pass'
       ]
     });
     expect(result.success).toBeTruthy();
