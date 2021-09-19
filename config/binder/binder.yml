@@ -19,6 +19,12 @@ password: #@ data.values.scdf.deploy.binder.rabbit.password
 
 #@ def binder_kafka_values():
 name: kafka
+brokerImage:
+  repository: #@ data.values.scdf.deploy.binder.kafka.brokerImage.repository
+  tag: #@ data.values.scdf.deploy.binder.kafka.brokerImage.tag
+zkImage:
+  repository: #@ data.values.scdf.deploy.binder.kafka.zkImage.repository
+  tag: #@ data.values.scdf.deploy.binder.kafka.zkImage.tag
 #@ end
 
 #@ if binder_install_enabled():

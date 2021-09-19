@@ -38,4 +38,32 @@ describe('kafka', () => {
     const kafkaBrokerService = findService(yaml, `${BINDER_KAFKA_NAME}-broker`);
     expect(kafkaBrokerService).toBeTruthy();
   });
+
+  it('should change images', async () => {
+    const result = await execYtt({
+      files: ['config/binder', 'config/values'],
+      dataValueYamls: [
+        'scdf.deploy.binder.type=kafka',
+        'scdf.deploy.binder.kafka.brokerImage.repository=fakerepo1',
+        'scdf.deploy.binder.kafka.brokerImage.tag=faketag1',
+        'scdf.deploy.binder.kafka.zkImage.repository=fakerepo2',
+        'scdf.deploy.binder.kafka.zkImage.tag=faketag2'
+      ]
+    });
+
+    expect(result.success, result.stderr).toBeTruthy();
+    const yaml = result.stdout;
+
+    const kafkaZkSs = findStatefulSet(yaml, `${BINDER_KAFKA_NAME}-zk`);
+    expect(kafkaZkSs).toBeTruthy();
+
+    const kafkaZkSsContainer = statefulSetContainer(kafkaZkSs, `${BINDER_KAFKA_NAME}-zk`);
+    expect(kafkaZkSsContainer?.image).toBe('fakerepo2:faketag2');
+
+    const kafkaBrokerSs = findStatefulSet(yaml, `${BINDER_KAFKA_NAME}-broker`);
+    expect(kafkaBrokerSs).toBeTruthy();
+
+    const kafkaBrokerSsContainer = statefulSetContainer(kafkaBrokerSs, `${BINDER_KAFKA_NAME}-broker`);
+    expect(kafkaBrokerSsContainer?.image).toBe('fakerepo1:faketag1');
+  });
 });

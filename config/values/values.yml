@@ -19,6 +19,13 @@ scdf:
         password: c2VjcmV0
         #@schema/type any=True
         config:
+      kafka:
+        brokerImage:
+          repository: confluentinc/cp-kafka
+          tag: 5.5.2
+        zkImage:
+          repository: confluentinc/cp-zookeeper
+          tag: 5.5.2
     #! deploy database settings
     database:
       #! if database deployment is enabled

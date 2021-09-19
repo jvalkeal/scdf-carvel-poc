@@ -25,6 +25,10 @@ yaml document.
 - <<configuration-options-scdf.deploy.binder.rabbit.config>>
 - <<configuration-options-scdf.deploy.binder.rabbit.image.repository>>
 - <<configuration-options-scdf.deploy.binder.rabbit.image.tag>>
+- <<configuration-options-scdf.deploy.binder.kafka.brokerImage.repository>>
+- <<configuration-options-scdf.deploy.binder.kafka.brokerImage.tag>>
+- <<configuration-options-scdf.deploy.binder.kafka.zkImage.repository>>
+- <<configuration-options-scdf.deploy.binder.kafka.zkImage.tag>>
 - <<configuration-options-scdf.deploy.database.enabled>>
 - <<configuration-options-scdf.deploy.database.type>>
 - <<configuration-options-scdf.deploy.database.username>>
@@ -168,6 +172,46 @@ No
 String (base64 encoded)
    Default Value:::
 secret
+
+[[configuration-options-scdf.deploy.binder.kafka.brokerImage.repository]]`scdf.deploy.binder.kafka.brokerImage.repository`::
+  Description:::
+Kafka binder broker image repository
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+confluentinc/cp-kafka
+
+[[configuration-options-scdf.deploy.binder.kafka.brokerImage.tag]]`scdf.deploy.binder.kafka.brokerImage.tag`::
+  Description:::
+Kafka binder broker image tag
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+5.5.2
+
+[[configuration-options-scdf.deploy.binder.kafka.zkImage.repository]]`scdf.deploy.binder.kafka.zkImage.repository`::
+  Description:::
+Kafka binder zk image repository
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+confluentinc/cp-zookeeper
+
+[[configuration-options-scdf.deploy.binder.kafka.zkImage.tag]]`scdf.deploy.binder.kafka.zkImage.tag`::
+  Description:::
+Kafka binder zk image tag
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+5.5.2
 
 [[configuration-options-scdf.deploy.database.enabled]]`scdf.deploy.database.enabled`::
   Description:::
