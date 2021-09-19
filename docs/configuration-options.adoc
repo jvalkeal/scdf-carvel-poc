@@ -71,13 +71,15 @@ yaml document.
 - <<configuration-options-scdf.feature.monitoring.prometheus.enabled>>
 - <<configuration-options-scdf.feature.monitoring.prometheus.image.repository>>
 - <<configuration-options-scdf.feature.monitoring.prometheus.image.tag>>
+- <<configuration-options-scdf.feature.monitoring.prometheus.image.digest>>
 - <<configuration-options-scdf.feature.monitoring.grafana.enabled>>
 - <<configuration-options-scdf.feature.monitoring.grafana.image.repository>>
 - <<configuration-options-scdf.feature.monitoring.grafana.image.tag>>
+- <<configuration-options-scdf.feature.monitoring.grafana.image.digest>>
 - <<configuration-options-scdf.feature.monitoring.prometheusRsocketProxy.enabled>>
 - <<configuration-options-scdf.feature.monitoring.prometheusRsocketProxy.image.repository>>
 - <<configuration-options-scdf.feature.monitoring.prometheusRsocketProxy.image.tag>>
-
+- <<configuration-options-scdf.feature.monitoring.prometheusRsocketProxy.image.digest>>
 
 === Options
 
@@ -641,6 +643,16 @@ Strig
    Default Value:::
 v2.12.0
 
+[[configuration-options-scdf.feature.monitoring.prometheus.image.digest]]`scdf.feature.monitoring.prometheus.image.digest`::
+  Description:::
+Prometheus image digest.
+  Required:::
+No
+  Type:::
+Strig
+   Default Value:::
+None
+
 [[configuration-options-scdf.feature.monitoring.prometheusRsocketProxy.enabled]]`scdf.feature.monitoring.prometheusRsocketProxy.enabled`::
   Description:::
 Prometheus rsocket proxy profeature enabled.
@@ -671,6 +683,16 @@ Strig
    Default Value:::
 1.0.0
 
+[[configuration-options-scdf.feature.monitoring.prometheusRsocketProxy.image.digest]]`scdf.feature.monitoring.prometheusRsocketProxy.image.digest`::
+  Description:::
+Prometheus rsocket proxy image digest.
+  Required:::
+No
+  Type:::
+Strig
+   Default Value:::
+None
+
 [[configuration-options-scdf.feature.monitoring.grafana.enabled]]`scdf.feature.monitoring.grafana.enabled`::
   Description:::
 Grafana feature enabled.
@@ -694,6 +716,16 @@ springcloud/spring-cloud-dataflow-grafana-prometheus
 [[configuration-options-scdf.feature.monitoring.grafana.image.tag]]`scdf.feature.monitoring.grafana.image.tag`::
   Description:::
 Grafana image tag.
+  Required:::
+No
+  Type:::
+Strig
+   Default Value:::
+None
+
+[[configuration-options-scdf.feature.monitoring.grafana.image.digest]]`scdf.feature.monitoring.grafana.image.digest`::
+  Description:::
+Grafana image digest.
   Required:::
 No
   Type:::

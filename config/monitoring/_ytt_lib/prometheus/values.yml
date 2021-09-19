@@ -4,3 +4,4 @@ name: prometheus
 image:
   repository: springcloud/spring-cloud-dataflow-prometheus-local
   tag: ""
+  digest: ""
