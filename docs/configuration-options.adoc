@@ -25,10 +25,13 @@ yaml document.
 - <<configuration-options-scdf.deploy.binder.rabbit.config>>
 - <<configuration-options-scdf.deploy.binder.rabbit.image.repository>>
 - <<configuration-options-scdf.deploy.binder.rabbit.image.tag>>
+- <<configuration-options-scdf.deploy.binder.rabbit.image.digest>>
 - <<configuration-options-scdf.deploy.binder.kafka.brokerImage.repository>>
 - <<configuration-options-scdf.deploy.binder.kafka.brokerImage.tag>>
+- <<configuration-options-scdf.deploy.binder.kafka.brokerImage.digest>>
 - <<configuration-options-scdf.deploy.binder.kafka.zkImage.repository>>
 - <<configuration-options-scdf.deploy.binder.kafka.zkImage.tag>>
+- <<configuration-options-scdf.deploy.binder.kafka.zkImage.digest>>
 - <<configuration-options-scdf.deploy.database.enabled>>
 - <<configuration-options-scdf.deploy.database.type>>
 - <<configuration-options-scdf.deploy.database.postgres.username>>
@@ -155,6 +158,16 @@ String
    Default Value:::
 3.9.5
 
+[[configuration-options-scdf.deploy.binder.rabbit.image.digest]]`scdf.deploy.binder.rabbit.image.digest`::
+  Description:::
+Rabbit binder image digest
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+Empty
+
 [[configuration-options-scdf.deploy.binder.rabbit.username]]`scdf.deploy.binder.rabbit.username`::
   Description:::
 Defines username for a created rabbit.
@@ -195,6 +208,16 @@ String
    Default Value:::
 5.5.2
 
+[[configuration-options-scdf.deploy.binder.kafka.brokerImage.digest]]`scdf.deploy.binder.kafka.brokerImage.digest`::
+  Description:::
+Kafka binder broker image digest
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+Empty
+
 [[configuration-options-scdf.deploy.binder.kafka.zkImage.repository]]`scdf.deploy.binder.kafka.zkImage.repository`::
   Description:::
 Kafka binder zk image repository
@@ -214,6 +237,16 @@ No
 String
    Default Value:::
 5.5.2
+
+[[configuration-options-scdf.deploy.binder.kafka.zkImage.digest]]`scdf.deploy.binder.kafka.zkImage.digest`::
+  Description:::
+Kafka binder zk image digest
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+Empty
 
 [[configuration-options-scdf.deploy.database.enabled]]`scdf.deploy.database.enabled`::
   Description:::

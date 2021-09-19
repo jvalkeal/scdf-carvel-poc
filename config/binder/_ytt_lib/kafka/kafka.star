@@ -19,3 +19,23 @@ def kafka_broker_container_env():
   envs.extend([{"name": "KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR", "value": "1"}])
   return envs
 end
+
+def non_empty_string(value):
+  return type(value) == "string" and len(value) > 0
+end
+
+def broker_image():
+  if non_empty_string(data.values.brokerImage.digest):
+    return data.values.brokerImage.repository + "@" + data.values.brokerImage.digest
+  else:
+    return data.values.brokerImage.repository + ":" + data.values.brokerImage.tag
+  end
+end
+
+def zk_image():
+  if non_empty_string(data.values.zkImage.digest):
+    return data.values.zkImage.repository + "@" + data.values.zkImage.digest
+  else:
+    return data.values.zkImage.repository + ":" + data.values.zkImage.tag
+  end
+end

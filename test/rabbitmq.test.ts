@@ -89,6 +89,28 @@ describe('rabbitmq', () => {
     );
   });
 
+  it('should use image digest', async () => {
+    const result = await execYtt({
+      files: ['config/binder', 'config/values'],
+      dataValueYamls: [
+        'scdf.deploy.binder.type=rabbit',
+        'scdf.deploy.binder.rabbit.image.repository=fakerepo',
+        'scdf.deploy.binder.rabbit.image.tag=faketag',
+        'scdf.deploy.binder.rabbit.image.digest=fakedigest'
+      ]
+    });
+
+    expect(result.success, result.stderr).toBeTruthy();
+    const yaml = result.stdout;
+
+    const rabbitDeployment = findDeployment(yaml, BINDER_RABBIT_NAME);
+    expect(rabbitDeployment).toBeTruthy();
+    expect(rabbitDeployment?.spec?.replicas).toBe(1);
+    expect(rabbitDeployment?.spec?.template?.spec?.containers.find(c => c.name === BINDER_RABBIT_NAME)?.image).toEqual(
+      'fakerepo@fakedigest'
+    );
+  });
+
   it('should change user', async () => {
     const result = await execYtt({
       files: ['config/binder', 'config/values'],

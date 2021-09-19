@@ -1,7 +1,7 @@
 #@ load("kafka.star", "name")
 #@ load("kafka.star", "broker_name")
 #@ load("kafka.star", "kafka_broker_container_env")
-#@ load("kafka.lib.yml", "broker_image")
+#@ load("kafka.star", "broker_image")
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:

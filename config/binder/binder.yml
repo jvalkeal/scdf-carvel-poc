@@ -13,6 +13,7 @@ config: #@ data.values.scdf.deploy.binder.rabbit.config
 image:
   repository: #@ data.values.scdf.deploy.binder.rabbit.image.repository
   tag: #@ data.values.scdf.deploy.binder.rabbit.image.tag
+  digest: #@ data.values.scdf.deploy.binder.rabbit.image.digest
 username: #@ data.values.scdf.deploy.binder.rabbit.username
 password: #@ data.values.scdf.deploy.binder.rabbit.password
 #@ end
@@ -22,9 +23,11 @@ name: kafka
 brokerImage:
   repository: #@ data.values.scdf.deploy.binder.kafka.brokerImage.repository
   tag: #@ data.values.scdf.deploy.binder.kafka.brokerImage.tag
+  digest: #@ data.values.scdf.deploy.binder.kafka.brokerImage.digest
 zkImage:
   repository: #@ data.values.scdf.deploy.binder.kafka.zkImage.repository
   tag: #@ data.values.scdf.deploy.binder.kafka.zkImage.tag
+  digest: #@ data.values.scdf.deploy.binder.kafka.zkImage.digest
 #@ end
 
 #@ if binder_install_enabled():

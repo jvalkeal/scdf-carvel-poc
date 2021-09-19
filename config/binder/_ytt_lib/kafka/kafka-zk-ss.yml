@@ -2,7 +2,7 @@
 #@ load("kafka.star", "zk_name")
 #@ load("kafka.star", "zk_server_name")
 #@ load("kafka.star", "kafka_zk_container_env")
-#@ load("kafka.lib.yml", "zk_image")
+#@ load("kafka.star", "zk_image")
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
