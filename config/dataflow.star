@@ -3,12 +3,24 @@ load("binder/binder.star", "rabbitmq_enabled")
 load("binder/binder.star", "kafka_enabled")
 load("monitoring/monitoring.star", "grafana_enabled")
 
+def non_empty_string(value):
+  return type(value) == "string" and len(value) > 0
+end
+
 def dataflow_image():
-  return data.values.scdf.server.image.repository + ":" + data.values.scdf.server.image.tag
+  if non_empty_string(data.values.scdf.server.image.digest):
+    return data.values.scdf.server.image.repository + "@" + data.values.scdf.server.image.digest
+  else:
+    return data.values.scdf.server.image.repository + ":" + data.values.scdf.server.image.tag
+  end
 end
 
 def ctr_image():
-  return data.values.scdf.ctr.image.repository + ":" + data.values.scdf.ctr.image.tag
+  if non_empty_string(data.values.scdf.ctr.image.digest):
+    return data.values.scdf.ctr.image.repository + "@" + data.values.scdf.ctr.image.digest
+  else:
+    return data.values.scdf.ctr.image.repository + ":" + data.values.scdf.ctr.image.tag
+  end
 end
 
 def dataflow_container_env():

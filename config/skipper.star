@@ -24,8 +24,16 @@ def env_config():
   return env
 end
 
+def non_empty_string(value):
+  return type(value) == "string" and len(value) > 0
+end
+
 def skipper_image():
-  return data.values.scdf.skipper.image.repository + ":" + data.values.scdf.skipper.image.tag
+  if non_empty_string(data.values.scdf.skipper.image.digest):
+    return data.values.scdf.skipper.image.repository + "@" + data.values.scdf.skipper.image.digest
+  else:
+    return data.values.scdf.skipper.image.repository + ":" + data.values.scdf.skipper.image.tag
+  end
 end
 
 def skipper_container_env():

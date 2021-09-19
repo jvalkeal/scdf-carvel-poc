@@ -40,6 +40,7 @@ yaml document.
 - <<configuration-options-scdf.deploy.database.mysql.password>>
 - <<configuration-options-scdf.server.image.repository>>
 - <<configuration-options-scdf.server.image.tag>>
+- <<configuration-options-scdf.server.image.digest>>
 - <<configuration-options-scdf.server.database.url>>
 - <<configuration-options-scdf.server.database.username>>
 - <<configuration-options-scdf.server.database.password>>
@@ -50,8 +51,10 @@ yaml document.
 - <<configuration-options-scdf.server.metrics.dashboard.url>>
 - <<configuration-options-scdf.ctr.image.repository>>
 - <<configuration-options-scdf.ctr.image.tag>>
+- <<configuration-options-scdf.ctr.image.digest>>
 - <<configuration-options-scdf.skipper.image.repository>>
 - <<configuration-options-scdf.skipper.image.tag>>
+- <<configuration-options-scdf.skipper.image.digest>>
 - <<configuration-options-scdf.skipper.database.url>>
 - <<configuration-options-scdf.skipper.database.username>>
 - <<configuration-options-scdf.skipper.database.password>>
@@ -328,6 +331,16 @@ String
    Default Value:::
 None
 
+[[configuration-options-scdf.server.image.digest]]`scdf.server.image.digest`::
+  Description:::
+Server image digest
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
 [[configuration-options-scdf.server.database.url]]`scdf.server.database.url`::
   Description:::
 Datasource url setting
@@ -428,6 +441,16 @@ String
    Default Value:::
 None
 
+[[configuration-options-scdf.ctr.image.digest]]`scdf.ctr.image.digest`::
+  Description:::
+Composed Task Runner image digest
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
 [[configuration-options-scdf.skipper.image.repository]]`scdf.skipper.image.repository`::
   Description:::
 Skipper image repository
@@ -441,6 +464,16 @@ springcloud/spring-cloud-skipper-server
 [[configuration-options-scdf.skipper.image.tag]]`scdf.skipper.image.tag`::
   Description:::
 Skipper image tag
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.skipper.image.digest]]`scdf.skipper.image.digest`::
+  Description:::
+Skipper image digest
   Required:::
 No
   Type:::

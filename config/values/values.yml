@@ -51,6 +51,7 @@ scdf:
       repository: springcloud/spring-cloud-dataflow-server
       #! dataflow server image tag (required)
       tag: ""
+      digest: ""
     metrics:
       dashboard:
         url: ""
@@ -70,12 +71,14 @@ scdf:
       repository: springcloud/spring-cloud-dataflow-composed-task-runner
       #! ctr image tag (required)
       tag: ""
+      digest: ""
   skipper:
     image:
       #! skipper server image repository id
       repository: springcloud/spring-cloud-skipper-server
       #! skipper server image tag (required)
       tag: ""
+      digest: ""
     database:
       url: ""
       username: ""

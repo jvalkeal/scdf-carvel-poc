@@ -6,11 +6,57 @@ import {
   findConfigMap,
   findDeployment,
   deploymentContainer,
-  containerEnvValues
+  containerEnvValues,
+  containerEnvValue
 } from '../src/k8s-helper';
 import { SCDF_SERVER_NAME, SKIPPER_NAME, DEFAULT_REQUIRED_DATA_VALUES } from '../src/constants';
 
 describe('servers', () => {
+  it('should have tagged images', async () => {
+    const result = await execYtt({
+      files: ['config'],
+      dataValueYamls: [...DEFAULT_REQUIRED_DATA_VALUES]
+    });
+    expect(result.success).toBeTruthy();
+    const yaml = result.stdout;
+
+    const dataflowDeployment = findDeployment(yaml, SCDF_SERVER_NAME);
+    const dataflowContainer = deploymentContainer(dataflowDeployment, SCDF_SERVER_NAME);
+    expect(dataflowContainer?.image).toBe('springcloud/spring-cloud-dataflow-server:2.8.1');
+
+    const env = containerEnvValue(dataflowContainer, 'SPRING_CLOUD_DATAFLOW_TASK_COMPOSEDTASKRUNNER_URI');
+    expect(env).toBe('docker://springcloud/spring-cloud-dataflow-composed-task-runner:2.8.1');
+
+    const skipperDeployment = findDeployment(yaml, SKIPPER_NAME);
+    const skipperContainer = deploymentContainer(skipperDeployment, SKIPPER_NAME);
+    expect(skipperContainer?.image).toBe('springcloud/spring-cloud-skipper-server:2.7.1');
+  });
+
+  it('should have digested images', async () => {
+    const result = await execYtt({
+      files: ['config'],
+      dataValueYamls: [
+        'scdf.server.image.digest=fakedigest1',
+        'scdf.skipper.image.digest=fakedigest2',
+        'scdf.ctr.image.digest=fakedigest3'
+      ]
+    });
+
+    expect(result.success, result.stderr).toBeTruthy();
+    const yaml = result.stdout;
+
+    const dataflowDeployment = findDeployment(yaml, SCDF_SERVER_NAME);
+    const dataflowContainer = deploymentContainer(dataflowDeployment, SCDF_SERVER_NAME);
+    expect(dataflowContainer?.image).toBe('springcloud/spring-cloud-dataflow-server@fakedigest1');
+
+    const env = containerEnvValue(dataflowContainer, 'SPRING_CLOUD_DATAFLOW_TASK_COMPOSEDTASKRUNNER_URI');
+    expect(env).toBe('docker://springcloud/spring-cloud-dataflow-composed-task-runner@fakedigest3');
+
+    const skipperDeployment = findDeployment(yaml, SKIPPER_NAME);
+    const skipperContainer = deploymentContainer(skipperDeployment, SKIPPER_NAME);
+    expect(skipperContainer?.image).toBe('springcloud/spring-cloud-skipper-server@fakedigest2');
+  });
+
   it('no additional dataflow server config', async () => {
     const result = await execYtt({
       files: ['config'],
