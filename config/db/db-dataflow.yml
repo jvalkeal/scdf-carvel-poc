@@ -1,5 +1,5 @@
 #! Conditionally create configs for dataflow db by choosing different db types
-
+#@ load("@ytt:data", "data")
 #@ load("@ytt:library", "library")
 #@ load("@ytt:overlay", "overlay")
 #@ load("@ytt:template", "template")
@@ -15,12 +15,20 @@
 name: db-dataflow
 username: #@ db_postgres_username()
 password: #@ db_postgres_password()
+image:
+  repository: #@ data.values.scdf.deploy.database.postgres.image.repository
+  tag: #@ data.values.scdf.deploy.database.postgres.image.tag
+  digest: #@ data.values.scdf.deploy.database.postgres.image.digest
 #@ end
 
 #@ def db_mysql_values():
 name: db-dataflow
 username: #@ db_mysql_username()
 password: #@ db_mysql_password()
+image:
+  repository: #@ data.values.scdf.deploy.database.mysql.image.repository
+  tag: #@ data.values.scdf.deploy.database.mysql.image.tag
+  digest: #@ data.values.scdf.deploy.database.mysql.image.digest
 #@ end
 
 #@ if mysql_enabled():

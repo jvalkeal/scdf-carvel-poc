@@ -23,7 +23,7 @@ describe('databases', () => {
     const postgresSkipperDeployment = findDeployment(yaml, DB_SKIPPER_NAME);
     expect(postgresSkipperDeployment).toBeTruthy();
     const postgresSkipperContainer = deploymentContainer(postgresSkipperDeployment, DB_POSTGRES_NAME);
-    expect(postgresSkipperContainer?.image).toContain('postgres');
+    expect(postgresSkipperContainer?.image).toBe('postgres:10');
     const postgresSkipperSecret = findSecret(yaml, DB_SKIPPER_NAME);
     expect(postgresSkipperSecret).toBeTruthy();
     const postgresSkipperSecretData = postgresSkipperSecret?.data || {};
@@ -33,12 +33,31 @@ describe('databases', () => {
     const postgresDataflowDeployment = findDeployment(yaml, DB_DATAFLOW_NAME);
     expect(postgresDataflowDeployment).toBeTruthy();
     const postgresDataflowContainer = deploymentContainer(postgresDataflowDeployment, DB_POSTGRES_NAME);
-    expect(postgresDataflowContainer?.image).toContain('postgres');
+    expect(postgresDataflowContainer?.image).toBe('postgres:10');
     const postgresDataflowSecret = findSecret(yaml, DB_SKIPPER_NAME);
     expect(postgresDataflowSecret).toBeTruthy();
     const postgresDataflowSecretData = postgresDataflowSecret?.data || {};
     expect(postgresDataflowSecretData['postgres-user']).toBe('ZGF0YWZsb3c=');
     expect(postgresDataflowSecretData['postgres-password']).toBe('c2VjcmV0');
+  });
+
+  it('should use postgres digest images', async () => {
+    const result = await execYtt({
+      files: ['config'],
+      dataValues: [...DEFAULT_REQUIRED_DATA_VALUES, 'scdf.deploy.database.postgres.image.digest=fakedigest']
+    });
+    expect(result.success).toBeTruthy();
+    const yaml = result.stdout;
+
+    const postgresSkipperDeployment = findDeployment(yaml, DB_SKIPPER_NAME);
+    expect(postgresSkipperDeployment).toBeTruthy();
+    const postgresSkipperContainer = deploymentContainer(postgresSkipperDeployment, DB_POSTGRES_NAME);
+    expect(postgresSkipperContainer?.image).toBe('postgres@fakedigest');
+
+    const postgresDataflowDeployment = findDeployment(yaml, DB_DATAFLOW_NAME);
+    expect(postgresDataflowDeployment).toBeTruthy();
+    const postgresDataflowContainer = deploymentContainer(postgresDataflowDeployment, DB_POSTGRES_NAME);
+    expect(postgresDataflowContainer?.image).toBe('postgres@fakedigest');
   });
 
   it('should deploy mysql', async () => {
@@ -68,6 +87,29 @@ describe('databases', () => {
     const mysqlDataflowSecretData = mysqlDataflowSecret?.data || {};
     expect(mysqlDataflowSecretData['mysql-user']).toBe('ZGF0YWZsb3c=');
     expect(mysqlDataflowSecretData['mysql-root-password']).toBe('c2VjcmV0');
+  });
+
+  it('should use mysql digest images', async () => {
+    const result = await execYtt({
+      files: ['config'],
+      dataValues: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
+        'scdf.deploy.database.type=mysql',
+        'scdf.deploy.database.mysql.image.digest=fakedigest'
+      ]
+    });
+    expect(result.success).toBeTruthy();
+    const yaml = result.stdout;
+
+    const mysqlSkipperDeployment = findDeployment(yaml, DB_SKIPPER_NAME);
+    expect(mysqlSkipperDeployment).toBeTruthy();
+    const mysqlSkipperContainer = deploymentContainer(mysqlSkipperDeployment, DB_MYSQL_NAME);
+    expect(mysqlSkipperContainer?.image).toBe('mysql@fakedigest');
+
+    const mysqlDataflowDeployment = findDeployment(yaml, DB_DATAFLOW_NAME);
+    expect(mysqlDataflowDeployment).toBeTruthy();
+    const mysqlDataflowContainer = deploymentContainer(mysqlDataflowDeployment, DB_MYSQL_NAME);
+    expect(mysqlDataflowContainer?.image).toBe('mysql@fakedigest');
   });
 
   it('should deploy postgres', async () => {

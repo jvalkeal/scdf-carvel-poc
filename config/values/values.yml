@@ -40,11 +40,19 @@ scdf:
         username: ZGF0YWZsb3c=
         #! database password (default to secret)
         password: c2VjcmV0
+        image:
+          repository: postgres
+          tag: "10"
+          digest: ""
       mysql:
         #! database username (defaults to dataflow)
         username: ZGF0YWZsb3c=
         #! database password (default to secret)
         password: c2VjcmV0
+        image:
+          repository: mysql
+          tag: "5.7"
+          digest: ""
   server:
     image:
       #! dataflow server image repository id

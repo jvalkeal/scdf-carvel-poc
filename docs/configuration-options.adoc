@@ -36,8 +36,14 @@ yaml document.
 - <<configuration-options-scdf.deploy.database.type>>
 - <<configuration-options-scdf.deploy.database.postgres.username>>
 - <<configuration-options-scdf.deploy.database.postgres.password>>
+- <<configuration-options-scdf.deploy.database.postgres.image.repository>>
+- <<configuration-options-scdf.deploy.database.postgres.image.tag>>
+- <<configuration-options-scdf.deploy.database.postgres.image.digest>>
 - <<configuration-options-scdf.deploy.database.mysql.username>>
 - <<configuration-options-scdf.deploy.database.mysql.password>>
+- <<configuration-options-scdf.deploy.database.mysql.image.repository>>
+- <<configuration-options-scdf.deploy.database.mysql.image.tag>>
+- <<configuration-options-scdf.deploy.database.mysql.image.digest>>
 - <<configuration-options-scdf.server.image.repository>>
 - <<configuration-options-scdf.server.image.tag>>
 - <<configuration-options-scdf.server.image.digest>>
@@ -293,6 +299,36 @@ String (base64 encoded)
    Default Value:::
 secret
 
+[[configuration-options-scdf.deploy.database.postgres.image.repository]]`scdf.deploy.database.postgres.image.repository`::
+  Description:::
+Postgres database image repository
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+postgres
+
+[[configuration-options-scdf.deploy.database.postgres.image.tag]]`scdf.deploy.database.postgres.image.tag`::
+  Description:::
+Postgres database image tag
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+10
+
+[[configuration-options-scdf.deploy.database.postgres.image.digest]]`scdf.deploy.database.postgres.image.digest`::
+  Description:::
+Postgres database image digest
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+Empty
+
 [[configuration-options-scdf.deploy.database.mysql.username]]`scdf.deploy.database.mysql.username`::
   Description:::
 Defines username for a created database.
@@ -312,6 +348,36 @@ No
 String (base64 encoded)
    Default Value:::
 secret
+
+[[configuration-options-scdf.deploy.database.mysql.image.repository]]`scdf.deploy.database.mysql.image.repository`::
+  Description:::
+Mysql database image repository
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+mysql
+
+[[configuration-options-scdf.deploy.database.mysql.image.tag]]`scdf.deploy.database.mysql.image.tag`::
+  Description:::
+Mysql database image tag
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+5.7
+
+[[configuration-options-scdf.deploy.database.mysql.image.digest]]`scdf.deploy.database.mysql.image.digest`::
+  Description:::
+Mysql database image digest
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+Empty
 
 [[configuration-options-scdf.server.image.repository]]`scdf.server.image.repository`::
   Description:::

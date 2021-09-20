@@ -1,5 +1,9 @@
-#@data/values
+#@data/values-schema
 ---
-name:
-username:
-password:
+name: postgres
+username: ""
+password: ""
+image:
+  repository: postgres
+  tag: "10"
+  digest: ""
