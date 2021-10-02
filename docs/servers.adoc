@@ -1,0 +1,41 @@
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+:scdf-server-config: link:configuration-options.adoc#configuration-options-scdf.server.config[scdf.server.config]
+:scdf-skipper-config: link:configuration-options.adoc#configuration-options-scdf.skipper.config[scdf.skipper.config]
+endif::[]
+ifndef::env-github[]
+:scdf-server-config: <<configuration-options-scdf.server.config>>
+:scdf-skipper-config: <<configuration-options-scdf.skipper.config>>
+endif::[]
+
+[[servers]]
+== Servers
+Both _Dataflow_ and _Skipper_ servers contain same set of base configuration options in
+a different key space to drive needed settings to configure server settings.
+
+=== Dataflow
+Define additional server config using {scdf-server-config}.
+
+[source, yaml]
+----
+scdf:
+  server:
+    config:
+      foo: bar
+----
+
+
+=== Skipper
+Define additional server config using {scdf-skipper-config}.
+
+[source, yaml]
+----
+scdf:
+  server:
+    config:
+      foo: bar
+----

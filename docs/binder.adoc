@@ -20,11 +20,9 @@ endif::[]
 
 [[binder]]
 == Binder
-
 On default a binder is deployed as a service for both skipper and dataflow
 servers. Servers are configured to use these binder services.
 
 === Configure External Binder
-
 Disable binder deployment {scdf-deploy-binder-enabled} and define a custom
 settings for binder under _scdf.binder_.

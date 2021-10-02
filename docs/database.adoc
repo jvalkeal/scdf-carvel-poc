@@ -16,11 +16,9 @@ endif::[]
 
 [[database]]
 == Database
-
 On default a database is deployed as a service for both skipper and dataflow
 servers. Servers are configured to use these database services.
 
 === Configure External Database
-
 Disable database deployment {scdf-deploy-database-enabled} and define a custom
 datasource for server {scdf-server-database-url} and skipper {scdf-skipper-database-url}.

@@ -16,6 +16,8 @@ ifdef::env-github[]
 
 link:configuration-options.adoc[Configuration Options]
 
+link:servers.adoc[Servers]
+
 link:binder.adoc[Binder]
 
 link:database.adoc[Database]
