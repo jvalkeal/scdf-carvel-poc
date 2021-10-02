@@ -6,6 +6,7 @@ components:
   schemas:
     scdfPackage:
       type: object
+      title: scdf values schema
       description: Schema for carvel package
       properties:
         scdf:
