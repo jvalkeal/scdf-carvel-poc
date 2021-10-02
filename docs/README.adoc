@@ -23,3 +23,25 @@ link:binder.adoc[Binder]
 link:database.adoc[Database]
 
 endif::[]
+
+Main objectives for a https://carvel.dev[Carvel] integration with dataflow is to provide:
+
+* Automatically configure whole environment based on user choices
+* Easy deployment without requiring existing external _binder_ or _database_
+** Can deploy either rabbit or kafka as a binder
+** Can deploy either mysql or postgres as a database
+* Plain k8s templating using https://carvel.dev/ytt[ytt]
+** Drive templating with template options
+** Work with _kubectl_ without need _kapp_ or _kapp-controller_
+* Package management using https://carvel.dev/kapp-controller[kapp-controller]
+** Publish packages for dataflow versions
+** Drive package deployment with given package options
+* Step away if user configures external _binder_ or _database_
+
+[NOTE]
+====
+While templating can deploy _binder_ and _database_ automatially it is not supported
+production configuration and should be taken as a simple install as a trial to get
+things up and running. It's highly advised to use proper deployment of _binder_ and
+_database_ as automatic deployment and configuration of those are limited.
+====

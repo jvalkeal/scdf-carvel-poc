@@ -14,11 +14,11 @@ endif::[]
 
 This is a POC repo to create full https://carvel.dev[carvel dance] with scdf.
 
-- Template k8s deployment files with `ytt`
-- Create packages and package repos for `kapp-controller`.
-- Have examples to:
-  - Manage deployment with package and package repos
-  - Manually deploy with `kapp`
+* Template k8s deployment files with `ytt`
+* Create packages and package repos for `kapp-controller`.
+* Have examples to:
+** Manage deployment with package and package repos
+** Manually deploy with `kapp`
 
 [NOTE]
 ====
@@ -204,7 +204,7 @@ imgpkg pull -b ghcr.io/jvalkeal/springcloud/scdf-repo:snapshot -o scdf-repo-snap
 imgpkg pull -b ghcr.io/jvalkeal/springcloud/scdf-package:2.9.0-SNAPSHOT -o scdf-package-snapshot
 ----
 
-Repo bundles are relocated into `jvalkeal/airgapped`: 
+Repo bundles are relocated into `jvalkeal/airgapped`:
 
 [source, bash]
 ----
