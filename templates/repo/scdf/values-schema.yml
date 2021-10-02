@@ -22,11 +22,15 @@ components:
                   properties:
                     enabled:
                       type: boolean
+                      default: true
+                      description: Enables binder deployment
                     type:
                       type: string
+                      default: rabbit
                       enum:
                         - rabbit
                         - kafka
+                      description: Defines a binder type if deployment is enabled, either rabbit or kafka
                     rabbit:
                       type: object
                       properties:
@@ -143,6 +147,8 @@ components:
                       properties:
                         enabled:
                           type: boolean
+                          default: false
+                          description: Enables prometheus rsocket proxy feature
                     grafana:
                       type: object
                       properties:

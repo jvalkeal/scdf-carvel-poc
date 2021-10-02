@@ -101,7 +101,7 @@ minikube
 
 [[configuration-options-scdf.deploy.binder.enabled]]`scdf.deploy.binder.enabled`::
   Description:::
-Defines if binder is automatically deployed.
+Enables binder deployment.
   Required:::
 No
   Type:::
@@ -111,7 +111,7 @@ true
 
 [[configuration-options-scdf.deploy.binder.type]]`scdf.deploy.binder.type`::
   Description:::
-Defines a binder type which is deployed and configured to be used with dataflow and skipper.
+Defines a binder type if deployment is enabled.
   Required:::
 No
   Type:::
@@ -721,7 +721,7 @@ None
 
 [[configuration-options-scdf.feature.monitoring.prometheusRsocketProxy.enabled]]`scdf.feature.monitoring.prometheusRsocketProxy.enabled`::
   Description:::
-Prometheus rsocket proxy profeature enabled.
+Enables prometheus rsocket proxy feature.
   Required:::
 No
   Type:::
