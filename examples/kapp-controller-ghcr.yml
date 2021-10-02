@@ -1099,6 +1099,9 @@ spec:
                 type: array
               friendlyDescription:
                 type: string
+              lastAttemptedVersion:
+                description: LastAttemptedVersion specifies what version was last attempted to be installed. It does _not_ indicate it was successfully installed.
+                type: string
               observedGeneration:
                 format: int64
                 type: integer
@@ -1369,18 +1372,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kapp-controller.carvel.dev/version: v0.24.0
+    kapp-controller.carvel.dev/version: v0.25.0
     kbld.k14s.io/images: |
       - Metas:
         - Path: /Users/dhelfand/Documents/GitHub/carvel-kapp-controller
           Type: local
         - Dirty: false
           RemoteURL: https://github.com/vmware-tanzu/carvel-kapp-controller.git
-          SHA: a9f13d0c02645f9fb4b9699f993aa234f44f14f4
+          SHA: 151ba7fa076226322a71e12772423bace9239e18
           Tags:
-          - v0.24.0
+          - v0.25.0
           Type: git
-        URL: index.docker.io/k14s/kapp-controller@sha256:ee05e345582e51a02249a24adf67c53f65a5fcc404bd41e74cd22704674f211f
+        URL: ghcr.io/jvalkeal/k14s/kapp-controller:sha256-5938c749ac0833877f88a120f36a9878ec848c6cf864c8f60f599fddb2177044.imgpkg
   name: kapp-controller
   namespace: kapp-controller
 spec:
@@ -1406,7 +1409,7 @@ spec:
               fieldPath: metadata.namespace
         - name: KAPPCTRL_API_PORT
           value: "10350"
-        image: ghcr.io/jvalkeal/k14s/kapp-controller:sha256-ee05e345582e51a02249a24adf67c53f65a5fcc404bd41e74cd22704674f211f.imgpkg
+        image: index.docker.io/k14s/kapp-controller@sha256:5938c749ac0833877f88a120f36a9878ec848c6cf864c8f60f599fddb2177044
         name: kapp-controller
         ports:
         - containerPort: 10350
