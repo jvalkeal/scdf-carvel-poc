@@ -146,6 +146,8 @@ components:
                       properties:
                         enabled:
                           type: boolean
+                          default: false
+                          description: Enables grafana feature
     scdfYtt:
       type: object
       description: Extension to scdfPackage schema adding properties for plain ytt

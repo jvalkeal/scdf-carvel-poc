@@ -761,7 +761,7 @@ None
 
 [[configuration-options-scdf.feature.monitoring.grafana.enabled]]`scdf.feature.monitoring.grafana.enabled`::
   Description:::
-Grafana feature enabled.
+Enables grafana feature.
   Required:::
 No
   Type:::
