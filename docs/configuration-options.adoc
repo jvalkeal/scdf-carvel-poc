@@ -261,7 +261,7 @@ Empty
 
 [[configuration-options-scdf.deploy.database.enabled]]`scdf.deploy.database.enabled`::
   Description:::
-Defines if a database is deployed.
+Enables database deployment.
   Required:::
 No
   Type:::
@@ -271,7 +271,7 @@ true
 
 [[configuration-options-scdf.deploy.database.type]]`scdf.deploy.database.type`::
   Description:::
-Defines a database type which is deployed and configured to be used with dataflow and skipper.
+Defines database type if deployment is enabled, either mysql or postgres.
   Required:::
 No
   Type:::
