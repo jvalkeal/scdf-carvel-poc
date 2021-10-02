@@ -41,6 +41,7 @@ components:
                       properties:
                         config:
                           type: string
+                          description: Defines keys and values used in a rabbit's configuration file mounted into a container as yml
                         username:
                           type: string
                           default: dataflow
@@ -109,6 +110,7 @@ components:
                       description: Datasource testOnBorrow setting
                 config:
                   type: string
+                  description: Raw server config as yml
                 metrics:
                   type: object
                   properties:
@@ -142,6 +144,7 @@ components:
                       description: Datasource testOnBorrow setting
                 config:
                   type: string
+                  description: Raw server config as yml
             binder:
               type: object
               properties:
