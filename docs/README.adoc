@@ -26,6 +26,9 @@ endif::[]
 
 Main objectives for a https://carvel.dev[Carvel] integration with dataflow is to provide:
 
+* We want to have exactly one common way to generate k8s resources
+** Can generate set of samples automatically
+** Can be used for all other use cases when deploying to k8s
 * Automatically configure whole environment based on user choices
 * Easy deployment without requiring existing external _binder_ or _database_
 ** Can deploy either rabbit or kafka as a binder
