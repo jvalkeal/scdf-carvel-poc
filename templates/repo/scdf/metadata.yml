@@ -2,7 +2,7 @@
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: PackageMetadata
 metadata:
-  name: #@ data.values.package_repository.name
+  name: #@ data.values.package_repository.packageName
   namespace: scdf
 spec:
   displayName: "scdf"
