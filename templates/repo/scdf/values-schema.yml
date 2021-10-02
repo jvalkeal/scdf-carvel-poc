@@ -38,8 +38,12 @@ components:
                           type: string
                         username:
                           type: string
+                          default: dataflow
+                          description: Username for deployed rabbit as base64 encoded value
                         password:
                           type: string
+                          default: secret
+                          description: Password for deployed rabbit as base64 encoded value
                 database:
                   type: object
                   properties:
@@ -59,15 +63,23 @@ components:
                       properties:
                         username:
                           type: string
+                          default: dataflow
+                          description: Username for deployed database as base64 encoded value
                         password:
                           type: string
+                          default: secret
+                          description: Password for deployed database as base64 encoded value
                     mysql:
                       type: object
                       properties:
                         username:
                           type: string
+                          default: dataflow
+                          description: Username for deployed database as base64 encoded value
                         password:
                           type: string
+                          default: secret
+                          description: Password for deployed database as base64 encoded value
             server:
               type: object
               properties:
@@ -76,14 +88,20 @@ components:
                   properties:
                     username:
                       type: string
+                      description: Datasource username setting
                     password:
                       type: string
+                      description: Datasource password setting
                     driverClassName:
                       type: string
+                      description: Datasource driverClassName setting
                     validationQuery:
                       type: string
+                      description: Datasource validationQuery setting
                     testOnBorrow:
                       type: boolean
+                      default: true
+                      description: Datasource testOnBorrow setting
                 config:
                   type: string
                 metrics:
@@ -102,14 +120,20 @@ components:
                   properties:
                     username:
                       type: string
+                      description: Datasource username setting
                     password:
                       type: string
+                      description: Datasource password setting
                     driverClassName:
                       type: string
+                      description: Datasource driverClassName setting
                     validationQuery:
                       type: string
+                      description: Datasource validationQuery setting
                     testOnBorrow:
                       type: boolean
+                      default: true
+                      description: Datasource testOnBorrow setting
                 config:
                   type: string
             binder:

@@ -181,7 +181,7 @@ Empty
 
 [[configuration-options-scdf.deploy.binder.rabbit.username]]`scdf.deploy.binder.rabbit.username`::
   Description:::
-Defines username for a created rabbit.
+Username for deployed rabbit as base64 encoded value.
   Required:::
 No
   Type:::
@@ -191,7 +191,7 @@ dataflow
 
 [[configuration-options-scdf.deploy.binder.rabbit.password]]`scdf.deploy.binder.rabbit.password`::
   Description:::
-Defines password for a created rabbit.
+Password for deployed rabbit as base64 encoded value.
   Required:::
 No
   Type:::
@@ -281,7 +281,7 @@ postgres
 
 [[configuration-options-scdf.deploy.database.postgres.username]]`scdf.deploy.database.postgres.username`::
   Description:::
-Defines username for a created database.
+Username for deployed database as base64 encoded value.
   Required:::
 No
   Type:::
@@ -291,7 +291,7 @@ dataflow
 
 [[configuration-options-scdf.deploy.database.postgres.password]]`scdf.deploy.database.postgres.password`::
   Description:::
-Defines password for a created database.
+Username for deployed database as base64 encoded value.
   Required:::
 No
   Type:::
@@ -331,7 +331,7 @@ Empty
 
 [[configuration-options-scdf.deploy.database.mysql.username]]`scdf.deploy.database.mysql.username`::
   Description:::
-Defines username for a created database.
+Username for deployed database as base64 encoded value.
   Required:::
 No
   Type:::
@@ -341,7 +341,7 @@ dataflow
 
 [[configuration-options-scdf.deploy.database.mysql.password]]`scdf.deploy.database.mysql.password`::
   Description:::
-Defines password for a created database.
+Password for deployed database as base64 encoded value.
   Required:::
 No
   Type:::
@@ -421,7 +421,7 @@ None
 
 [[configuration-options-scdf.server.database.username]]`scdf.server.database.username`::
   Description:::
-Datasource username setting
+Datasource username setting.
   Required:::
 No
   Type:::
@@ -431,7 +431,7 @@ None
 
 [[configuration-options-scdf.server.database.password]]`scdf.server.database.password`::
   Description:::
-Datasource password setting
+Datasource password setting.
   Required:::
 No
   Type:::
@@ -441,7 +441,7 @@ None
 
 [[configuration-options-scdf.server.database.driverClassName]]`scdf.server.database.driverClassName`::
   Description:::
-Datasource driverClassName setting
+Datasource driverClassName setting.
   Required:::
 No
   Type:::
@@ -451,7 +451,7 @@ None
 
 [[configuration-options-scdf.server.database.validationQuery]]`scdf.server.database.validationQuery`::
   Description:::
-Datasource validationQuery setting
+Datasource validationQuery setting.
   Required:::
 No
   Type:::
@@ -461,7 +461,7 @@ None
 
 [[configuration-options-scdf.server.database.testOnBorrow]]`scdf.server.database.testOnBorrow`::
   Description:::
-Datasource testOnBorrow setting
+Datasource testOnBorrow setting.
   Required:::
 No
   Type:::
@@ -551,7 +551,7 @@ None
 
 [[configuration-options-scdf.skipper.database.url]]`scdf.skipper.database.url`::
   Description:::
-Datasource url setting
+Datasource url setting.
   Required:::
 No
   Type:::
@@ -561,7 +561,7 @@ None
 
 [[configuration-options-scdf.skipper.database.username]]`scdf.skipper.database.username`::
   Description:::
-Datasource username setting
+Datasource username setting.
   Required:::
 No
   Type:::
@@ -571,7 +571,7 @@ None
 
 [[configuration-options-scdf.skipper.database.password]]`scdf.skipper.database.password`::
   Description:::
-Datasource password setting
+Datasource password setting.
   Required:::
 No
   Type:::
@@ -581,7 +581,7 @@ None
 
 [[configuration-options-scdf.skipper.database.driverClassName]]`scdf.skipper.database.driverClassName`::
   Description:::
-Datasource driverClassName setting
+Datasource driverClassName setting.
   Required:::
 No
   Type:::
@@ -591,7 +591,7 @@ None
 
 [[configuration-options-scdf.skipper.database.validationQuery]]`scdf.skipper.database.validationQuery`::
   Description:::
-Datasource validationQuery setting
+Datasource validationQuery setting.
   Required:::
 No
   Type:::
@@ -601,7 +601,7 @@ None
 
 [[configuration-options-scdf.skipper.database.testOnBorrow]]`scdf.skipper.database.testOnBorrow`::
   Description:::
-Datasource testOnBorrow setting
+Datasource testOnBorrow setting.
   Required:::
 No
   Type:::
