@@ -681,7 +681,7 @@ None
 
 [[configuration-options-scdf.feature.monitoring.prometheus.enabled]]`scdf.feature.monitoring.prometheus.enabled`::
   Description:::
-Prometheus feature enabled.
+Enables prometheus feature.
   Required:::
 No
   Type:::

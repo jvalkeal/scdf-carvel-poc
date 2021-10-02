@@ -136,6 +136,8 @@ components:
                       properties:
                         enabled:
                           type: boolean
+                          default: false
+                          description: Enables prometheus feature
                     prometheusRsocketProxy:
                       type: object
                       properties:
