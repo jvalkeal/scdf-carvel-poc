@@ -91,7 +91,7 @@ yaml document.
 
 [[configuration-options-scdf.deploy.mode]]`scdf.deploy.mode`::
   Description:::
-To ease deployment to minikube using nodeport
+Defines deployment mode, either minikube or cloud.
   Required:::
 No
   Type:::
@@ -481,7 +481,7 @@ None
 
 [[configuration-options-scdf.server.metrics.dashboard.url]]`scdf.server.metrics.dashboard.url`::
   Description:::
-Metrics dashboard url for UI
+Metrics dashboard url for UI.
   Required:::
 No
   Type:::

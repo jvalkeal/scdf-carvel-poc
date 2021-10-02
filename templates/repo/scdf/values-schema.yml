@@ -17,6 +17,11 @@ components:
               properties:
                 mode:
                   type: string
+                  default: minikube
+                  enum:
+                    - minikube
+                    - cloud
+                  description: Defines deployment mode, either minikube or cloud
                 binder:
                   type: object
                   properties:
@@ -112,6 +117,7 @@ components:
                       properties:
                         url:
                           type: string
+                          description: Metrics dashboard url for UI
             skipper:
               type: object
               properties:
