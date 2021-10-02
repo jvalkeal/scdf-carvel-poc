@@ -4,28 +4,62 @@ info:
   title: Openapi schema for scdf
 components:
   schemas:
-    scdf:
+    scdfPackage:
       type: object
-      description: SCDF configuration
+      description: Schema for carvel package
       properties:
-        deploy:
+        scdf:
           type: object
-          title: scdf.deploy
-          description: Deploy configuration
+          properties:
+            deploy:
+              type: object
+              properties:
+                mode:
+                  type: string
+                binder:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    type:
+                      type: string
+                      enum:
+                        - rabbit
+                        - kafka
+                    rabbit:
+                      type: object
+                      properties:
+                        config:
+                          type: string
+                        username:
+                          type: string
+                        password:
+                          type: string
+                database:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+    scdfYtt:
+      type: object
+      description: Extension to scdfPackage schema adding properties for plain ytt
+      properties:
+        scdf:
+          type: object
           properties:
             binder:
               type: object
-              description: Deploy Binder configuration
               properties:
-                enabled:
-                  type: boolean
-                  description: If binder deploy is enabled
-                  default: true
-                type:
-                  type: string
-                  description: Binder type
-                  enum:
-                    - rabbit
-                    - kafka
-                  default: rabbit
+                rabbit:
+                  type: object
+                  properties:
+                    image:
+                      type: object
+                      properties:
+                        repository:
+                          type: string
+                        tag:
+                          type: string
+                        digest:
+                          type: string
 paths: {}
