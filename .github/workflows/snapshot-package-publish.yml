@@ -52,11 +52,13 @@ jobs:
           --data-value-yaml project.version=$DATAFLOW_VERSION \
           --data-value-yaml spring.cloud.skipper.version=$SKIPPER_VERSION \
           --file-mark 'config1.yml:type=text-template' \
-          --file-mark 'config2.yml:type=text-template'
+          --file-mark 'config2.yml:type=text-template' \
+          --file-mark 'fakeimages.yml:type=text-template'
         vendir sync --chdir templates/generated/package/scdf/bundle
         kbld \
           -f <(ytt -f templates/generated/package/scdf/bundle -f templates/generated/values/config1.yml) \
           -f <(ytt -f templates/generated/package/scdf/bundle -f templates/generated/values/config2.yml) \
+          -f <(ytt -f templates/generated/package/scdf/bundle -f templates/generated/values/config2.yml -f templates/generated/values/fakeimages.yml) \
           --imgpkg-lock-output templates/generated/package/scdf/bundle/.imgpkg/images.yml
         imgpkg push --bundle ghcr.io/jvalkeal/springcloud/scdf-package:$RTAG --file templates/generated/package/scdf/bundle
         docker pull ghcr.io/jvalkeal/springcloud/scdf-package:$RTAG
