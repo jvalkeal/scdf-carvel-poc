@@ -68,8 +68,10 @@ yaml document.
 - <<configuration-options-scdf.skipper.database.testOnBorrow>>
 - <<configuration-options-scdf.skipper.database.validationQuery>>
 - <<configuration-options-scdf.skipper.config>>
-- <<configuration-options-scdf.binder.kafka.host>>
-- <<configuration-options-scdf.binder.kafka.port>>
+- <<configuration-options-scdf.binder.kafka.broker.host>>
+- <<configuration-options-scdf.binder.kafka.broker.port>>
+- <<configuration-options-scdf.binder.kafka.zk.host>>
+- <<configuration-options-scdf.binder.kafka.zk.port>>
 - <<configuration-options-scdf.binder.rabbit.host>>
 - <<configuration-options-scdf.binder.rabbit.port>>
 - <<configuration-options-scdf.binder.rabbit.username>>
@@ -619,9 +621,9 @@ String(yml)
    Default Value:::
 None
 
-[[configuration-options-scdf.binder.kafka.host]]`scdf.binder.kafka.host`::
+[[configuration-options-scdf.binder.kafka.broker.host]]`scdf.binder.kafka.broker.host`::
   Description:::
-External kafka host.
+External kafka broker host.
   Required:::
 No
   Type:::
@@ -629,9 +631,29 @@ String
    Default Value:::
 None
 
-[[configuration-options-scdf.binder.kafka.port]]`scdf.binder.kafka.port`::
+[[configuration-options-scdf.binder.kafka.broker.port]]`scdf.binder.kafka.broker.port`::
   Description:::
-External kafka port.
+External kafka broker port.
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.binder.kafka.zk.host]]`scdf.binder.kafka.zk.host`::
+  Description:::
+External kafka zk host.
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+None
+
+[[configuration-options-scdf.binder.kafka.zk.port]]`scdf.binder.kafka.zk.port`::
+  Description:::
+External kafka zk port.
   Required:::
 No
   Type:::

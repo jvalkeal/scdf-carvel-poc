@@ -64,8 +64,10 @@ describe('servers', () => {
         ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
-        'scdf.binder.kafka.host=localhost',
-        'scdf.binder.kafka.port=1234'
+        'scdf.binder.kafka.broker.host=localhost',
+        'scdf.binder.kafka.broker.port=1234',
+        'scdf.binder.kafka.zk.host=localhost',
+        'scdf.binder.kafka.zk.port=1235'
       ]
     });
     expect(result.success).toBeTruthy();
@@ -83,8 +85,10 @@ describe('servers', () => {
         ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
-        'scdf.binder.kafka.host=localhost',
-        'scdf.binder.kafka.port=1234',
+        'scdf.binder.kafka.broker.host=localhost',
+        'scdf.binder.kafka.broker.port=1234',
+        'scdf.binder.kafka.zk.host=localhost',
+        'scdf.binder.kafka.zk.port=1235',
         'scdf.server.config.foo=bar',
         'scdf.skipper.config.foo=bar'
       ]
@@ -116,8 +120,10 @@ describe('servers', () => {
         ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
-        'scdf.binder.kafka.host=localhost',
-        'scdf.binder.kafka.port=1234',
+        'scdf.binder.kafka.broker.host=localhost',
+        'scdf.binder.kafka.broker.port=1234',
+        'scdf.binder.kafka.zk.host=localhost',
+        'scdf.binder.kafka.zk.port=1235',
         'scdf.server.config.foo=bar'
       ]
     });
@@ -158,8 +164,10 @@ describe('servers', () => {
         ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
-        'scdf.binder.kafka.host=localhost',
-        'scdf.binder.kafka.port=1234',
+        'scdf.binder.kafka.broker.host=localhost',
+        'scdf.binder.kafka.broker.port=1234',
+        'scdf.binder.kafka.zk.host=localhost',
+        'scdf.binder.kafka.zk.port=1235',
         'scdf.server.config.foo=bar',
         'scdf.feature.monitoring.grafana.enabled=true'
       ]
@@ -200,8 +208,10 @@ describe('servers', () => {
         ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
-        'scdf.binder.kafka.host=localhost',
-        'scdf.binder.kafka.port=1234',
+        'scdf.binder.kafka.broker.host=localhost',
+        'scdf.binder.kafka.broker.port=1234',
+        'scdf.binder.kafka.zk.host=localhost',
+        'scdf.binder.kafka.zk.port=1235',
         'scdf.server.config.foo=bar'
       ]
     });
@@ -271,8 +281,10 @@ describe('servers', () => {
         ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
-        'scdf.binder.kafka.host=localhost',
-        'scdf.binder.kafka.port=1234',
+        'scdf.binder.kafka.broker.host=localhost',
+        'scdf.binder.kafka.broker.port=1234',
+        'scdf.binder.kafka.zk.host=localhost',
+        'scdf.binder.kafka.zk.port=1235',
         'scdf.server.config.foo=bar',
         'scdf.feature.monitoring.grafana.enabled=true'
       ]
@@ -316,8 +328,10 @@ describe('servers', () => {
         ...DEFAULT_REQUIRED_DATA_VALUES,
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
-        'scdf.binder.kafka.host=localhost',
-        'scdf.binder.kafka.port=1234',
+        'scdf.binder.kafka.broker.host=localhost',
+        'scdf.binder.kafka.broker.port=1234',
+        'scdf.binder.kafka.zk.host=localhost',
+        'scdf.binder.kafka.zk.port=1235',
         'scdf.server.config.foo=bar',
         'scdf.feature.monitoring.grafana.enabled=true',
         'scdf.feature.monitoring.grafana.image.tag=1.2.3',

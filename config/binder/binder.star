@@ -22,11 +22,11 @@ def external_rabbitmq_enabled():
 end
 
 def external_kafka_enabled():
-  return non_empty_string(data.values.scdf.binder.kafka.host);
+  return non_empty_string(data.values.scdf.binder.kafka.broker.host);
 end
 
 def binder_install_enabled():
-  return not non_empty_string(data.values.scdf.binder.rabbit.host) or not non_empty_string(data.values.scdf.binder.kafka.host);
+  return not non_empty_string(data.values.scdf.binder.rabbit.host) or not non_empty_string(data.values.scdf.binder.kafka.broker.host);
 end
 
 def external_rabbitmq_env_str():
@@ -48,8 +48,9 @@ end
 
 def external_kafka_env_str():
   values = []
-  if non_empty_string(data.values.scdf.binder.kafka.host):
-    values.append("SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=" + data.values.scdf.binder.kafka.host)
+  if non_empty_string(data.values.scdf.binder.kafka.broker.host):
+    values.append("SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=" + data.values.scdf.binder.kafka.broker.host + ":" + str(data.values.scdf.binder.kafka.broker.port))
+    values.append("SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=" + data.values.scdf.binder.kafka.zk.host + ":" + str(data.values.scdf.binder.kafka.zk.port))
   end
   return ",".join(values)
 end

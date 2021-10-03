@@ -125,6 +125,62 @@ describe('binders kafka', () => {
     expect(rabbitVolumeMount).toBeFalsy();
   });
 
+  it('should configure for kafka if deployed', async () => {
+    const result = await execYtt({
+      files: ['config'],
+      dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
+        'scdf.deploy.database.type=postgres',
+        'scdf.deploy.binder.type=kafka'
+      ]
+    });
+    expect(result.success).toBeTruthy();
+    const yaml = result.stdout;
+
+    const skipperConfigMap = findConfigMap(yaml, SKIPPER_NAME);
+    const skipperApplicationYaml = skipperConfigMap?.data ? skipperConfigMap.data['application.yaml'] : '';
+    const skipperDoc = parseYamlDocument(skipperApplicationYaml);
+    const skipperJson = skipperDoc.toJSON();
+
+    const platformDefEnv = lodash.get(
+      skipperJson,
+      'spring.cloud.skipper.server.platform.kubernetes.accounts.default.environmentVariables'
+    ) as string;
+    const envs = envStringToMap(platformDefEnv);
+    expect(envs.get('SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS')).toBe('kafka-broker:9092');
+    expect(envs.get('SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES')).toBe('kafka-zk-client:2181');
+  });
+
+  it('should configure for kafka if external', async () => {
+    const result = await execYtt({
+      files: ['config'],
+      dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
+        'scdf.deploy.database.type=postgres',
+        'scdf.deploy.binder.enabled=false',
+        'scdf.binder.kafka.broker.host=broker',
+        'scdf.binder.kafka.broker.port=1234',
+        'scdf.binder.kafka.zk.host=zk',
+        'scdf.binder.kafka.zk.port=1235'
+      ]
+    });
+    expect(result.success, result.stderr).toBeTruthy();
+    const yaml = result.stdout;
+
+    const skipperConfigMap = findConfigMap(yaml, SKIPPER_NAME);
+    const skipperApplicationYaml = skipperConfigMap?.data ? skipperConfigMap.data['application.yaml'] : '';
+    const skipperDoc = parseYamlDocument(skipperApplicationYaml);
+    const skipperJson = skipperDoc.toJSON();
+
+    const platformDefEnv = lodash.get(
+      skipperJson,
+      'spring.cloud.skipper.server.platform.kubernetes.accounts.default.environmentVariables'
+    ) as string;
+    const envs = envStringToMap(platformDefEnv);
+    expect(envs.get('SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS')).toBe('broker:1234');
+    expect(envs.get('SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES')).toBe('zk:1235');
+  });
+
   it('should skip deploy if external settings', async () => {
     const result = await execYtt({
       files: ['config'],
@@ -133,11 +189,13 @@ describe('binders kafka', () => {
         'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
         'scdf.deploy.binder.enabled=false',
-        'scdf.binder.kafka.host=localhost',
-        'scdf.binder.kafka.port=1234'
+        'scdf.binder.kafka.broker.host=broker',
+        'scdf.binder.kafka.broker.port=1234',
+        'scdf.binder.kafka.zk.host=zk',
+        'scdf.binder.kafka.zk.port=1235'
       ]
     });
-    expect(result.success).toBeTruthy();
+    expect(result.success, result.stderr).toBeTruthy();
     const yaml = result.stdout;
 
     const kafkaDeployment = findDeployment(yaml, `${BINDER_KAFKA_NAME}-zk`);
@@ -156,6 +214,6 @@ describe('binders kafka', () => {
       'spring.cloud.skipper.server.platform.kubernetes.accounts.default.environmentVariables'
     ) as string;
     const envs = envStringToMap(platformDefEnv);
-    expect(envs.get('SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS')).toBe('localhost');
+    expect(envs.get('SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS')).toBe('broker:1234');
   });
 });

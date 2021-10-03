@@ -100,8 +100,12 @@ scdf:
   #! external binder settings, will disable binder deployment
   binder:
     kafka:
-      host: ""
-      port: 9092
+      broker:
+        host: ""
+        port: 9092
+      zk:
+        host: ""
+        port: 9092
     rabbit:
       host: ""
       port: 5672

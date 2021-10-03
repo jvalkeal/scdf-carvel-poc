@@ -151,12 +151,24 @@ components:
                 kafka:
                   type: object
                   properties:
-                    host:
-                      type: string
-                      description: External kafka host
-                    port:
-                      type: string
-                      description: External kafka port
+                    broker:
+                      type: object
+                      properties:
+                        host:
+                          type: string
+                          description: External kafka broker host
+                        port:
+                          type: string
+                          description: External kafka broker port
+                    zk:
+                      type: object
+                      properties:
+                        host:
+                          type: string
+                          description: External kafka zk host
+                        port:
+                          type: string
+                          description: External kafka zk port
                 rabbit:
                   type: object
                   properties:
