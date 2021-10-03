@@ -145,6 +145,22 @@ components:
                 config:
                   type: string
                   description: Raw server config as yml
+            ctr:
+              type: object
+              properties:
+                image:
+                  type: object
+                  properties:
+                    repository:
+                      type: string
+                      default: springcloud/spring-cloud-dataflow-composed-task-runner
+                      description: Composed Task Runner image repository
+                    tag:
+                      type: string
+                      description: Composed Task Runner image tag
+                    digest:
+                      type: string
+                      description: Composed Task Runner image digest
             binder:
               type: object
               properties:
