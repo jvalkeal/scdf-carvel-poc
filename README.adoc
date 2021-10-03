@@ -202,6 +202,7 @@ Just notes needed for development and checking things out.
 ----
 imgpkg pull -b ghcr.io/jvalkeal/springcloud/scdf-repo:snapshot -o scdf-repo-snapshot
 imgpkg pull -b ghcr.io/jvalkeal/springcloud/scdf-package:2.9.0-SNAPSHOT -o scdf-package-snapshot
+imgpkg pull -b ghcr.io/jvalkeal/airgapped/scdf-repo:snapshot -o scdf-repo-snapshot-airgapped
 ----
 
 Repo bundles are relocated into `jvalkeal/airgapped`:
