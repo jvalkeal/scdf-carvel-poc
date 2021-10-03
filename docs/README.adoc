@@ -48,3 +48,26 @@ production configuration and should be taken as a simple install as a trial to g
 things up and running. It's highly advised to use proper deployment of _binder_ and
 _database_ as automatic deployment and configuration of those are limited.
 ====
+
+== Deploy Spring Cloud Data Flow
+There are different ways to deploy _Dataflow_ into k8s cluster:
+
+* _kubectl_ with _ytt_ templating
+* _kapp_ with passed deployed files from _ytt_ templates
+* _kapp-controller_ with _carvel_ package with configured options
+* _tanzu-cli_ which essentially is _kapp-controller_ but with a different flavour of API
+
+=== Deploy via kubectl
+Lowest level deployment as you are essentially passing k8s yml files generated from
+_ytt_ templates.
+
+=== Deploy via kapp
+Essentially much like deploying with _kubectl_ but uses _kapp_ spesific annotations
+to give some sense of how deployments are done on an order.
+
+=== Deploy via kapp-controller
+Takes use of a _carvel_ package and deploys via controller with given options.
+
+=== Deploy via tanzu cli
+Essentially like deploying with _kapp-controller_ where _Tanzu CLI_ gives higher
+level of package management.
