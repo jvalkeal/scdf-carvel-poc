@@ -1,0 +1,7 @@
+scdf:
+  deploy:
+    mode: minikube
+  ctr:
+    image:
+      repository: ghcr.io/jvalkeal/airgapped/scdf-repo
+      digest: sha256:84587d6c89f6c85eadfb38288e4f887538784ca3b9fa495d2fe3164a212208eb

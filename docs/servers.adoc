@@ -28,6 +28,24 @@ scdf:
       foo: bar
 ----
 
+==== Configuring Composed Task Runner
+On default _CTR_ image location points to a docker hub with same version as a dataflow server.
+Especially with airgapped environment this should get changed:
+
+[source, yaml]
+----
+scdf:
+  ctr:
+    image:
+      repository: my.docker.repo/my-relocated-image
+      tag: my-tag
+      digest: sha256:<sha>
+----
+
+[NOTE]
+====
+Use either `tag` or `digest` as `digest` takes a precedence if it's defined.
+====
 
 === Skipper
 Define additional server config using {scdf-skipper-config}.
