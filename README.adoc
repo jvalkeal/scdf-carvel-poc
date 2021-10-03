@@ -92,7 +92,7 @@ Install `2.9.0-SNAPSHOT` with `postgres` and `rabbit`:
 
 [source, bash]
 ----
-kapp deploy -a scdf-demo -f examples/kapp-controller-scdf-290-snapshot-postgres-rabbit.yml -y
+kapp deploy -a scdf-demo -f examples/kapp-controller/290-snapshot-postgres-rabbit.yml -y
 
 kubectl get packageinstalls
 NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION   AGE
@@ -106,7 +106,7 @@ scdf-demo   scdf.tanzu.vmware.com   2.9.0-SNAPSHOT    Reconcile succeeded   88s
 To try an upgrade, first install `2.8.0` with `postgres` and `rabbit`:
 [source, bash]
 ----
-kapp deploy -a scdf-demo -f examples/kapp-controller-scdf-280-postgres-rabbit.yml -y
+kapp deploy -a scdf-demo -f examples/kapp-controller/280-postgres-rabbit.yml -y
 
 kubectl get packageinstalls
 NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION           AGE
@@ -116,7 +116,7 @@ scdf-demo   scdf.tanzu.vmware.com   2.8.0             Reconcile succeeded   121m
 Do an upgrade:
 [source, bash]
 ----
-kapp deploy -a scdf-demo -f examples/kapp-controller-scdf-281-postgres-rabbit.yml -y
+kapp deploy -a scdf-demo -f examples/kapp-controller/281-postgres-rabbit.yml -y
 
 kubectl get packageinstalls
 NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION           AGE
@@ -142,7 +142,7 @@ above `kubectl` itself.
 
 [source, bash]
 ----
-kapp -y deploy -a scdf-demo -f <(ytt -f config -f examples/kapp-290-snapshot-monitoring.yml)
+kapp -y deploy -a scdf-demo -f <(ytt -f config -f examples/kapp/290-snapshot-monitoring.yml)
 ----
 
 When you've done delete deployment
@@ -162,7 +162,7 @@ low level deployment files.
 
 [source, bash]
 ----
-ytt -f config -f examples/config-281-postgres.yml | kubectl apply -f-
+ytt -f config -f examples/ytt/281-postgres.yml | kubectl apply -f-
 ----
 
 == Project

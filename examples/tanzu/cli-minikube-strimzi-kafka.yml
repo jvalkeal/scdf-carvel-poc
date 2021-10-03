@@ -1,9 +1,0 @@
-scdf:
-  deploy:
-    mode: minikube
-    binder:
-      enabled: false
-  binder:
-    kafka:
-      host: my-cluster-kafka-bootstrap
-      port: 9092
