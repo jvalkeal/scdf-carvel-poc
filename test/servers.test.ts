@@ -113,6 +113,24 @@ describe('servers', () => {
     expect(skipperFoo).toEqual('bar');
   });
 
+  it('should have ctr image set', async () => {
+    const result = await execYtt({
+      files: ['config'],
+      dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
+        'scdf.ctr.image.repository=fakerepo',
+        'scdf.ctr.image.tag=faketag'
+      ]
+    });
+    expect(result.success).toBeTruthy();
+    const yaml = result.stdout;
+
+    const deployment = findDeployment(yaml, SCDF_SERVER_NAME);
+    const container = deploymentContainer(deployment, SCDF_SERVER_NAME);
+    const env = containerEnvValue(container, 'SPRING_CLOUD_DATAFLOW_TASK_COMPOSEDTASKRUNNER_URI');
+    expect(env).toBe('docker://fakerepo:faketag');
+  });
+
   it('skipper should have default env values', async () => {
     const result = await execYtt({
       files: ['config'],
