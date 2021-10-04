@@ -5,7 +5,11 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 endif::[]
+:servers: link:servers.adoc[Servers]
+:examples: link:examples.adoc[Examples]
 ifndef::env-github[]
+:servers: <<servers>>
+:examples: <<examples>>
 endif::[]
 
 = Spring Cloud Data Flow Carvel Documentation
@@ -21,6 +25,8 @@ link:servers.adoc[Servers]
 link:binder.adoc[Binder]
 
 link:database.adoc[Database]
+
+<<examples>>
 
 endif::[]
 
@@ -50,6 +56,8 @@ _database_ as automatic deployment and configuration of those are limited.
 ====
 
 == Deploy Spring Cloud Data Flow
+
+=== Deployment flavour
 There are different ways to deploy _Dataflow_ into k8s cluster:
 
 * _kubectl_ with _ytt_ templating
@@ -57,17 +65,30 @@ There are different ways to deploy _Dataflow_ into k8s cluster:
 * _kapp-controller_ with _carvel_ package with configured options
 * _tanzu-cli_ which essentially is _kapp-controller_ but with a different flavour of API
 
-=== Deploy via kubectl
+==== Deploy via kubectl
 Lowest level deployment as you are essentially passing k8s yml files generated from
 _ytt_ templates.
 
-=== Deploy via kapp
+==== Deploy via kapp
 Essentially much like deploying with _kubectl_ but uses _kapp_ spesific annotations
 to give some sense of how deployments are done on an order.
 
-=== Deploy via kapp-controller
+==== Deploy via kapp-controller
 Takes use of a _carvel_ package and deploys via controller with given options.
 
-=== Deploy via tanzu cli
+==== Deploy via tanzu cli
 Essentially like deploying with _kapp-controller_ where _Tanzu CLI_ gives higher
 level of package management.
+
+=== Configure Servers
+More info to configure servers see {servers}.
+
+=== Binder and Database
+Whether you want to use _rabbit_ or a _kafka_ as a binder and _mysql_ or a _postgres_ as
+a database we provided easy deployment which steps away when external services are defined.
+
+==== Use Deployed Services
+On default _postgres_ and _rabbit_ are used as a database and a binder.
+
+==== Use External Services
+See more from {examples}.
