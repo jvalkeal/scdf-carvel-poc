@@ -26,7 +26,7 @@ link:binder.adoc[Binder]
 
 link:database.adoc[Database]
 
-<<examples>>
+link:examples.adoc[Examples]
 
 endif::[]
 
