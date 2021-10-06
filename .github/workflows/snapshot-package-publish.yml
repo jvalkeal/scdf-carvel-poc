@@ -3,6 +3,10 @@ name: Snapshot Package Publish
 on:
   workflow_dispatch:
   push:
+    paths-ignore:
+      - '.github/**'
+      - 'docs/**'
+      - 'README.adoc'
 
 jobs:
   publish:
