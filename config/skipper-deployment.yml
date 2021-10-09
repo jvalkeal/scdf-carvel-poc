@@ -1,6 +1,8 @@
 #@ load("@ytt:data", "data")
 #@ load("skipper.star", "skipper_image")
 #@ load("skipper.star", "skipper_container_env")
+#@ load("skipper.star", "has_image_pull_secrets")
+#@ load("skipper.star", "image_pull_secrets")
 #@ load("binder/binder.star", "rabbitmq_enabled")
 
 apiVersion: apps/v1
@@ -59,6 +61,9 @@ spec:
             memory: 640Mi
         env: #@ skipper_container_env()
       serviceAccountName: scdf-sa
+      #@ if has_image_pull_secrets():
+      imagePullSecrets: #@ image_pull_secrets()
+      #@ end
       volumes:
       - name: config
         configMap:

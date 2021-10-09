@@ -9,7 +9,8 @@ import {
   V1Service,
   V1StatefulSet,
   V1VolumeMount,
-  V1Volume
+  V1Volume,
+  V1PodSpec
 } from '@kubernetes/client-node';
 
 export function parseDocuments(yaml: string): string[] {
@@ -86,6 +87,27 @@ export function findSecret(yaml: string, name: string): V1Secret | undefined {
         return node;
       }
     });
+}
+
+export function findPodSpecsWithImagePullSecrets(yaml: string): V1PodSpec[] {
+  const pods: V1PodSpec[] = [];
+  parseDocuments(yaml)
+    .map(d => loadYaml<V1Deployment>(d))
+    .filter(node => node?.kind === 'Deployment' && node?.spec?.template?.spec?.imagePullSecrets)
+    .forEach(deployment => {
+      if (deployment.spec?.template?.spec) {
+        pods.push(deployment.spec?.template?.spec);
+      }
+    });
+  parseDocuments(yaml)
+    .map(d => loadYaml<V1StatefulSet>(d))
+    .filter(node => node?.kind === 'StatefulSet' && node?.spec?.template?.spec?.imagePullSecrets)
+    .forEach(ss => {
+      if (ss.spec?.template?.spec) {
+        pods.push(ss.spec?.template?.spec);
+      }
+    });
+  return pods;
 }
 
 export function deploymentContainer(deployment: V1Deployment | undefined, name: string): V1Container | undefined {

@@ -1,5 +1,7 @@
 #@ load("postgres.lib.yml", "name")
 #@ load("postgres.star", "image")
+#@ load("postgres.star", "has_image_pull_secrets")
+#@ load("postgres.star", "image_pull_secrets")
 
 apiVersion: apps/v1
 kind: Deployment
@@ -36,6 +38,9 @@ spec:
         ports:
         - containerPort: 5432
           name: #@ name()
+      #@ if has_image_pull_secrets():
+      imagePullSecrets: #@ image_pull_secrets()
+      #@ end
       volumes:
       - name: data
         persistentVolumeClaim:

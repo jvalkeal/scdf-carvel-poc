@@ -2,6 +2,10 @@
 ---
 #! all scdf options
 scdf:
+  registry:
+    secret:
+      #! if defined ref will be added as imagePullSecrets resources
+      ref: ""
   deploy:
     #! deploy mode, either minikube or cloud
     mode: minikube

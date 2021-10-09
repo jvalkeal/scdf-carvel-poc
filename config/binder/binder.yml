@@ -16,6 +16,7 @@ image:
   digest: #@ data.values.scdf.deploy.binder.rabbit.image.digest
 username: #@ data.values.scdf.deploy.binder.rabbit.username
 password: #@ data.values.scdf.deploy.binder.rabbit.password
+registrySecretRef: #@ data.values.scdf.registry.secret.ref
 #@ end
 
 #@ def binder_kafka_values():
@@ -28,6 +29,7 @@ zkImage:
   repository: #@ data.values.scdf.deploy.binder.kafka.zkImage.repository
   tag: #@ data.values.scdf.deploy.binder.kafka.zkImage.tag
   digest: #@ data.values.scdf.deploy.binder.kafka.zkImage.digest
+registrySecretRef: #@ data.values.scdf.registry.secret.ref
 #@ end
 
 #@ if binder_install_enabled():

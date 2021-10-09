@@ -2,6 +2,8 @@
 #@ load("dataflow.star", "dataflow_image")
 #@ load("dataflow.star", "ctr_image")
 #@ load("dataflow.star", "dataflow_container_env")
+#@ load("dataflow.star", "has_image_pull_secrets")
+#@ load("dataflow.star", "image_pull_secrets")
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -54,6 +56,9 @@ spec:
             memory: 1024Mi
         env: #@ dataflow_container_env()
       serviceAccountName: scdf-sa
+      #@ if has_image_pull_secrets():
+      imagePullSecrets: #@ image_pull_secrets()
+      #@ end
       volumes:
       - name: config
         configMap:

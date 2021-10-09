@@ -50,3 +50,15 @@ def skipper_container_env():
   end
   return envs
 end
+
+def has_image_pull_secrets():
+  return non_empty_string(data.values.scdf.registry.secret.ref)
+end
+
+def registry_secret_ref():
+  return data.values.scdf.registry.secret.ref
+end
+
+def image_pull_secrets():
+  return [{"name": registry_secret_ref()}]
+end

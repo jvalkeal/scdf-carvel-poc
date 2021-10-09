@@ -19,6 +19,7 @@ image:
   repository: #@ data.values.scdf.deploy.database.postgres.image.repository
   tag: #@ data.values.scdf.deploy.database.postgres.image.tag
   digest: #@ data.values.scdf.deploy.database.postgres.image.digest
+registrySecretRef: #@ data.values.scdf.registry.secret.ref
 #@ end
 
 #@ def db_mysql_values():
@@ -29,6 +30,7 @@ image:
   repository: #@ data.values.scdf.deploy.database.mysql.image.repository
   tag: #@ data.values.scdf.deploy.database.mysql.image.tag
   digest: #@ data.values.scdf.deploy.database.mysql.image.digest
+registrySecretRef: #@ data.values.scdf.registry.secret.ref
 #@ end
 
 #@ if mysql_enabled():

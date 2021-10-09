@@ -12,6 +12,15 @@ components:
         scdf:
           type: object
           properties:
+            registry:
+              type: object
+              properties:
+                secret:
+                  type: object
+                  properties:
+                    ref:
+                      type: string
+                      description: If defined a reference will be added as imagePullSecret to all services, otherwise carvel secretgen is added
             deploy:
               type: object
               properties:

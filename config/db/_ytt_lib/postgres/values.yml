@@ -7,3 +7,4 @@ image:
   repository: postgres
   tag: "10"
   digest: ""
+registrySecretRef: ""

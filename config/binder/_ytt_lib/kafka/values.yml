@@ -9,3 +9,4 @@ zkImage:
   repository: confluentinc/cp-zookeeper
   tag: 5.5.2
   digest: ""
+registrySecretRef: ""

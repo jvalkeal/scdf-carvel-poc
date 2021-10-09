@@ -2,6 +2,8 @@
 #@ load("mysql.lib.yml", "username")
 #@ load("mysql.lib.yml", "password")
 #@ load("mysql.star", "image")
+#@ load("mysql.star", "has_image_pull_secrets")
+#@ load("mysql.star", "image_pull_secrets")
 
 apiVersion: apps/v1
 kind: Deployment
@@ -48,6 +50,9 @@ spec:
           mountPath: /var/lib/mysql
         args:
         - "--ignore-db-dir=lost+found"
+      #@ if has_image_pull_secrets():
+      imagePullSecrets: #@ image_pull_secrets()
+      #@ end
       volumes:
       - name: data
         persistentVolumeClaim:

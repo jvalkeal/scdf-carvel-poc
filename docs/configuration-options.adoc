@@ -19,6 +19,7 @@ yaml document.
 
 *Curated List of Options:*
 
+- <<configuration-options-scdf.registry.secret.ref>>
 - <<configuration-options-scdf.deploy.mode>>
 - <<configuration-options-scdf.deploy.binder.enabled>>
 - <<configuration-options-scdf.deploy.binder.type>>
@@ -90,6 +91,17 @@ yaml document.
 - <<configuration-options-scdf.feature.monitoring.prometheusRsocketProxy.image.digest>>
 
 === Options
+
+[[configuration-options-scdf.registry.secret.ref]]`scdf.registry.secret.ref`::
+  Description:::
+If defined a reference will be added as imagePullSecret to all services.
+On default a carvel secretgen placeholder is added as one Secret resource.
+  Required:::
+No
+  Type:::
+String
+   Default Value:::
+Empty
 
 [[configuration-options-scdf.deploy.mode]]`scdf.deploy.mode`::
   Description:::

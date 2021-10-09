@@ -9,3 +9,4 @@ image:
   digest: ""
 username: ""
 password: ""
+registrySecretRef: ""
