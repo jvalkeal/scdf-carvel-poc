@@ -14,6 +14,11 @@ jobs:
         registry: ghcr.io
         username: jvalkeal
         password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Login dockerhub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build Package Bundle
       id: build-package-bundle
       uses: ./.github/actions/build-package-bundle
@@ -44,3 +49,6 @@ jobs:
         path: ${{ steps.build-repository-bundle.outputs.bundle-path }}
         repository: ghcr.io/jvalkeal/test/scdf-repo
         tags: 2.9.1-SNAPSHOT
+    - name: Repository Airgap
+      run: |
+        imgpkg copy -b ghcr.io/jvalkeal/test/scdf-repo:2.9.1-SNAPSHOT --to-repo ghcr.io/jvalkeal/airgappedtest/scdf-repo
