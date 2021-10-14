@@ -1,8 +1,6 @@
 (@ load("@ytt:data", "data") @)#@data/values
 ---
 package_repository:
-  name: scdf-repo-snapshot.tanzu.vmware.com
-  schema:
   packageSpec:
     syncPeriod: 5m
     deploy:
