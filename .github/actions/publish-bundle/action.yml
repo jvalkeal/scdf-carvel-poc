@@ -38,6 +38,6 @@ runs:
 
       for TAG in $TAGS
       do
-        docker push $REPOSITORY:$RTAG $REPOSITORY:$TAG
-        docker push $REPOSITORY:$RTAG $REPOSITORY:$TAG-$RTAG
+        docker push $REPOSITORY:$TAG
+        docker push $REPOSITORY:$TAG-$RTAG
       done
