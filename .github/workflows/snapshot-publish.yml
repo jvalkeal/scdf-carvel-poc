@@ -15,8 +15,8 @@ jobs:
       with:
         dataflow-version: 2.9.1-SNAPSHOT
         skipper-version: 2.8.1-SNAPSHOT
-        package-bundle-template: templatex/bundle/package
-        imgpkg-lock-template: templatex/imgpkg
+        package-bundle-template: templatesx/bundle/package
+        imgpkg-lock-template: templatesx/imgpkg
         config: config
     - name: Publish Package Bundle
       id: publish-package-bundle
@@ -30,7 +30,7 @@ jobs:
       uses: ./.github/actions/build-repository-bundle
       with:
         dataflow-version: 2.9.1-SNAPSHOT
-        repo-bundle-template: templatex/bundle/repo
+        repo-bundle-template: templatesx/bundle/repo
         package-bundle-repository: ghcr.io/jvalkeal/test/scdf-package
     - name: Publish Repository Bundle
       id: publish-repository-bundle
