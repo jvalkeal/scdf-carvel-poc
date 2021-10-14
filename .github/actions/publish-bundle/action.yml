@@ -1,0 +1,42 @@
+name: Publish Bundle
+description: Publish Bundle
+inputs:
+  path:
+    description: path to bundle files
+    required: true
+  repository:
+    description: repository to publish
+    required: true
+  tags:
+    description: space delimited tags to add
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+  - uses: vmware-tanzu/carvel-setup-action@v1
+  - name: Setup Envs
+    run: |
+      echo RTAG=$(date +%y%m%d%s%N) >> $GITHUB_ENV
+  - name: Tanzu Dance
+    id: tanzu-dance
+    env:
+      BUNDLE_PATH: ${{ inputs.path }}
+      REPOSITORY: ${{ inputs.repository }}
+      TAGS: ${{ inputs.tags }}
+    shell: bash
+    run: |
+      imgpkg push --bundle $REPOSITORY:$RTAG --file $BUNDLE_PATH
+      docker pull $REPOSITORY:$RTAG
+
+      docker tag $REPOSITORY:$RTAG $REPOSITORY:$TAG-$RTAG
+      for TAG in $TAGS
+      do
+       docker tag $REPOSITORY:$RTAG $REPOSITORY:$TAG
+      done
+
+      docker push $REPOSITORY:$RTAG $REPOSITORY:$TAG-$RTAG
+      for TAG in $TAGS
+      do
+       docker push $REPOSITORY:$RTAG $REPOSITORY:$TAG
+      done

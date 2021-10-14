@@ -1,0 +1,41 @@
+name: Snapshot Publish
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Publish Snapshot
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Package Bundle
+      id: build-package-bundle
+      uses: ./.github/actions/build-package-bundle
+      with:
+        dataflow-version: 2.9.1-SNAPSHOT
+        skipper-version: 2.8.1-SNAPSHOT
+        package-bundle-template: templatex/bundle/package
+        imgpkg-lock-template: templatex/imgpkg
+        config: config
+    - name: Publish Package Bundle
+      id: publish-package-bundle
+      uses: ./.github/actions/publish-bundle
+      with:
+        path: ${{ steps.build-package-bundle.outputs.bundle-path }}
+        repository: ghcr.io/jvalkeal/test/scdf-package
+        tags: 2.9.1-SNAPSHOT
+    - name: Build Repository Bundle
+      id: build-repository-bundle
+      uses: ./.github/actions/build-repository-bundle
+      with:
+        dataflow-version: 2.9.1-SNAPSHOT
+        repo-bundle-template: templatex/bundle/repo
+        package-bundle-repository: ghcr.io/jvalkeal/test/scdf-package
+    - name: Publish Repository Bundle
+      id: publish-repository-bundle
+      uses: ./.github/actions/publish-bundle
+      with:
+        path: ${{ steps.build-repository-bundle.outputs.bundle-path }}
+        repository: ghcr.io/jvalkeal/test/scdf-repo
+        tags: 2.9.1-SNAPSHOT
