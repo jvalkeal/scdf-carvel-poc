@@ -16,6 +16,7 @@ runs:
   steps:
   - uses: vmware-tanzu/carvel-setup-action@v1
   - name: Setup Envs
+    shell: bash
     run: |
       echo RTAG=$(date +%y%m%d%s%N) >> $GITHUB_ENV
   - name: Tanzu Dance
