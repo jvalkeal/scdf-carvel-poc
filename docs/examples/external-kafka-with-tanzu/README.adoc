@@ -9,7 +9,7 @@ ifndef::env-github[]
 endif::[]
 
 [[examples-kafka-with-tanzu]]
-== External Kafka
+== External Kafka with Tanzu
 In this example you use _Tanzu CLI_ and external kafka broker.
 
 Deploy kafka using external https://strimzi.io/quickstarts[Strimzi]

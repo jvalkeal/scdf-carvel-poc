@@ -1,0 +1,2 @@
+= Examples
+Contains various support files used in examples documentation.

@@ -36,7 +36,6 @@ _binder_ and optional _features_ like monitoring.
 More detailed docs under {main-docs}.
 ====
 
-
 == Project
 Development notes about this POC.
 

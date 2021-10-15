@@ -58,6 +58,8 @@ and a _database_ as automatic deployment and configuration of those are limited.
 
 == Deploy Spring Cloud Data Flow
 
+There are various examples under {examples}.
+
 === Deployment flavour
 There are different ways to deploy _Dataflow_ into _kubernetes_ cluster:
 
@@ -125,6 +127,3 @@ external services are defined.
 
 ==== Use Deployed Services
 On default _postgres_ and _rabbit_ are used as a database and a binder.
-
-==== Use External Services
-See more from {examples}.

@@ -4,8 +4,10 @@ ifdef::env-github[]
 :important-caption: :heavy_exclamation_mark:
 :caution-caption: :fire:
 :warning-caption: :warning:
+:external-kafka-with-tanzu: link:examples/external-kafka-with-tanzu[External Kafka with Tanzu]
 endif::[]
 ifndef::env-github[]
+:external-kafka-with-tanzu: <<examples-external-kafka-with-tanzu>>
 endif::[]
 
 [[examples]]
@@ -16,8 +18,9 @@ toc::[]
 
 ifdef::env-github[]
 
-link:examples/external-kafka-with-tanzu.adoc[External Kafka]
+{external-kafka-with-tanzu}
 
-link:examples/private-airgap.adoc[Private Airgap]
+endif::[]
 
+ifndef::env-github[]
 endif::[]
