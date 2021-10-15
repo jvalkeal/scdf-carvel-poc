@@ -31,8 +31,8 @@ jobs:
       with:
         dataflow-version: 2.9.0
         skipper-version: 2.8.0
-        package-bundle-template: templatesx/bundle/package
-        imgpkg-lock-template: templatesx/imgpkg
+        package-bundle-template: templates/bundle/package
+        imgpkg-lock-template: templates/imgpkg
         config: config
 
     # Publishes scdf package bundle as it needs to be in place
@@ -42,7 +42,7 @@ jobs:
       uses: ./.github/actions/publish-bundle
       with:
         path: ${{ steps.build-package-bundle.outputs.bundle-path }}
-        repository: ghcr.io/jvalkeal/test/scdf-package
+        repository: ghcr.io/jvalkeal/springcloud/scdf-package
         version: 2.9.0
 
     # Builds a repository bundle
@@ -51,8 +51,8 @@ jobs:
       uses: ./.github/actions/build-repository-bundle
       with:
         version: 2.9.0
-        repo-bundle-template: templatesx/bundle/repo
-        package-bundle-repository: ghcr.io/jvalkeal/test/scdf-package
+        repo-bundle-template: templates/bundle/repo
+        package-bundle-repository: ghcr.io/jvalkeal/springcloud/scdf-package
 
     # Publishes scdf repo bundle
     - name: Publish Repository Bundle
@@ -60,11 +60,11 @@ jobs:
       uses: ./.github/actions/publish-bundle
       with:
         path: ${{ steps.build-repository-bundle.outputs.bundle-path }}
-        repository: ghcr.io/jvalkeal/test/scdf-repo
+        repository: ghcr.io/jvalkeal/springcloud/scdf-repo
         version: 2.9.0
 
     # Airgap repo by copying it within ghcr as this copies
     # and references everyting into ghcr.
     - name: Repository Airgap
       run: |
-        imgpkg copy -b ghcr.io/jvalkeal/test/scdf-repo:2.9.0 --to-repo ghcr.io/jvalkeal/airgappedtest/scdf-repo
+        imgpkg copy -b ghcr.io/jvalkeal/springcloud/scdf-repo:2.9.0 --to-repo ghcr.io/jvalkeal/airgapped/scdf-repo
