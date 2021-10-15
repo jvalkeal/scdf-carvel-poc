@@ -10,9 +10,10 @@ endif::[]
 
 [[examples-tanzu-default]]
 == Tanzu Default
-In this sample you're deploying _SCDF_ with various configurations.
+In this sample you're deploying _SCDF_ from an _airgapped_ repository in a
+_ghcr_ where everything is relocated unter a space of a that repository.
 
-Setup _SCDF_ package repo for `2.9.0`:
+Setup repo `2.9.0` repo:
 
 [source, bash]
 ----
