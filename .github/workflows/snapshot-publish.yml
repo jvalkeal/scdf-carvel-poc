@@ -2,6 +2,9 @@ name: Snapshot Publish
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Test"]
+    types: [completed]
 
 jobs:
   publish:
