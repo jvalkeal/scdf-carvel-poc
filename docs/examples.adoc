@@ -5,9 +5,11 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 :external-kafka-with-tanzu: link:examples/external-kafka-with-tanzu[External Kafka with Tanzu]
+:example-tanzu-default: link:examples/tanzu-default[Tanzu Default]
+:example-kapp-default: link:examples/kapp-default[Kapp Default]
+:example-kapp-controller-default: link:examples/kapp-controler-default[Kapp Default]
 endif::[]
 ifndef::env-github[]
-:external-kafka-with-tanzu: <<examples-external-kafka-with-tanzu>>
 endif::[]
 
 [[examples]]
@@ -16,11 +18,23 @@ endif::[]
 toc::[]
 
 ifdef::env-github[]
+{example-tanzu-default}
+{example-kapp-default}
 {external-kafka-with-tanzu}
 endif::[]
 
 Various examples for different use cases.
 
 ifndef::env-github[]
+
+include::examples/tanzu-default/README.adoc[]
+
+include::examples/kapp-default/README.adoc[]
+
+include::examples/kapp-controller-default/README.adoc[]
+
+include::examples/ytt-default/README.adoc[]
+
 include::examples/external-kafka-with-tanzu/README.adoc[]
+
 endif::[]
