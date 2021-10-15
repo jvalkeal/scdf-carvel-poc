@@ -11,16 +11,16 @@ ifndef::env-github[]
 endif::[]
 
 [[examples]]
-== Examples
-Various examples for different use cases.
+= Examples
 
 toc::[]
 
 ifdef::env-github[]
-
 {external-kafka-with-tanzu}
-
 endif::[]
 
+Various examples for different use cases.
+
 ifndef::env-github[]
+include::examples/external-kafka-with-tanzu/README.adoc[]
 endif::[]
