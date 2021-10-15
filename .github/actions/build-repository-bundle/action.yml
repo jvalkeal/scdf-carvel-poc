@@ -1,7 +1,7 @@
 name: Build Repository Bundle
 description: Build Repository Bundle
 inputs:
-  dataflow-version:
+  version:
     description: dataflow version
     required: true
   repo-bundle-template:
@@ -22,7 +22,7 @@ runs:
   - name: Tanzu Dance
     id: tanzu-dance
     env:
-      DATAFLOW_VERSION: ${{ inputs.dataflow-version }}
+      VERSION: ${{ inputs.version }}
       PACKAGE_BUNDLE_REPOSITORY: ${{ inputs.package-bundle-repository }}
       REPO_BUNDLE_TEMPLATE: ${{ inputs.repo-bundle-template }}
       REPO_BUNDLE_RENDERED: ${{ runner.temp }}/generated/reporendered
@@ -36,7 +36,7 @@ runs:
       ytt \
         -f $REPO_BUNDLE_TEMPLATE \
         --output-files $REPO_BUNDLE_RENDERED \
-        --data-value-yaml project.version=$DATAFLOW_VERSION \
+        --data-value-yaml project.version=$VERSION \
         --data-value-yaml repository=$PACKAGE_BUNDLE_REPOSITORY \
         --file-mark 'package.yml:type=text-plain' \
         --file-mark 'metadata.yml:type=text-plain' \

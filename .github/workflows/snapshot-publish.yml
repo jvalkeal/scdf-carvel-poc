@@ -50,7 +50,7 @@ jobs:
       id: build-repository-bundle
       uses: ./.github/actions/build-repository-bundle
       with:
-        dataflow-version: 2.9.1-SNAPSHOT
+        version: 2.9.1-SNAPSHOT
         repo-bundle-template: templatesx/bundle/repo
         package-bundle-repository: ghcr.io/jvalkeal/test/scdf-package
 
