@@ -10,6 +10,12 @@ inputs:
   tags:
     description: space delimited tags to add
     required: true
+  version:
+    description: semver version
+    required: true
+  prerelease:
+    description: semver version prerelease
+    required: false
 
 runs:
   using: "composite"
@@ -25,19 +31,14 @@ runs:
       BUNDLE_PATH: ${{ inputs.path }}
       REPOSITORY: ${{ inputs.repository }}
       TAGS: ${{ inputs.tags }}
+      VERSION: ${{ inputs.version }}
+      PRERELEASE: ${{ inputs.prerelease }}
     shell: bash
     run: |
-      imgpkg push --bundle $REPOSITORY:RANDOM.$RTAG --file $BUNDLE_PATH
-      docker pull $REPOSITORY:RANDOM.$RTAG
+      imgpkg push --bundle $REPOSITORY:$VERSION-RANDOM.$RTAG --file $BUNDLE_PATH
+      docker pull $REPOSITORY:$VERSION-RANDOM.$RTAG
 
-      for TAG in $TAGS
-      do
-        docker tag $REPOSITORY:RANDOM.$RTAG $REPOSITORY:$TAG
-        docker tag $REPOSITORY:RANDOM.$RTAG $REPOSITORY:$TAG.$RTAG
-      done
+      POSTFIX=$VERSION${PRERELEASE:+"-$PRERELEASE"}
 
-      for TAG in $TAGS
-      do
-        docker push $REPOSITORY:$TAG
-        docker push $REPOSITORY:$TAG.$RTAG
-      done
+      docker tag $REPOSITORY:$VERSION-RANDOM.$RTAG $REPOSITORY:$POSTFIX
+      docker push $REPOSITORY:$VERSION

@@ -43,7 +43,8 @@ jobs:
       with:
         path: ${{ steps.build-package-bundle.outputs.bundle-path }}
         repository: ghcr.io/jvalkeal/test/scdf-package
-        tags: 2.9.1-SNAPSHOT
+        version: 2.9.1
+        prerelease: SNAPSHOT
 
     # Builds a repository bundle
     - name: Build Repository Bundle
@@ -61,7 +62,8 @@ jobs:
       with:
         path: ${{ steps.build-repository-bundle.outputs.bundle-path }}
         repository: ghcr.io/jvalkeal/test/scdf-repo
-        tags: 2.9.1-SNAPSHOT
+        version: 2.9.1
+        prerelease: SNAPSHOT
 
     # Airgap repo by copying it within ghcr as this copies
     # and references everyting into ghcr.
