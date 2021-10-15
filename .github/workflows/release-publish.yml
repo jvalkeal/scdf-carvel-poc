@@ -1,0 +1,70 @@
+name: Release Publish
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Release Snapshot
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    # bundles are kept in ghcr
+    - uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: jvalkeal
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    # for rate limiting
+    - name: Login dockerhub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    # Builds a package bundle
+    - name: Build Package Bundle
+      id: build-package-bundle
+      uses: ./.github/actions/build-package-bundle
+      with:
+        dataflow-version: 2.9.0
+        skipper-version: 2.8.0
+        package-bundle-template: templatesx/bundle/package
+        imgpkg-lock-template: templatesx/imgpkg
+        config: config
+
+    # Publishes scdf package bundle as it needs to be in place
+    # before repository bundle can be created.
+    - name: Publish Package Bundle
+      id: publish-package-bundle
+      uses: ./.github/actions/publish-bundle
+      with:
+        path: ${{ steps.build-package-bundle.outputs.bundle-path }}
+        repository: ghcr.io/jvalkeal/test/scdf-package
+        version: 2.9.0
+
+    # Builds a repository bundle
+    - name: Build Repository Bundle
+      id: build-repository-bundle
+      uses: ./.github/actions/build-repository-bundle
+      with:
+        version: 2.9.0
+        repo-bundle-template: templatesx/bundle/repo
+        package-bundle-repository: ghcr.io/jvalkeal/test/scdf-package
+
+    # Publishes scdf repo bundle
+    - name: Publish Repository Bundle
+      id: publish-repository-bundle
+      uses: ./.github/actions/publish-bundle
+      with:
+        path: ${{ steps.build-repository-bundle.outputs.bundle-path }}
+        repository: ghcr.io/jvalkeal/test/scdf-repo
+        version: 2.9.0
+
+    # Airgap repo by copying it within ghcr as this copies
+    # and references everyting into ghcr.
+    - name: Repository Airgap
+      run: |
+        imgpkg copy -b ghcr.io/jvalkeal/test/scdf-repo:2.9.0 --to-repo ghcr.io/jvalkeal/airgappedtest/scdf-repo
