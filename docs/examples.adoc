@@ -19,7 +19,9 @@ toc::[]
 
 ifdef::env-github[]
 {example-tanzu-default}
+
 {example-kapp-default}
+
 {external-kafka-with-tanzu}
 endif::[]
 
