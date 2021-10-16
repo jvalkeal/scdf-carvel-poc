@@ -1,0 +1,64 @@
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+ifndef::env-github[]
+endif::[]
+
+[[examples-tanzu-airgap]]
+== Tanzu Airgap
+This sample demonstrates how everything is deployed as _airgapped_
+environment. While using _GitHub Container Registry_ is not exactly
+running cluster without internet access it shows how everything is
+coming from a defined registry which could be one in your _kubernetes_
+cluster.
+
+[source, bash]
+----
+tanzu package install scdf-demo \
+  --package-name scdf.tanzu.vmware.com \
+  --version 2.9.0 \
+  --values-file scdf-values.yml
+----
+
+[IMPORTANT]
+====
+Change `user` and `secret` to match your own github credentials as
+values file _scdf-values.yml_ just have placeholders.
+====
+
+Copy source, sink and task:
+[source, bash]
+----
+imgpkg copy \
+  -i springcloudstream/time-source-rabbit:3.0.1 \
+  --to-repo ghcr.io/jvalkeal/springcloudstream/time-source-rabbit
+
+imgpkg copy \
+  -i springcloudstream/log-sink-rabbit:3.0.1 \
+  --to-repo ghcr.io/jvalkeal/springcloudstream/log-sink-rabbit
+
+imgpkg copy \
+  -i springcloudtask/timestamp-task:2.1.1.RELEASE \
+  --to-repo ghcr.io/jvalkeal/springcloudtask/timestamp-task
+----
+
+[IMPORTANT]
+====
+Change _ghcr.io_ to point to your own registry.
+====
+
+[source, bash]
+----
+source.time=docker:ghcr.io/jvalkeal/springcloudstream/time-source-rabbit:3.0.1
+sink.log=docker:ghcr.io/jvalkeal/springcloudstream/log-sink-rabbit:3.0.1
+task.timestamp=docker:ghcr.io/jvalkeal/springcloudtask/timestamp-task:2.1.1.RELEASE
+----
+
+[IMPORTANT]
+====
+Change _ghcr.io_ to point to your own registry.
+====

@@ -1,0 +1,13 @@
+scdf:
+  server:
+    config:
+      spring:
+        cloud:
+          dataflow:
+            container:
+              registry-configurations:
+                ghcr:
+                  registry-host: ghcr.io
+                  authorization-type: dockeroauth2
+                  user: <username>
+                  secret: <pat>

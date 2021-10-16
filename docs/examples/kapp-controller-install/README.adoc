@@ -17,8 +17,7 @@ Deploy controller:
 [source, bash]
 ----
 kapp deploy \
-  -f https://raw.githubusercontent.com/jvalkeal/scdf-carvel-poc/main/docs/examples/kap-contoller-install/kc-ghcr.yml
+  -a kc \
   -y \
-  -a \
-  kc
+  -f https://raw.githubusercontent.com/jvalkeal/scdf-carvel-poc/main/docs/examples/kapp-controller-install/kc-ghcr.yml
 ----
