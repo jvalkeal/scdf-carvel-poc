@@ -4,26 +4,16 @@ ifdef::env-github[]
 :important-caption: :heavy_exclamation_mark:
 :caution-caption: :fire:
 :warning-caption: :warning:
+:example-kapp-controller-install: link:../kapp-controler-install[KApp Controller Install]
 endif::[]
 ifndef::env-github[]
+:example-kapp-controller-install: link:../kapp-controler-install[KApp Controller Install]
 endif::[]
 
 [[examples-kapp-controller-default]]
 == KApp Controller Default
 
-Install `kapp-controller`:
-
-Deploy controller:
-[source, bash]
-----
-kapp deploy \
-  -f https://raw.githubusercontent.com/jvalkeal/scdf-carvel-poc/main/examples/kapp-controller-ghcr.yml
-  -y \
-  -a \
-  kc
-----
-
-After `kapp-controller` has been deployed you can deploy repositories for different versions.
+Follow instructions in {example-kapp-controller-install}.
 
 Deploy repository:
 
