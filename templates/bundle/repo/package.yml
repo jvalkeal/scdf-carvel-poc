@@ -34,8 +34,8 @@ spec:
               - config/
         - kbld:
             paths:
-              - "-"
               - .imgpkg/images.yml
+              - "-"
       deploy:
         - kapp:
             rawOptions: #@ ["--wait-timeout=" + str(get_package_spec(package).deploy.kappWaitTimeout)]
