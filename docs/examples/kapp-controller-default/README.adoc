@@ -4,10 +4,10 @@ ifdef::env-github[]
 :important-caption: :heavy_exclamation_mark:
 :caution-caption: :fire:
 :warning-caption: :warning:
-:example-kapp-controller-install: link:../kapp-controler-install[KApp Controller Install]
+:example-kapp-controller-install: link:../kapp-controller-install[KApp Controller Install]
 endif::[]
 ifndef::env-github[]
-:example-kapp-controller-install: link:../kapp-controler-install[KApp Controller Install]
+:example-kapp-controller-install: link:../kapp-controller-install[KApp Controller Install]
 endif::[]
 
 [[examples-kapp-controller-default]]
