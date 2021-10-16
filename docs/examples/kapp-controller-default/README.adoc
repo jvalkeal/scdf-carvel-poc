@@ -9,5 +9,55 @@ ifndef::env-github[]
 endif::[]
 
 [[examples-kapp-controller-default]]
-== kapp-controller Default
-asdf
+== KApp Controller Default
+
+Install `kapp-controller`:
+
+Deploy controller:
+[source, bash]
+----
+kapp deploy \
+  -f https://raw.githubusercontent.com/jvalkeal/scdf-carvel-poc/main/examples/kapp-controller-ghcr.yml
+  -y \
+  -a \
+  kc
+----
+
+After `kapp-controller` has been deployed you can deploy repositories for different versions.
+
+Deploy repository:
+
+[source, bash]
+----
+kapp deploy -y -a scdf-repo -f scdf-repo-ghcr.yml
+
+kubectl get packagerepositories
+NAME                          AGE     DESCRIPTION
+scdf-snapshot.tanzu.vmware    2m35s   Reconcile succeeded
+
+kubectl get packages
+NAME                                   PACKAGEMETADATA NAME    VERSION          AGE
+scdf.tanzu.vmware.com.2.9.1-SNAPSHOT   scdf.tanzu.vmware.com   2.9.1-SNAPSHOT   2m23s
+----
+
+NOTE: Above package and package repos are defined within public repos on a
+VMWare space so you don't get trouble with rate limiting(which would be
+a case with dockerhub).
+
+Install `2.9.1-SNAPSHOT` with `postgres` and `rabbit`:
+
+[source, bash]
+----
+kapp deploy \
+  -a scdf-demo \
+  -f scdf-values.yml \
+  -y
+
+kubectl get packageinstalls
+NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION   AGE
+scdf-demo   scdf.tanzu.vmware.com   2.9.1-SNAPSHOT    Reconciling   12s
+
+kubectl get packageinstalls
+NAME        PACKAGE NAME            PACKAGE VERSION   DESCRIPTION           AGE
+scdf-demo   scdf.tanzu.vmware.com   2.9.1-SNAPSHOT    Reconcile succeeded   88s
+----

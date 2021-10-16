@@ -22,6 +22,8 @@ ifdef::env-github[]
 
 {example-kapp-default}
 
+{example-kapp-controller-default}
+
 {external-kafka-with-tanzu}
 endif::[]
 
@@ -34,8 +36,6 @@ include::examples/tanzu-default/README.adoc[]
 include::examples/kapp-default/README.adoc[]
 
 include::examples/kapp-controller-default/README.adoc[]
-
-include::examples/ytt-default/README.adoc[]
 
 include::examples/external-kafka-with-tanzu/README.adoc[]
 
