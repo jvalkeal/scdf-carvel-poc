@@ -11,3 +11,7 @@ scdf:
                   authorization-type: dockeroauth2
                   user: <username>
                   secret: <pat>
+  ctr:
+    image:
+      repository: ghcr.io/jvalkeal/airgapped/scdf-repo
+      digest: sha256:5237442879b0e2db2fa0118eb923ed6a780b18685318bfb935600f69960207a3

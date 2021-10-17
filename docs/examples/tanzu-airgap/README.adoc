@@ -4,8 +4,10 @@ ifdef::env-github[]
 :important-caption: :heavy_exclamation_mark:
 :caution-caption: :fire:
 :warning-caption: :warning:
+:example-tanzu-default: link:../tanzu-default[Tanzu Default]
 endif::[]
 ifndef::env-github[]
+:example-tanzu-default: link:../tanzu-default[Tanzu Default]
 endif::[]
 
 [[examples-tanzu-airgap]]
@@ -16,6 +18,9 @@ running cluster without internet access it shows how everything is
 coming from a defined registry which could be one in your _kubernetes_
 cluster.
 
+Follow instructions in {example-tanzu-default} to setup package repository.
+
+Install _Dataflow_ with configured _GitHub Container Registry_ secrets:
 [source, bash]
 ----
 tanzu package install scdf-demo \
@@ -48,9 +53,10 @@ imgpkg copy \
 
 [IMPORTANT]
 ====
-Change _ghcr.io_ to point to your own registry.
+Change _ghcr.io_ to point to your own registry. Also make sure images are public.
 ====
 
+Import applications using coordinates:
 [source, bash]
 ----
 source.time=docker:ghcr.io/jvalkeal/springcloudstream/time-source-rabbit:3.0.1

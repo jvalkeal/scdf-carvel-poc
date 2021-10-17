@@ -53,5 +53,5 @@ Cleanup:
 [source, bash]
 ----
 tanzu package installed delete scdf-demo -y
-tanzu package repository delete scdf-repo
+tanzu package repository delete scdf-repo -y
 ----
