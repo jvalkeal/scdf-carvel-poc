@@ -85,6 +85,7 @@ yaml document.
 - <<configuration-options-scdf.feature.monitoring.grafana.image.repository>>
 - <<configuration-options-scdf.feature.monitoring.grafana.image.tag>>
 - <<configuration-options-scdf.feature.monitoring.grafana.image.digest>>
+- <<configuration-options-scdf.feature.monitoring.grafana.service.type>>
 - <<configuration-options-scdf.feature.monitoring.prometheusRsocketProxy.enabled>>
 - <<configuration-options-scdf.feature.monitoring.prometheusRsocketProxy.image.repository>>
 - <<configuration-options-scdf.feature.monitoring.prometheusRsocketProxy.image.tag>>
@@ -832,3 +833,13 @@ No
 Strig
    Default Value:::
 None
+
+[[configuration-options-scdf.feature.monitoring.grafana.service.type]]`scdf.feature.monitoring.grafana.service.type`::
+  Description:::
+Grafana service type.
+  Required:::
+No
+  Type:::
+Enum(NodePort, LoadBalancer, ClusterIP, ExternalName)
+   Default Value:::
+ClusterIP

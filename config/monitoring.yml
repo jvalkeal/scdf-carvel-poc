@@ -2,8 +2,7 @@
 #@ load("@ytt:overlay", "overlay")
 #@ load("monitoring/monitoring.lib.yml", "monitoring_config")
 #@ load("monitoring/monitoring.star", "monitoring_enabled")
-#@ load("common/common.star", "service_spec_type")
 
 #@ if monitoring_enabled():
---- #@ template.replace(overlay.apply(monitoring_config(service_spec_type())))
+--- #@ template.replace(overlay.apply(monitoring_config()))
 #@ end

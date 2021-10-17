@@ -236,6 +236,18 @@ components:
                           type: boolean
                           default: false
                           description: Enables grafana feature
+                        service:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              default: ClusterIP
+                              enum:
+                                - NodePort
+                                - LoadBalancer
+                                - ClusterIP
+                                - ExternalName
+                              description: Service type
     scdfYtt:
       type: object
       description: Extension to scdfPackage schema adding properties for plain ytt

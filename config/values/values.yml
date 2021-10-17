@@ -130,6 +130,8 @@ scdf:
           repository: springcloud/spring-cloud-dataflow-grafana-prometheus
           tag: ""
           digest: ""
+        service:
+          type: ClusterIP
       prometheusRsocketProxy:
         enabled: false
         image:

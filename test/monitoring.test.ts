@@ -28,7 +28,7 @@ describe('monitoring', () => {
 
     const grafanaService = findService(yaml, GRAFANA_NAME);
     expect(grafanaService).toBeTruthy();
-    expect(grafanaService?.spec?.type).toBe('NodePort');
+    expect(grafanaService?.spec?.type).toBe('ClusterIP');
   });
 
   it('should have grafana image digest', async () => {
@@ -55,10 +55,10 @@ describe('monitoring', () => {
       files: ['config'],
       dataValueYamls: [
         ...DEFAULT_REQUIRED_DATA_VALUES,
-        'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
         'scdf.feature.monitoring.grafana.enabled=true',
-        'scdf.feature.monitoring.grafana.image.tag=1.2.3'
+        'scdf.feature.monitoring.grafana.image.tag=1.2.3',
+        'scdf.feature.monitoring.grafana.service.type=LoadBalancer'
       ]
     });
     expect(result.success, result.stderr).toBeTruthy();
