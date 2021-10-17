@@ -10,6 +10,7 @@ ifdef::env-github[]
 :example-kapp-default: link:examples/kapp-default[Kapp Default]
 :example-kubectl-default: link:examples/kubectl-default[Kubectl Default]
 :example-tanzu-default: link:examples/tanzu-default[Tanzu Default]
+:example-tanzu-cloud-default: link:examples/tanzu-cloud-default[Tanzu Cloud Default]
 endif::[]
 ifndef::env-github[]
 endif::[]
@@ -20,8 +21,6 @@ endif::[]
 toc::[]
 
 ifdef::env-github[]
-{example-tanzu-default}
-
 {example-kapp-controller-install}
 
 {example-kapp-controller-default}
@@ -31,13 +30,15 @@ ifdef::env-github[]
 {example-kubectl-default}
 
 {external-kafka-with-tanzu}
+
+{example-tanzu-default}
+
+{example-tanzu-cloud-default}
 endif::[]
 
 Various examples for different use cases.
 
 ifndef::env-github[]
-
-include::examples/tanzu-default/README.adoc[]
 
 include::examples/kapp-controller-install/README.adoc[]
 
@@ -48,5 +49,9 @@ include::examples/kapp-default/README.adoc[]
 include::examples/kubectl-default/README.adoc[]
 
 include::examples/external-kafka-with-tanzu/README.adoc[]
+
+include::examples/tanzu-default/README.adoc[]
+
+include::examples/tanzu-cloud-default/README.adoc[]
 
 endif::[]
