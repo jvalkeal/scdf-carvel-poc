@@ -8,17 +8,17 @@ endif::[]
 ifndef::env-github[]
 endif::[]
 
-[[examples-kapp-default]]
-== Kapp Default
+[[examples-kubectl-default]]
+== Kubectl Default
 In this example you will use _ytt_ to template _kubernetes_
-deployment files and push those to cluster with _kapp_.
+deployment files and push those to cluster with _kubectl_.
 
 [source, bash]
 ----
-kapp deploy \
-  -y \
-  -a scdf-demo \
-  -f <(ytt -f config -f docs/examples/kapp-default/scdf-values.yml)
+ytt \
+  -f config \
+  -f docs/examples/kubectl-default/scdf-values.yml \
+  | kubectl apply -f-
 ----
 
 [IMPORTANT]
@@ -26,4 +26,11 @@ kapp deploy \
 You need to run this command from a project root or fix
 paths to `config` and `scdf-values.yml` depending on your
 current working directory.
+====
+
+[NOTE]
+====
+As this is a low level deployment you may see servers restarting
+if databases are not yet ready. Also as on default image locations
+will point to _dockerhub_ you may get failures with rate limiting.
 ====

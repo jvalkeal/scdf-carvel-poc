@@ -5,9 +5,11 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 :external-kafka-with-tanzu: link:examples/external-kafka-with-tanzu[External Kafka with Tanzu]
-:example-tanzu-default: link:examples/tanzu-default[Tanzu Default]
+:example-kapp-controller-default: link:examples/kapp-controller-default[Kapp Controller Default]
+:example-kapp-controller-install: link:examples/kapp-controller-install[Kapp Controller Install]
 :example-kapp-default: link:examples/kapp-default[Kapp Default]
-:example-kapp-controller-default: link:examples/kapp-controler-default[Kapp Default]
+:example-kubectl-default: link:examples/kubectl-default[Kubectl Default]
+:example-tanzu-default: link:examples/tanzu-default[Tanzu Default]
 endif::[]
 ifndef::env-github[]
 endif::[]
@@ -20,9 +22,13 @@ toc::[]
 ifdef::env-github[]
 {example-tanzu-default}
 
-{example-kapp-default}
+{example-kapp-controller-install}
 
 {example-kapp-controller-default}
+
+{example-kapp-default}
+
+{example-kubectl-default}
 
 {external-kafka-with-tanzu}
 endif::[]
@@ -33,9 +39,13 @@ ifndef::env-github[]
 
 include::examples/tanzu-default/README.adoc[]
 
-include::examples/kapp-default/README.adoc[]
+include::examples/kapp-controller-install/README.adoc[]
 
 include::examples/kapp-controller-default/README.adoc[]
+
+include::examples/kapp-default/README.adoc[]
+
+include::examples/kubectl-default/README.adoc[]
 
 include::examples/external-kafka-with-tanzu/README.adoc[]
 

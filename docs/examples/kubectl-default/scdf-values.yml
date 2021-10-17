@@ -1,0 +1,12 @@
+#@data/values
+---
+scdf:
+  server:
+    image:
+      tag: 2.9.0
+  skipper:
+    image:
+      tag: 2.8.0
+  ctr:
+    image:
+      tag: 2.9.0
