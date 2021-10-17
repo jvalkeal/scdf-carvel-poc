@@ -57,7 +57,6 @@ describe('binders rabbit', () => {
       files: ['config'],
       dataValueYamls: [
         ...DEFAULT_REQUIRED_DATA_VALUES,
-        'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=mysql',
         'scdf.deploy.binder.enabled=false',
         'scdf.binder.rabbit.host=localhost',
@@ -186,7 +185,6 @@ describe('binders kafka', () => {
       files: ['config'],
       dataValueYamls: [
         ...DEFAULT_REQUIRED_DATA_VALUES,
-        'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
         'scdf.deploy.binder.enabled=false',
         'scdf.binder.kafka.broker.host=broker',

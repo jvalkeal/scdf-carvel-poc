@@ -62,7 +62,6 @@ describe('servers', () => {
       files: ['config'],
       dataValueYamls: [
         ...DEFAULT_REQUIRED_DATA_VALUES,
-        'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
         'scdf.binder.kafka.broker.host=localhost',
         'scdf.binder.kafka.broker.port=1234',
@@ -83,7 +82,6 @@ describe('servers', () => {
       files: ['config'],
       dataValueYamls: [
         ...DEFAULT_REQUIRED_DATA_VALUES,
-        'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
         'scdf.binder.kafka.broker.host=localhost',
         'scdf.binder.kafka.broker.port=1234',
@@ -136,7 +134,6 @@ describe('servers', () => {
       files: ['config'],
       dataValueYamls: [
         ...DEFAULT_REQUIRED_DATA_VALUES,
-        'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
         'scdf.binder.kafka.broker.host=localhost',
         'scdf.binder.kafka.broker.port=1234',
@@ -180,7 +177,6 @@ describe('servers', () => {
       files: ['config'],
       dataValueYamls: [
         ...DEFAULT_REQUIRED_DATA_VALUES,
-        'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
         'scdf.binder.kafka.broker.host=localhost',
         'scdf.binder.kafka.broker.port=1234',
@@ -224,7 +220,6 @@ describe('servers', () => {
       files: ['config'],
       dataValueYamls: [
         ...DEFAULT_REQUIRED_DATA_VALUES,
-        'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
         'scdf.binder.kafka.broker.host=localhost',
         'scdf.binder.kafka.broker.port=1234',
@@ -297,7 +292,6 @@ describe('servers', () => {
       files: ['config'],
       dataValueYamls: [
         ...DEFAULT_REQUIRED_DATA_VALUES,
-        'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
         'scdf.binder.kafka.broker.host=localhost',
         'scdf.binder.kafka.broker.port=1234',
@@ -344,7 +338,6 @@ describe('servers', () => {
       files: ['config'],
       dataValueYamls: [
         ...DEFAULT_REQUIRED_DATA_VALUES,
-        'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
         'scdf.binder.kafka.broker.host=localhost',
         'scdf.binder.kafka.broker.port=1234',
@@ -383,7 +376,6 @@ describe('servers', () => {
       files: ['config'],
       dataValueYamls: [
         ...DEFAULT_REQUIRED_DATA_VALUES,
-        'scdf.deploy.mode=cloud',
         'scdf.deploy.database.type=postgres',
         'scdf.feature.monitoring.grafana.enabled=true',
         'scdf.server.metrics.dashboard.url=http://fakedashboard'
