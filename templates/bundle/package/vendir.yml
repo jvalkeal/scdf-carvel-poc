@@ -6,3 +6,5 @@ directories:
   contents:
   - path: upstream
     manual: {}
+  - path: values.yml
+    manual: {}
