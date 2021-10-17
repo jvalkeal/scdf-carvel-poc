@@ -1,5 +1,0 @@
-scdf:
-  deploy:
-    mode: minikube
-    binder:
-      type: kafka
