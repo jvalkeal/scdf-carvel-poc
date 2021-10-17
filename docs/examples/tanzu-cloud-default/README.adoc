@@ -4,8 +4,10 @@ ifdef::env-github[]
 :important-caption: :heavy_exclamation_mark:
 :caution-caption: :fire:
 :warning-caption: :warning:
+:example-tanzu-default: link:../tanzu-default[Tanzu Default]
 endif::[]
 ifndef::env-github[]
+:example-tanzu-default: link:../tanzu-default[Tanzu Default]
 endif::[]
 
 [[examples-tanzu-cloud-default]]
@@ -26,3 +28,6 @@ tanzu package install scdf-demo \
   --values-file scdf-values.yml
 ----
 
+Only difference to {example-tanzu-default} is that _Dataflow_ server
+service type is defind to be a `LoadBalancer` which exposes it
+from a cloud service.
