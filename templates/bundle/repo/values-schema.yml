@@ -24,13 +24,6 @@ components:
             deploy:
               type: object
               properties:
-                mode:
-                  type: string
-                  default: minikube
-                  enum:
-                    - minikube
-                    - cloud
-                  description: Defines deployment mode, either minikube or cloud
                 binder:
                   type: object
                   properties:
@@ -117,6 +110,18 @@ components:
                       type: boolean
                       default: true
                       description: Datasource testOnBorrow setting
+                service:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      default: ClusterIP
+                      enum:
+                        - NodePort
+                        - LoadBalancer
+                        - ClusterIP
+                        - ExternalName
+                      description: Service type
                 config:
                   type: string
                   description: Raw server config as yml
@@ -151,6 +156,18 @@ components:
                       type: boolean
                       default: true
                       description: Datasource testOnBorrow setting
+                service:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      default: ClusterIP
+                      enum:
+                        - NodePort
+                        - LoadBalancer
+                        - ClusterIP
+                        - ExternalName
+                      description: Service type
                 config:
                   type: string
                   description: Raw server config as yml

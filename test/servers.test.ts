@@ -7,11 +7,50 @@ import {
   findDeployment,
   deploymentContainer,
   containerEnvValues,
-  containerEnvValue
+  containerEnvValue,
+  findService
 } from '../src/k8s-helper';
 import { SCDF_SERVER_NAME, SKIPPER_NAME, DEFAULT_REQUIRED_DATA_VALUES } from '../src/constants';
 
 describe('servers', () => {
+  it('should have default service types', async () => {
+    const result = await execYtt({
+      files: ['config'],
+      dataValueYamls: [...DEFAULT_REQUIRED_DATA_VALUES]
+    });
+    expect(result.success).toBeTruthy();
+    const yaml = result.stdout;
+
+    const dataflowService = findService(yaml, SCDF_SERVER_NAME);
+    expect(dataflowService).toBeTruthy();
+    expect(dataflowService?.spec?.type).toBe('ClusterIP');
+
+    const skipperService = findService(yaml, SKIPPER_NAME);
+    expect(skipperService).toBeTruthy();
+    expect(skipperService?.spec?.type).toBe('ClusterIP');
+  });
+
+  it('should have load balancer as service type', async () => {
+    const result = await execYtt({
+      files: ['config'],
+      dataValueYamls: [
+        ...DEFAULT_REQUIRED_DATA_VALUES,
+        'scdf.server.service.type=LoadBalancer',
+        'scdf.skipper.service.type=LoadBalancer'
+      ]
+    });
+    expect(result.success).toBeTruthy();
+    const yaml = result.stdout;
+
+    const dataflowService = findService(yaml, SCDF_SERVER_NAME);
+    expect(dataflowService).toBeTruthy();
+    expect(dataflowService?.spec?.type).toBe('LoadBalancer');
+
+    const skipperService = findService(yaml, SKIPPER_NAME);
+    expect(skipperService).toBeTruthy();
+    expect(skipperService?.spec?.type).toBe('LoadBalancer');
+  });
+
   it('should have tagged images', async () => {
     const result = await execYtt({
       files: ['config'],

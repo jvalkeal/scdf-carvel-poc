@@ -7,8 +7,6 @@ scdf:
       #! if defined ref will be added as imagePullSecrets resources
       ref: ""
   deploy:
-    #! deploy mode, either minikube or cloud
-    mode: minikube
     binder:
       #! if binder deployment is enabled
       enabled: true
@@ -64,6 +62,8 @@ scdf:
       #! dataflow server image tag (required)
       tag: ""
       digest: ""
+    service:
+      type: ClusterIP
     metrics:
       dashboard:
         url: ""
@@ -91,6 +91,8 @@ scdf:
       #! skipper server image tag (required)
       tag: ""
       digest: ""
+    service:
+      type: ClusterIP
     database:
       url: ""
       username: ""

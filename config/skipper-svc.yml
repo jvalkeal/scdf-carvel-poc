@@ -1,5 +1,5 @@
 #@ load("@ytt:data", "data")
-#@ load("common/common.star", "service_spec_type")
+#@ load("skipper.star", "service_spec_type")
 
 apiVersion: v1
 kind: Service

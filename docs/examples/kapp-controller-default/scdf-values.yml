@@ -21,6 +21,3 @@ metadata:
 stringData:
   values.yml: |
     ---
-    scdf:
-      deploy:
-        mode: cloud

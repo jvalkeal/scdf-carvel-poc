@@ -57,3 +57,7 @@ end
 def image_pull_secrets():
   return [{"name": registry_secret_ref()}]
 end
+
+def service_spec_type():
+  return data.values.scdf.server.service.type
+end

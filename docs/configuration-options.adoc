@@ -20,7 +20,6 @@ yaml document.
 *Curated List of Options:*
 
 - <<configuration-options-scdf.registry.secret.ref>>
-- <<configuration-options-scdf.deploy.mode>>
 - <<configuration-options-scdf.deploy.binder.enabled>>
 - <<configuration-options-scdf.deploy.binder.type>>
 - <<configuration-options-scdf.deploy.binder.rabbit.config>>
@@ -48,6 +47,7 @@ yaml document.
 - <<configuration-options-scdf.server.image.repository>>
 - <<configuration-options-scdf.server.image.tag>>
 - <<configuration-options-scdf.server.image.digest>>
+- <<configuration-options-scdf.server.service.type>>
 - <<configuration-options-scdf.server.database.url>>
 - <<configuration-options-scdf.server.database.username>>
 - <<configuration-options-scdf.server.database.password>>
@@ -62,6 +62,7 @@ yaml document.
 - <<configuration-options-scdf.skipper.image.repository>>
 - <<configuration-options-scdf.skipper.image.tag>>
 - <<configuration-options-scdf.skipper.image.digest>>
+- <<configuration-options-scdf.skipper.service.type>>
 - <<configuration-options-scdf.skipper.database.url>>
 - <<configuration-options-scdf.skipper.database.username>>
 - <<configuration-options-scdf.skipper.database.password>>
@@ -103,16 +104,6 @@ No
 String
    Default Value:::
 Empty
-
-[[configuration-options-scdf.deploy.mode]]`scdf.deploy.mode`::
-  Description:::
-Defines deployment mode, either minikube or cloud.
-  Required:::
-No
-  Type:::
-Enum(minikube,cloud)
-   Default Value:::
-minikube
 
 [[configuration-options-scdf.deploy.binder.enabled]]`scdf.deploy.binder.enabled`::
   Description:::
@@ -424,6 +415,16 @@ String
    Default Value:::
 None
 
+[[configuration-options-scdf.server.service.type]]`scdf.server.service.type`::
+  Description:::
+Server service type.
+  Required:::
+No
+  Type:::
+Enum(NodePort, LoadBalancer, ClusterIP, ExternalName)
+   Default Value:::
+ClusterIP
+
 [[configuration-options-scdf.server.database.url]]`scdf.server.database.url`::
   Description:::
 Datasource url setting
@@ -563,6 +564,16 @@ No
 String
    Default Value:::
 None
+
+[[configuration-options-scdf.skipper.service.type]]`scdf.server.skipper.type`::
+  Description:::
+Skipper service type.
+  Required:::
+No
+  Type:::
+Enum(NodePort, LoadBalancer, ClusterIP, ExternalName)
+   Default Value:::
+ClusterIP
 
 [[configuration-options-scdf.skipper.database.url]]`scdf.skipper.database.url`::
   Description:::
