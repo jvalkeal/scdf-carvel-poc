@@ -1,0 +1,15 @@
+#@data/values
+---
+scdf:
+  server:
+    image:
+      tag: 2.9.0
+    service:
+      type:
+        NodePort
+  skipper:
+    image:
+      tag: 2.8.0
+  ctr:
+    image:
+      tag: 2.9.0

@@ -34,3 +34,14 @@ As this is a low level deployment you may see servers restarting
 if databases are not yet ready. Also as on default image locations
 will point to _dockerhub_ you may get failures with rate limiting.
 ====
+
+If running on a minikube you probably want `NodePort` exposed
+for _dataflow_ server:
+
+[source, bash]
+----
+ytt \
+  -f config \
+  -f docs/examples/kubectl-default/scdf-minikube-values.yml \
+  | kubectl apply -f-
+----
