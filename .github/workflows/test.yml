@@ -19,7 +19,7 @@ jobs:
         node-version: 12
     - uses: vmware-tanzu/carvel-setup-action@v1
     - name: npm install
-      run: npm install
+      run: npm ci
     - name: Lint
       run: npm run format-check
     - name: npm test
