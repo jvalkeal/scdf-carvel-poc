@@ -31,7 +31,7 @@ jobs:
     # Builds a package bundle
     - name: Build Package Bundle
       id: build-package-bundle
-      uses: ./.github/actions/build-package-bundle
+      uses: .github/actions/build-package-bundle
       with:
         dataflow-version: 2.9.1-SNAPSHOT
         skipper-version: 2.8.1-SNAPSHOT
@@ -43,7 +43,7 @@ jobs:
     # before repository bundle can be created.
     - name: Publish Package Bundle
       id: publish-package-bundle
-      uses: ./.github/actions/publish-bundle
+      uses: .github/actions/publish-bundle
       with:
         path: ${{ steps.build-package-bundle.outputs.bundle-path }}
         repository: ghcr.io/jvalkeal/springcloud/scdf-package
@@ -53,7 +53,7 @@ jobs:
     # Builds a repository bundle
     - name: Build Repository Bundle
       id: build-repository-bundle
-      uses: ./.github/actions/build-repository-bundle
+      uses: .github/actions/build-repository-bundle
       with:
         version: 2.9.1-SNAPSHOT
         repo-bundle-template: templates/bundle/repo
@@ -62,7 +62,7 @@ jobs:
     # Publishes scdf repo bundle
     - name: Publish Repository Bundle
       id: publish-repository-bundle
-      uses: ./.github/actions/publish-bundle
+      uses: .github/actions/publish-bundle
       with:
         path: ${{ steps.build-repository-bundle.outputs.bundle-path }}
         repository: ghcr.io/jvalkeal/springcloud/scdf-repo
